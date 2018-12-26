@@ -24,7 +24,7 @@ export function GetMenu () {
   })
 }
 
-export function fetchTree (query) {
+export function fetchMenuTree (query) {
   return request({
     url: '/admin/menu/tree',
     method: 'get',

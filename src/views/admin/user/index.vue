@@ -115,7 +115,7 @@
 <script>
   import {addObj, delObj, fetchList, getObj, putObj} from "@/api/admin/user";
   import {deptRoleList} from "@/api/admin/role";
-  import {fetchDeptTree} from "@/api/admin/dept";
+  import {fetchDeptTree,fetchTree} from "@/api/admin/dept";
   import {tableOption} from '@/const/crud/admin/user';
   import {mapGetters} from "vuex";
   import {constants} from 'fs';
@@ -200,7 +200,7 @@
         });
       },
       handleDept() {
-        fetchDeptTree().then(response => {
+        fetchTree().then(response => {
           this.treeDeptData = response.data.data;
         });
       },
