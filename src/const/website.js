@@ -16,6 +16,7 @@ export default {
       '当前版本：v2.0.0'
     ]
   },
+  statusWhiteList: [428],
   // http的status默认放行不才用统一处理的,
   // 配置首页不可关闭
   isFirstPage: false,

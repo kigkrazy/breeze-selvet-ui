@@ -92,7 +92,6 @@ export default {
               url: '/admin/mobile/' + this.loginForm.mobile,
               method: 'get'
           }).then(response => {
-              console.log(response.data.data)
               if (response.data.data) {
                   this.$message.success('验证码发送成功')
               } else {
