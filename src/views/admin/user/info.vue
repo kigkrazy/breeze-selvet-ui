@@ -50,6 +50,20 @@
                           v-model="ruleForm2.newpassword2"
                           auto-complete="off"></el-input>
               </el-form-item>
+              <el-form-item label="手机号" prop="phone">
+                <el-input v-model="ruleForm2.phone" placeholder="验证码登录使用"></el-input>
+              </el-form-item>
+              <el-form-item label="头像">
+                <el-upload
+                  class="avatar-uploader"
+                  action="/admin/file/upload"
+                  :headers="headers"
+                  :show-file-list="false"
+                  :on-success="handleAvatarSuccess">
+                  <img id="avatar" v-if="ruleForm2.avatar" :src="avatarUrl" class="avatar">
+                  <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                </el-upload>
+              </el-form-item>
               <el-form-item label="社交登录"
                             prop="social">
                 <a href="#"
@@ -72,7 +86,8 @@
 
 
 <script>
-  import {openWindow} from '@/util/util'
+  import {handleDown} from "@/api/admin/user";
+  import {handleImg, openWindow} from '@/util/util'
   import {mapState} from 'vuex'
   import {getToken} from '@/util/auth'
   import request from '@/router/axios'
@@ -81,9 +96,7 @@
     data() {
       var validatePass = (rule, value, callback) => {
         if (this.ruleForm2.password !== '') {
-          if (value === '') {
-            callback(new Error('请再次输入密码'))
-          } else if (value !== this.ruleForm2.newpassword1) {
+          if (value !== this.ruleForm2.newpassword1) {
             callback(new Error('两次输入密码不一致!'))
           } else {
             callback()
@@ -93,7 +106,7 @@
         }
       }
       return {
-        fileList: [],
+        avatarUrl: '',
         show: false,
         headers: {
           Authorization: 'Bearer ' + getToken()
@@ -102,17 +115,22 @@
           username: '',
           password: '',
           newpassword1: '',
-          newpassword2: ''
+          newpassword2: '',
+          avatar: '',
+          phone: ''
         },
         rules2: {
           password: [{required: true, min: 6, message: '原密码不能为空且不少于6位', trigger: 'change'}],
-          newpassword1: [{required: true, min: 6, message: '新密码不能为空且不少于6位', trigger: 'change'}],
-          newpassword2: [{required: true, validator: validatePass, trigger: 'blur'}]
+          newpassword1: [{required: false, min: 6, message: '不少于6位', trigger: 'change'}],
+          newpassword2: [{required: false, validator: validatePass, trigger: 'blur'}]
         }
       }
     },
     created() {
       this.ruleForm2.username = this.userInfo.username
+      this.ruleForm2.phone = this.userInfo.phone
+      this.ruleForm2.avatar = this.userInfo.avatar
+      handleImg(this.userInfo.avatar,'avatar')
     },
     computed: {
       ...mapState({
@@ -135,14 +153,10 @@
                   type: 'success',
                   duration: 2000
                 })
-                // 修改密码之后强制重新登录
-                if (this.ruleForm2.newpassword1 !== '') {
-                  this.$store.dispatch('LogOut').then(() => {
-                    location.reload() // 为了重新实例化vue-router对象 避免bug
-                  })
-                } else {
-                  this.$router.push({path: '/'})
-                }
+                // 修改之后强制重新登录
+                this.$store.dispatch('LogOut').then(() => {
+                  location.reload() // 为了重新实例化vue-router对象 避免bug
+                })
               } else {
                 this.$notify({
                   title: '失败',
@@ -178,7 +192,39 @@
           url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=' + appid + '&client_id=' + client_id + '&redirect_uri=' + redirect_uri
         }
         openWindow(url, thirdpart, 540, 540)
+      },
+      handleAvatarSuccess(res, file) {
+        this.avatarUrl = URL.createObjectURL(file.raw);
+        this.ruleForm2.avatar = res.data.bucketName + "-" +  res.data.fileName;
       }
     }
   }
 </script>
+<style>
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
+</style>

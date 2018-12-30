@@ -1,4 +1,6 @@
-import { validatenull } from './validate'
+import {validatenull} from './validate'
+import request from '@/router/axios'
+
 // 表单序列化
 export const serialize = data => {
   let list = []
@@ -143,7 +145,7 @@ export const fullscreenToggel = () => {
  * esc监听全屏
  */
 export const listenfullscreen = (callback) => {
-  function listen () {
+  function listen() {
     callback()
   }
 
@@ -311,3 +313,23 @@ export const openWindow = (url, title, w, h) => {
     newWindow.focus()
   }
 }
+
+/**
+ *  <img> <a> src 处理
+ * @returns {PromiseLike<T | never> | Promise<T | never>}
+ */
+export function handleImg(fileName, id) {
+  return request({
+    url: '/admin/file/' + fileName,
+    method: 'get',
+    responseType: 'blob'
+  }).then((response) => { // 处理返回的文件流
+    let blob = response.data;
+    let img = document.getElementById(id);
+    img.src = URL.createObjectURL(blob);
+    window.setTimeout(function () {
+      window.URL.revokeObjectURL(blob)
+    }, 0)
+  })
+}
+

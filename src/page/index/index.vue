@@ -97,7 +97,6 @@
             debug: true,
           });
 
-          console.log(this.expires_in)
           if (validatenull(token)) {
             return;
           }
