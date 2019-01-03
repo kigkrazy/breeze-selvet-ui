@@ -136,11 +136,11 @@ export const encryption = (params) => {
  */
 export const fullscreenToggel = () => {
   if (fullscreenEnable()) {
-    exitFullScreen()
+    exitFullScreen();
   } else {
-    reqFullScreen()
+    reqFullScreen();
   }
-}
+};
 /**
  * esc监听全屏
  */
@@ -148,29 +148,25 @@ export const listenfullscreen = (callback) => {
   function listen() {
     callback()
   }
-
-  document.addEventListener('fullscreenchange', function () {
-    listen()
-  })
-  document.addEventListener('mozfullscreenchange', function () {
-    listen()
-  })
-  document.addEventListener('webkitfullscreenchange', function () {
-    listen()
-  })
-  document.addEventListener('msfullscreenchange', function () {
-    listen()
-  })
-}
+  document.addEventListener("fullscreenchange", function () {
+    listen();
+  });
+  document.addEventListener("mozfullscreenchange", function () {
+    listen();
+  });
+  document.addEventListener("webkitfullscreenchange", function () {
+    listen();
+  });
+  document.addEventListener("msfullscreenchange", function () {
+    listen();
+  });
+};
 /**
  * 浏览器判断是否全屏
  */
 export const fullscreenEnable = () => {
-  var isFullscreen = document.fullscreenEnabled ||
-    window.fullScreen ||
-    document.mozFullscreenEnabled ||
-    document.webkitIsFullScreen
-  return isFullscreen
+  var isFullscreen = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
+  return isFullscreen;
 }
 
 /**
@@ -178,25 +174,25 @@ export const fullscreenEnable = () => {
  */
 export const reqFullScreen = () => {
   if (document.documentElement.requestFullScreen) {
-    document.documentElement.requestFullScreen()
+    document.documentElement.requestFullScreen();
   } else if (document.documentElement.webkitRequestFullScreen) {
-    document.documentElement.webkitRequestFullScreen()
+    document.documentElement.webkitRequestFullScreen();
   } else if (document.documentElement.mozRequestFullScreen) {
-    document.documentElement.mozRequestFullScreen()
+    document.documentElement.mozRequestFullScreen();
   }
-}
+};
 /**
  * 浏览器退出全屏
  */
 export const exitFullScreen = () => {
   if (document.documentElement.requestFullScreen) {
-    document.exitFullScreen()
+    document.exitFullScreen();
   } else if (document.documentElement.webkitRequestFullScreen) {
-    document.webkitCancelFullScreen()
+    document.webkitCancelFullScreen();
   } else if (document.documentElement.mozRequestFullScreen) {
-    document.mozCancelFullScreen()
+    document.mozCancelFullScreen();
   }
-}
+};
 /**
  * 递归寻找子类的父类
  */
@@ -216,9 +212,6 @@ export const findParent = (menu, id) => {
     }
   }
 }
-/**
- * 判断2个对象属性和值是否相等
- */
 
 /**
  * 动态插入css

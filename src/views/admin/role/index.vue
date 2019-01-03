@@ -230,14 +230,22 @@
         done();
       },
       handleDelete(row, index) {
-        delObj(row.roleId).then(response => {
+        var _this = this
+        this.$confirm('是否确认删除名称为"' + row.roleName + '"'+ '"的数据项?', '警告', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(function () {
+          return delObj(row.roleId)
+        }).then(() => {
+          this.getList(this.page)
           this.list.splice(index, 1);
-          this.$notify({
-            title: '成功',
+          _this.$message({
+            showClose: true,
             message: '删除成功',
-            type: 'success',
-            duration: 2000
+            type: 'success'
           })
+        }).catch(function () {
         })
       },
       create(row, done, loading) {
