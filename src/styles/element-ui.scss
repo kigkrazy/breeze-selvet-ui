@@ -30,7 +30,7 @@
 .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus,
 .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover,
 .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
-    background-color: transparent;
+    background-color: transparent!important;
 }
 
 .el-message__icon,
@@ -62,11 +62,5 @@
 .el-collapse-item__header{
   text-align: center;
   display: block;
-}
-.el-dropdown-menu__item--divided:before,
-.el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover,
-.el-menu--horizontal>.el-submenu
-.el-submenu__title:hover{
-  background-color: transparent!important;
 }
 
