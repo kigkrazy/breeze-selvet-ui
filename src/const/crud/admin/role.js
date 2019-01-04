@@ -25,14 +25,6 @@ export const tableOption = {
   align: 'center',
   addBtn: false,
   column: [{
-    fixed: true,
-    label: 'id',
-    prop: 'roleId',
-    span: 24,
-    editDisabled: true,
-    addVisdiplay: false
-  }, {
-    fixed: true,
     label: '角色名称',
     prop: 'roleName',
     span: 24,
@@ -41,13 +33,12 @@ export const tableOption = {
       message: '角色名称不能为空',
       trigger: 'blur'
     },
-      {
-        min: 3,
-        max: 20,
-        message: '长度在 3 到 20 个字符',
-        trigger: 'blur'
-      }
-    ]
+    {
+      min: 3,
+      max: 20,
+      message: '长度在 3 到 20 个字符',
+      trigger: 'blur'
+    }]
   }, {
     width: 120,
     label: '角色标识',
@@ -97,11 +88,11 @@ export const tableOption = {
       value: 3
     }]
   }, {
+    label:'数据权限限定范围',
     prop: 'dsScope',
     formsolt: true,
     hide: true
   }, {
-    width: 150,
     label: '创建时间',
     prop: 'createTime',
     type: 'datetime',

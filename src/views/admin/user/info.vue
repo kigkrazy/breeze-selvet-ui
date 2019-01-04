@@ -18,6 +18,12 @@
 <template>
   <div class="app-container calendar-list-container">
     <basic-container>
+      <template>
+        <el-tabs @tab-click="switchTab">
+          <el-tab-pane label='信息管理' name='userManager'/>
+          <el-tab-pane label='密码管理' name='passwordManager'/>
+        </el-tabs>
+      </template>
       <el-row>
         <el-col :span="12">
           <div class="grid-content bg-purple">
@@ -25,30 +31,13 @@
                      :rules="rules2"
                      ref="ruleForm2"
                      label-width="100px"
+                     v-if="switchStatus==='userManager'"
                      class="demo-ruleForm">
               <el-form-item label="用户名"
                             prop="username">
                 <el-input type="text"
                           v-model="ruleForm2.username"
                           disabled></el-input>
-              </el-form-item>
-              <el-form-item label="原密码"
-                            prop="password">
-                <el-input type="password"
-                          v-model="ruleForm2.password"
-                          auto-complete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="密码"
-                            prop="newpassword1">
-                <el-input type="password"
-                          v-model="ruleForm2.newpassword1"
-                          auto-complete="off"></el-input>
-              </el-form-item>
-              <el-form-item label="确认密码"
-                            prop="newpassword2">
-                <el-input type="password"
-                          v-model="ruleForm2.newpassword2"
-                          auto-complete="off"></el-input>
               </el-form-item>
               <el-form-item label="手机号" prop="phone">
                 <el-input v-model="ruleForm2.phone" placeholder="验证码登录使用"></el-input>
@@ -69,6 +58,37 @@
                 <a href="#"
                    style="color: blue"
                    @click="handleClick('wechat')">绑定微信</a>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary"
+                           @click="submitForm('ruleForm2')">提交
+                </el-button>
+                <el-button @click="resetForm('ruleForm2')">重置</el-button>
+              </el-form-item>
+            </el-form>
+            <el-form :model="ruleForm2"
+                     :rules="rules2"
+                     ref="ruleForm2"
+                     label-width="100px"
+                     v-if="switchStatus==='passwordManager'"
+                     class="demo-ruleForm">
+              <el-form-item label="原密码"
+                            prop="password">
+                <el-input type="password"
+                          v-model="ruleForm2.password"
+                          auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="密码"
+                            prop="newpassword1">
+                <el-input type="password"
+                          v-model="ruleForm2.newpassword1"
+                          auto-complete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="确认密码"
+                            prop="newpassword2">
+                <el-input type="password"
+                          v-model="ruleForm2.newpassword2"
+                          auto-complete="off"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary"
@@ -106,6 +126,7 @@
         }
       }
       return {
+        switchStatus: '',
         avatarUrl: '',
         show: false,
         headers: {
@@ -130,7 +151,8 @@
       this.ruleForm2.username = this.userInfo.username
       this.ruleForm2.phone = this.userInfo.phone
       this.ruleForm2.avatar = this.userInfo.avatar
-      handleImg(this.userInfo.avatar,'avatar')
+      this.switchStatus = 'userManager'
+      handleImg(this.userInfo.avatar, 'avatar')
     },
     computed: {
       ...mapState({
@@ -138,6 +160,9 @@
       }),
     },
     methods: {
+      switchTab(tab, event) {
+        this.switchStatus = tab.name
+      },
       submitForm(formName) {
         this.$refs[formName].validate(valid => {
           if (valid) {
@@ -153,10 +178,12 @@
                   type: 'success',
                   duration: 2000
                 })
-                // 修改之后强制重新登录
-                this.$store.dispatch('LogOut').then(() => {
-                  location.reload() // 为了重新实例化vue-router对象 避免bug
-                })
+                // 修改密码之后强制重新登录
+                if (this.switchStatus === 'passwordManager') {
+                  this.$store.dispatch('LogOut').then(() => {
+                    location.reload() // 为了重新实例化vue-router对象 避免bug
+                  })
+                }
               } else {
                 this.$notify({
                   title: '失败',
@@ -195,7 +222,7 @@
       },
       handleAvatarSuccess(res, file) {
         this.avatarUrl = URL.createObjectURL(file.raw);
-        this.ruleForm2.avatar = res.data.bucketName + "-" +  res.data.fileName;
+        this.ruleForm2.avatar = res.data.bucketName + "-" + res.data.fileName;
       }
     }
   }
