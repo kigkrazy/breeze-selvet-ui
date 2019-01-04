@@ -35,16 +35,19 @@ export default {
       text: '',
       list: [
         {
-          name: '默认主题',
+          name: '默认',
           value: '',
         }, {
-          name: '炫彩主题',
+          name: '炫彩',
           value: 'theme-star'
+        },{
+          name: '火山',
+          value: 'theme-volcano'
         }, {
-          name: '黑色主题',
+          name: '黑色',
           value: 'theme-black'
         }, {
-          name: '渐变主题',
+          name: '渐变',
           value: 'theme-gradual'
         }
       ]

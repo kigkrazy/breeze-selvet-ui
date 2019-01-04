@@ -2,7 +2,8 @@
   <el-color-picker size="small"
                    class="theme-picker"
                    popper-class="theme-picker-dropdown"
-                   v-model="themeVal"></el-color-picker>
+                   v-model="themeVal"
+                   :predefine="predefineColors"></el-color-picker>
 </template>
 
 <script>
@@ -13,7 +14,16 @@ export default {
   mixins: [color()],
   data () {
     return {
-      chalk: ""
+      chalk: '',
+      predefineColors: [
+        '#ff4500',
+        '#ff8c00',
+        '#ffd700',
+        '#90ee90',
+        '#00ced1',
+        '#1e90ff',
+        '#c71585'
+      ]
     };
   }
 };
