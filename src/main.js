@@ -38,16 +38,20 @@ Vue.use(vueJsonTreeView)
 
 Vue.use(VueAxios, axios)
 
+// 注册全局容器
 Vue.component('basicContainer', basicContainer)
 
+// 加载相关url地址
 Object.keys(urls).forEach(key => {
   Vue.prototype[key] = urls[key]
 })
 
+//加载过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
 })
 
+// 动态加载阿里云字体库
 iconfontVersion.forEach(ele => {
   loadStyle(iconfontUrl.replace('$key', ele))
 })
