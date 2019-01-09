@@ -37,6 +37,7 @@ export const option = (safe) => {
   const _safe = safe
   return {
     submitBtn: false,
+    emptyBtn:false,
     column: [{
       label: '标签',
       prop: 'showTag',
