@@ -30,19 +30,19 @@
               <div>基于开源LCN 分布式事务解决方案深度定制</div>
               <div>完美兼容2.X，优化集群部署，提升性能</div>
             </el-collapse-item>
-            <el-collapse-item title="SAAS多租户" name="4">
+            <el-collapse-item title="SAAS多租户" name="5">
               <div>扩展Spring Cache无缝兼容</div>
               <div>支持开发过程无感知</div>
             </el-collapse-item>
-            <el-collapse-item title="Activiti工作流" name="4">
+            <el-collapse-item title="Activiti工作流" name="6">
               <div>基于activiti5.22整合OAuth2</div>
               <div>支持在线流程设计</div>
             </el-collapse-item>
-            <el-collapse-item title="动态路由" name="4">
+            <el-collapse-item title="动态路由" name="7">
               <div>支持数据库存储SCG路由信息</div>
               <div>支持前端动态编辑</div>
             </el-collapse-item>
-            <el-collapse-item title="其他功能" name="4">
+            <el-collapse-item title="其他功能" name="8">
               <div>单点登录</div>
               <div>扩展SBA支持服务监听事件redis保存</div>
               <div>扩展Turbine,定制展示UI</div>
