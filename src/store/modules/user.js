@@ -1,6 +1,6 @@
 import {getStore, setStore} from '@/util/store'
 import {isURL} from '@/util/validate'
-import {getUserInfo, loginByMobile, loginBySocial, loginByUsername, logout, refeshToken} from '@/api/login'
+import {getUserInfo, loginByMobile, loginBySocial, loginByUsername, logout, refreshToken} from '@/api/login'
 import {deepClone, encryption} from '@/util/util'
 import webiste from '@/const/website'
 import {GetMenu} from '@/api/admin/menu'
@@ -110,9 +110,9 @@ const user = {
       })
     },
     // 刷新token
-    RefeshToken({commit, state}) {
+    RefreshToken({commit, state}) {
       return new Promise((resolve, reject) => {
-        refeshToken(state.refresh_token).then(response => {
+        refreshToken(state.refresh_token).then(response => {
           const data = response.data
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)

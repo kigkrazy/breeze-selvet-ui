@@ -32,7 +32,7 @@ export const loginByUsername = (username, password, code, randomStr) => {
   })
 }
 
-export const refeshToken = (refresh_token) => {
+export const refreshToken = (refresh_token) => {
   const grant_type = 'refresh_token'
   return request({
     url: '/auth/oauth/token',
