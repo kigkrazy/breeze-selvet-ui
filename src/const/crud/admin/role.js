@@ -24,6 +24,7 @@ export const tableOption = {
   delBtn: false,
   align: 'center',
   addBtn: false,
+  viewBtn:true,
   column: [{
     label: '角色名称',
     prop: 'roleName',
