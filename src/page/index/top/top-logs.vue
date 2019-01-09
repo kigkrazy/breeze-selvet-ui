@@ -1,6 +1,7 @@
 <template>
   <span @click="logsFlag?'':handleOpen()">
-    <el-badge :value="logsFlag?'':logsLen">
+    <el-badge :value="logsFlag?'':logsLen"
+              :max="99">
       <i class="icon-bug"></i>
     </el-badge>
     <el-dialog title="日志"
@@ -15,24 +16,23 @@
 
 <script>
 import { mapGetters } from "vuex";
-import logs from '@/page/logs/index'
+import logs from "@/page/logs/index";
 export default {
   name: "top-logs",
   components: { logs },
-  data () {
+  data() {
     return {
       box: false
     };
   },
-  created () {
-  },
-  mounted () { },
+  created() {},
+  mounted() {},
   computed: {
-    ...mapGetters(["logsFlag", "logsLen"]),
+    ...mapGetters(["logsFlag", "logsLen"])
   },
   props: [],
   methods: {
-    handleOpen () {
+    handleOpen() {
       this.box = true;
     }
   }

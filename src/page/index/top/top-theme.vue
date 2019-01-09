@@ -6,7 +6,6 @@
       <el-radio-group v-model="text"
                       class="list">
         <el-row :span="24">
-
           <el-col v-for="(item,index) in list"
                   :key="index"
                   :md="4"
@@ -26,60 +25,55 @@
 </template>
 
 <script>
-  import {setTheme} from '@/util/util'
-  import {mapGetters} from 'vuex';
-
-  export default {
-    data() {
-      return {
-        box: false,
-        text: '',
-        list: [
-          {
-            name: '黑色',
-            value: '',
-          }, {
-            name: '简洁',
-            value: 'theme-volcano'
-          }, {
-            name: '炫彩',
-            value: 'theme-star'
-          }, {
-            name: '紫色',
-            value: 'theme-black'
-          }, {
-            name: '渐变',
-            value: 'theme-gradual'
-          }
-        ]
-      }
-    },
-    watch: {
-      text: function (val) {
-        this.$store.commit('SET_THEME_NAME', val);
-        setTheme(val);
-      }
-    },
-    computed: {
-      ...mapGetters(["themeName"])
-    },
-    mounted() {
-      this.text = this.themeName;
-      if (!this.text) {
-        this.text = '';
-      }
-    },
-    methods: {
-      open() {
-        this.box = true;
-      }
+import { setTheme } from "@/util/util";
+import { mapGetters } from "vuex";
+export default {
+  data() {
+    return {
+      box: false,
+      text: "",
+      list: [
+        {
+          name: "默认主题",
+          value: "default"
+        },
+        {
+          name: "白色主题",
+          value: "theme-white"
+        },
+        {
+          name: "炫彩主题",
+          value: "theme-star"
+        }
+      ]
+    };
+  },
+  watch: {
+    text: function(val) {
+      this.$store.commit("SET_THEME_NAME", val);
+      setTheme(val);
+    }
+  },
+  computed: {
+    ...mapGetters(["themeName"])
+  },
+  mounted() {
+    this.text = this.themeName;
+    if (!this.text) {
+      this.text = "";
+    }
+  },
+  methods: {
+    open() {
+      this.box = true;
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
-  .list {
-    width: 100%;
-  }
+.list {
+  width: 100%;
+}
 </style>
 

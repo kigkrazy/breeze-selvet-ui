@@ -2,16 +2,16 @@
   <div class="avue-sidebar">
     <logo></logo>
     <el-scrollbar style="height:100%">
+      <div v-if="validatenull(menu)"
+           class="avue-sidebar--tip">没有发现菜单</div>
       <el-menu unique-opened
                :default-active="nowTagValue"
                mode="vertical"
                :show-timeout="200"
-               background-color="#20222a"
-               text-color="rgba(255,255,255,0.7)"
                :collapse="keyCollapse">
         <sidebar-item :menu="menu"
-                      first
                       :screen="screen"
+                      first
                       :props="website.menu.props"
                       :collapse="keyCollapse"></sidebar-item>
       </el-menu>
@@ -20,28 +20,30 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import logo from '../logo';
-import sidebarItem from './sidebarItem'
+import { mapGetters } from "vuex";
+import logo from "../logo";
+import sidebarItem from "./sidebarItem";
 export default {
-  name: 'sidebar',
+  name: "sidebar",
   components: { sidebarItem, logo },
-  data () {
-    return {}
+  data() {
+    return {};
   },
-  created () {
+  created() {
     this.$store.dispatch("GetMenu").then(data => {
-      if (data.length === 0) return
+      if (data.length === 0) return;
       this.$router.$avueRouter.formatRoutes(data, true);
-    })
+    });
   },
   computed: {
-    ...mapGetters(['website', 'menu', 'tag', 'keyCollapse', 'screen']),
-    nowTagValue: function () { return this.$router.$avueRouter.getValue(this.$route) }
+    ...mapGetters(["website", "menu", "tag", "keyCollapse", "screen"]),
+    nowTagValue: function() {
+      return this.$router.$avueRouter.getValue(this.$route);
+    }
   },
-  mounted () { },
+  mounted() {},
   methods: {}
-}
+};
 </script>
 <style lang="scss" scoped>
 </style>

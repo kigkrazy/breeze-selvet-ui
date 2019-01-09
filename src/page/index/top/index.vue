@@ -2,13 +2,13 @@
   <div class="avue-top">
     <div class="top-bar__left">
       <div class="avue-breadcrumb"
+           :class="[{ 'avue-breadcrumb--active': isCollapse }]"
            v-if="showCollapse">
-        <i class="icon-navicon avue-breadcrumb_collapse"
-           :class="[{ 'avue-breadcrumb_collapse--right': isCollapse }]"
+        <i class="icon-navicon"
            @click="setCollapse"></i>
       </div>
     </div>
-    <h1 class="top-bar__title">
+    <div class="top-bar__title">
       <div class="top-bar__item top-bar__item--show"
            v-if="showMenu">
         <top-menu></top-menu>
@@ -17,7 +17,7 @@
             v-if="showSearch">
         <top-search></top-search>
       </span>
-    </h1>
+    </div>
     <div class="top-bar__right">
       <el-tooltip v-if="showColor"
                   effect="dark"
@@ -60,12 +60,21 @@
              @click="handleScreen"></i>
         </div>
       </el-tooltip>
+      <el-tooltip v-if="this.userInfo.avatar" effect="dark"
+                  content="用户头像"
+                  placement="bottom">
+        <img id="thumbnail" class="top-bar__img"
+             :src="userInfo.avatar">
+      </el-tooltip>
       <el-dropdown>
         <span class="el-dropdown-link">
           {{userInfo.username}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>
+            <router-link to="/">首页</router-link>
+          </el-dropdown-item>
           <el-dropdown-item>
             <router-link to="/info/index">个人信息</router-link>
           </el-dropdown-item>
@@ -79,38 +88,45 @@
 </template>
 <script>
 import { mapGetters, mapState } from "vuex";
-import { fullscreenToggel, listenfullscreen } from "@/util/util";
+import { fullscreenToggel, listenfullscreen,handleImg } from "@/util/util";
 import topLock from "./top-lock";
 import topMenu from "./top-menu";
-import topSearch from './top-search';
-import topBreadcrumb from "./top-breadcrumb";
-import topColor from "./top-color";
+import topSearch from "./top-search";
 import topTheme from "./top-theme";
 import topLogs from "./top-logs";
+import topColor from "./top-color";
 import topSetting from "./top-setting";
 export default {
-  components: { topLock, topMenu, topSearch, topBreadcrumb, topColor, topTheme, topLogs, topSetting },
+  components: {
+    topLock,
+    topMenu,
+    topSearch,
+    topTheme,
+    topLogs,
+    topColor,
+    topSetting
+  },
   name: "top",
-  data () {
-    return {
-
-    };
+  data() {
+    return {};
   },
   filters: {},
-  created () { },
-  mounted () {
+  created() {
+    handleImg(this.userInfo.avatar, 'thumbnail');
+  },
+  mounted() {
     listenfullscreen(this.setScreen);
   },
   computed: {
     ...mapState({
       showDebug: state => state.common.showDebug,
-      showColor: state => state.common.showColor,
       showTheme: state => state.common.showTheme,
       showLock: state => state.common.showLock,
       showFullScren: state => state.common.showFullScren,
       showCollapse: state => state.common.showCollapse,
       showSearch: state => state.common.showSearch,
-      showMenu: state => state.common.showMenu
+      showMenu: state => state.common.showMenu,
+      showColor: state => state.common.showColor
     }),
     ...mapGetters([
       "userInfo",
@@ -121,19 +137,19 @@ export default {
       "tag",
       "logsLen",
       "logsFlag"
-    ]),
+    ])
   },
   methods: {
-    handleScreen () {
+    handleScreen() {
       fullscreenToggel();
     },
-    setCollapse () {
+    setCollapse() {
       this.$store.commit("SET_COLLAPSE");
     },
-    setScreen () {
+    setScreen() {
       this.$store.commit("SET_FULLSCREN");
     },
-    logout () {
+    logout() {
       this.$confirm("是否退出系统, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
@@ -150,4 +166,3 @@ export default {
 
 <style lang="scss" scoped>
 </style>
-

@@ -2,7 +2,6 @@
     font-size: 12px !important;
     line-height: 28px !important;
 }
-
 .el-card.is-always-shadow {
     box-shadow: none;
     border: none !important;
@@ -30,7 +29,7 @@
 .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus,
 .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover,
 .el-menu--horizontal>.el-submenu .el-submenu__title:hover {
-    background-color: transparent!important;
+    background-color: transparent;
 }
 
 .el-message__icon,
@@ -59,8 +58,7 @@
 .el-main {
     padding: 0 !important;
 }
-.el-collapse-item__header{
-  text-align: center;
-  display: block;
-}
 
+.el-dropdown-menu__item--divided:before, .el-menu, .el-menu--horizontal>.el-menu-item:not(.is-disabled):focus, .el-menu--horizontal>.el-menu-item:not(.is-disabled):hover, .el-menu--horizontal>.el-submenu .el-submenu__title:hover{
+    background-color: transparent !important;
+}

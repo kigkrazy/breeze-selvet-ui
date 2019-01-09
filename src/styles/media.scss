@@ -2,31 +2,25 @@
 .avue-header,
 .avue-top,
 .avue-logo,
+.avue-layout
 .login-logo,
 .avue-main {
     transition: all .3s;
 }
-
 .avue-contail {
     width: 100%;
     height: 100%;
-    background-color: #f2f2f2;
+    background: #f0f2f5;
     background-size: 100%;
     background-repeat: no-repeat;
 }
 
-.avue-top {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 0 auto;
-}
 
 .avue-left {
     position: fixed;
     left: 0;
     top: 0;
-    width: 220px;
+    width: 240px;
     height: 100%;
     z-index: 1025;
 }
@@ -54,12 +48,11 @@
 
 .avue-main {
     position: absolute;
-    left: 220px;
-    margin-top: 5px;
+    left: 240px;
     padding: 0;
     padding-bottom: 20px;
-    width: calc(100% - 220px);
-    height: calc(100% - 57px);
+    width: calc(100% - 240px);
+    height: calc(100% - 70px);
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -104,7 +97,7 @@
 }
 
 @media screen and (max-width: 992px) {
-    $width: 220px;
+    $width: 240px;
     // ele的自适应
     .el-dialog,
     .el-message-box {
@@ -144,13 +137,6 @@
     }
     .top-bar__item {
         display: none;
-    }
-    .avue-top {
-        .top-menu {
-            .el-menu-item {
-                padding: 0 2px;
-            }
-        }
     }
     .avue--collapse {
         .avue-left,
