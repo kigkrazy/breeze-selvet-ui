@@ -24,6 +24,7 @@ export const tableOption = {
   delBtn: false,
   align: 'center',
   addBtn: false,
+  viewBtn:true,
   column: [{
     label: '角色名称',
     prop: 'roleName',
@@ -91,6 +92,7 @@ export const tableOption = {
     label:'',
     prop: 'dsScope',
     formsolt: true,
+    showClomnu:false,
     hide: true
   }, {
     label: '创建时间',
