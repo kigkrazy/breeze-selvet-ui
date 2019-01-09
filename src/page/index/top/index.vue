@@ -60,7 +60,7 @@
              @click="handleScreen"></i>
         </div>
       </el-tooltip>
-      <el-tooltip effect="dark"
+      <el-tooltip v-if="this.userInfo.avatar" effect="dark"
                   content="用户头像"
                   placement="bottom">
         <img id="thumbnail" class="top-bar__img"
