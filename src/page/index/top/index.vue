@@ -63,8 +63,7 @@
       <el-tooltip v-if="this.userInfo.avatar" effect="dark"
                   content="用户头像"
                   placement="bottom">
-        <img id="thumbnail" class="top-bar__img"
-             :src="userInfo.avatar">
+        <img id="thumbnail" class="top-bar__img">
       </el-tooltip>
       <el-dropdown>
         <span class="el-dropdown-link">
