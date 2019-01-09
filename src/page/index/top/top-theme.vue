@@ -36,7 +36,7 @@
         text: '',
         list: [
           {
-            name: '默认',
+            name: '黑色',
             value: '',
           }, {
             name: '简洁',
