@@ -34,15 +34,15 @@ export default {
       text: "",
       list: [
         {
-          name: "默认主题",
+          name: "默认",
           value: "default"
         },
         {
-          name: "白色主题",
+          name: "白色",
           value: "theme-white"
         },
         {
-          name: "炫彩主题",
+          name: "炫彩",
           value: "theme-star"
         }
       ]
