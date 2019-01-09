@@ -1,20 +1,20 @@
 <template>
-  <el-color-picker size="small"
+  <el-color-picker size="mini"
+                   style="padding-top:18px;"
                    class="theme-picker"
+                   :predefine="predefineColors"
                    popper-class="theme-picker-dropdown"
-                   v-model="themeVal"
-                   :predefine="predefineColors"></el-color-picker>
+                   v-model="themeVal"></el-color-picker>
 </template>
 
 <script>
 import color from "@/mixins/color";
-
 export default {
   name: "topColor",
   mixins: [color()],
-  data () {
+  data() {
     return {
-      chalk: '',
+      chalk: "",
       predefineColors: [
         '#ff4500',
         '#ff8c00',

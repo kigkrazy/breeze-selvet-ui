@@ -24,9 +24,9 @@ import VueClipboard from 'vue-clipboard2'
 // 插件 json 展示
 import vueJsonTreeView from 'vue-json-tree-view'
 
-// //源文件包
-// import '../packages/index.js';
-// import '../packages/theme-chalk/src/index.scss';
+import { validatenull } from '@/util/validate'
+
+Vue.prototype.validatenull = validatenull
 
 Vue.use(Avue, { menuType: 'text' })
 
