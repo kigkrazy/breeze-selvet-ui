@@ -88,7 +88,7 @@ export const tableOption = {
       value: 3
     }]
   }, {
-    label:'数据权限限定范围',
+    label:'',
     prop: 'dsScope',
     formsolt: true,
     hide: true

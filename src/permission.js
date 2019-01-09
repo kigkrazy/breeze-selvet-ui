@@ -3,12 +3,12 @@
  *
  */
 import router from './router/router'
-import store from './store'
-import { validatenull } from '@/util/validate'
-import { getToken } from '@/util/auth'
+import store from '@/store'
+import {getStore} from '@/util/store'
+import {validatenull} from '@/util/validate'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-NProgress.configure({ showSpinner: false })
+NProgress.configure({showSpinner: false})
 const lockPage = store.getters.website.lockPage // 锁屏页
 router.beforeEach((to, from, next) => {
   // 缓冲设置
@@ -25,18 +25,18 @@ router.beforeEach((to, from, next) => {
     }
   }
   const meta = to.meta || {}
-  if (getToken()) {
+  if (store.getters.access_token) {
     if (store.getters.isLock && to.path != lockPage) {
-      next({ path: lockPage })
+      next({path: lockPage})
     } else if (to.path === '/login') {
-      next({ path: '/' })
+      next({path: '/'})
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetUserInfo').then(() => {
-          next({ ...to, replace: true })
+          next({...to, replace: true})
         }).catch(() => {
           store.dispatch('FedLogOut').then(() => {
-            next({ path: '/login' })
+            next({path: '/login'})
           })
         })
       } else {

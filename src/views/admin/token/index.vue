@@ -84,12 +84,12 @@
       },
       rowDel: function (row, index) {
         var _this = this
-        this.$confirm('是否强制' + row.user_name+ '下线?', '提示', {
+        this.$confirm('是否强制' + row.username+ '下线?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
         }).then(function () {
-          return delObj(row.token_value)
+          return delObj(row.access_token)
         }).then(data => {
           _this.tableData.splice(index, 1)
           _this.$message({

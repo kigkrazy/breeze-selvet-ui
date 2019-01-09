@@ -67,18 +67,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
-            <router-link to="/">首页</router-link>
-          </el-dropdown-item>
-          <el-dropdown-item>
             <router-link to="/info/index">个人信息</router-link>
-          </el-dropdown-item>
-          <el-dropdown-item>
-            <a href="https://gitee.com/smallweigit/avue"
-               target="_blank">码云地址</a>
-          </el-dropdown-item>
-          <el-dropdown-item>
-            <a href="https://github.com/nmxiaowei/avue"
-               target="_blank">github</a>
           </el-dropdown-item>
           <el-dropdown-item @click.native="logout"
                             divided>退出系统</el-dropdown-item>

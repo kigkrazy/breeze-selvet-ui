@@ -2,7 +2,7 @@
   .avue-header,
   .avue-logo,
   .tags-container {
-      background-color: #FA541C!important;
+      background-color: #1b82f1!important;
   }
   .avue-sidebar--tip{
     background-color:transparent;
@@ -73,13 +73,13 @@
       }
       background-color:#fff !important;
       &.is-active {
-        background-color: #fa541f !important;
+        background-color: #1b82f1  !important;
         span,
         i {
           color: #fff
         }
         &:hover {
-          background-color: #fa5220 !important;
+          background-color: #1b82f1  !important;
         }
       }
     }
@@ -92,7 +92,7 @@
       }
     }
     .el-menu-item.is-active,.el-submenu__title.is-active{
-      background-color: #fa511e !important;
+      background-color: #1b82f1 !important;
       i,span{
         color:#fff !important;
       }

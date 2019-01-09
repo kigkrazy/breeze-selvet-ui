@@ -42,11 +42,11 @@ export const tableOption = {
     align: 'center'
   }, {
     label: '用户名',
-    prop: 'user_name',
+    prop: 'username',
     align: 'center'
   }, {
     label: '令牌',
-    prop: 'token_value',
+    prop: 'access_token',
     align: 'center',
     'overHidden': true
   }, {
@@ -56,14 +56,6 @@ export const tableOption = {
   }, {
     label: '过期时间',
     prop: 'expires_in',
-    align: 'center'
-  }, {
-    label: '客户端',
-    prop: 'client_id',
-    align: 'center'
-  }, {
-    label: '授权类型',
-    prop: 'grant_type',
     align: 'center'
   }]
 }

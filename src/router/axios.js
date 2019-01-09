@@ -1,12 +1,11 @@
 import {serialize} from '@/util/util'
-import store from '../store'
 import {getStore} from '../util/store'
-import {getToken} from '@/util/auth'
 import NProgress from 'nprogress' // progress bar
 import errorCode from '@/const/errorCode'
 import router from "@/router/router"
 import {Message} from 'element-ui'
-import 'nprogress/nprogress.css' // progress bar style
+import 'nprogress/nprogress.css'
+import store from "@/store"; // progress bar style
 axios.defaults.timeout = 30000
 // 返回其他状态吗
 axios.defaults.validateStatus = function (status) {
@@ -24,8 +23,9 @@ axios.interceptors.request.use(config => {
   NProgress.start() // start progress bar
   const TENANT_ID = getStore({name: 'tenantId'})
   const isToken = (config.headers || {}).isToken === false
-  if (store.getters.access_token && !isToken) {
-    config.headers['Authorization'] = 'Bearer ' + getToken()// token
+  let token =  store.getters.access_token
+  if (token && !isToken) {
+    config.headers['Authorization'] = 'Bearer ' + token// token
   }
   if (TENANT_ID) {
     config.headers['TENANT_ID'] = TENANT_ID // 租户ID

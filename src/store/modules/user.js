@@ -1,4 +1,3 @@
-import {removeToken, setToken} from '@/util/auth'
 import {getStore, setStore} from '@/util/store'
 import {isURL} from '@/util/validate'
 import {getUserInfo, loginByMobile, loginBySocial, loginByUsername, logout, refeshToken} from '@/api/login'
@@ -57,7 +56,6 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByUsername(user.username, user.password, user.code, user.randomStr).then(response => {
           const data = response.data
-          setToken(data.access_token)
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
@@ -73,7 +71,6 @@ const user = {
       return new Promise((resolve, reject) => {
         loginByMobile(userInfo.mobile, userInfo.code).then(response => {
           const data = response.data
-          setToken(data.access_token)
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
@@ -89,7 +86,6 @@ const user = {
       return new Promise((resolve, reject) => {
         loginBySocial(param.state, param.code).then(response => {
           const data = response.data
-          setToken(data.access_token)
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
@@ -118,7 +114,6 @@ const user = {
       return new Promise((resolve, reject) => {
         refeshToken(state.refresh_token).then(response => {
           const data = response.data
-          setToken(data.access_token)
           commit('SET_ACCESS_TOKEN', data.access_token)
           commit('SET_REFRESH_TOKEN', data.refresh_token)
           commit('SET_EXPIRES_IN', data.expires_in)
@@ -142,7 +137,6 @@ const user = {
           commit('SET_ROLES', [])
           commit('DEL_ALL_TAG')
           commit('CLEAR_LOCK')
-          removeToken()
           resolve()
         }).catch(error => {
           reject(error)
@@ -160,7 +154,6 @@ const user = {
         commit('SET_ROLES', [])
         commit('DEL_ALL_TAG')
         commit('CLEAR_LOCK')
-        removeToken()
         resolve()
       })
     },

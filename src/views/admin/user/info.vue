@@ -109,7 +109,7 @@
   import {handleDown} from "@/api/admin/user";
   import {handleImg, openWindow} from '@/util/util'
   import {mapState} from 'vuex'
-  import {getToken} from '@/util/auth'
+  import store from "@/store";
   import request from '@/router/axios'
 
   export default {
@@ -130,7 +130,7 @@
         avatarUrl: '',
         show: false,
         headers: {
-          Authorization: 'Bearer ' + getToken()
+          Authorization: 'Bearer ' + store.getters.access_token
         },
         ruleForm2: {
           username: '',
@@ -161,6 +161,9 @@
     },
     methods: {
       switchTab(tab, event) {
+        if (tab.name === 'userManager') {
+          handleImg(this.ruleForm2.avatar, 'avatar')
+        }
         this.switchStatus = tab.name
       },
       submitForm(formName) {
