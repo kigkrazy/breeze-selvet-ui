@@ -63,7 +63,7 @@
       <el-tooltip effect="dark"
                   content="用户头像"
                   placement="bottom">
-        <img class="top-bar__img"
+        <img id="thumbnail" class="top-bar__img"
              :src="userInfo.avatar">
       </el-tooltip>
       <el-dropdown>
@@ -88,7 +88,7 @@
 </template>
 <script>
 import { mapGetters, mapState } from "vuex";
-import { fullscreenToggel, listenfullscreen } from "@/util/util";
+import { fullscreenToggel, listenfullscreen,handleImg } from "@/util/util";
 import topLock from "./top-lock";
 import topMenu from "./top-menu";
 import topSearch from "./top-search";
@@ -111,7 +111,9 @@ export default {
     return {};
   },
   filters: {},
-  created() {},
+  created() {
+    handleImg(this.userInfo.avatar, 'thumbnail');
+  },
   mounted() {
     listenfullscreen(this.setScreen);
   },

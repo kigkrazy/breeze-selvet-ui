@@ -244,12 +244,12 @@
   }
 
   .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
-    text-align: center;
+    font-size: 28px!important;
+    color: #8c939d!important;
+    width: 178px!important;
+    height: 178px!important;
+    line-height: 178px!important;
+    text-align: center!important;
   }
 
   .avatar {

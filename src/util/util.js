@@ -165,8 +165,7 @@ export const listenfullscreen = (callback) => {
  * 浏览器判断是否全屏
  */
 export const fullscreenEnable = () => {
-  var isFullscreen = document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
-  return isFullscreen;
+  return document.isFullScreen || document.mozIsFullScreen || document.webkitIsFullScreen
 }
 
 /**
@@ -312,7 +311,7 @@ export const openWindow = (url, title, w, h) => {
  * @returns {PromiseLike<T | never> | Promise<T | never>}
  */
 export function handleImg(fileName, id) {
-  return request({
+  return validatenull(fileName)?null: request({
     url: '/admin/file/' + fileName,
     method: 'get',
     responseType: 'blob'
