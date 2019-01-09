@@ -10,7 +10,6 @@
               &nbsp;{{item}}
             </li>
           </ul>
-          <el-button type="primary" size="small" class="login-index">首页</el-button>
         </div>
       </div>
       <div class="login-border animated fadeInRight">
