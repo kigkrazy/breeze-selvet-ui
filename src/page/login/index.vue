@@ -163,11 +163,23 @@ export default {
     color: #76838f;
   }
   .login-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 40px;
     font-weight: 500;
     font-size: 22px;
     text-align: center;
     letter-spacing: 4px;
+  }
+  .login-select {
+    input {
+      color: #333;
+      font-size: 18px;
+      font-weight: 400;
+      border: none;
+      text-align: center;
+    }
   }
   .login-menu {
     width: 100%;
