@@ -91,6 +91,7 @@ export const tableOption = {
     label:'',
     prop: 'dsScope',
     formsolt: true,
+    showClomnu:false,
     hide: true
   }, {
     label: '创建时间',
