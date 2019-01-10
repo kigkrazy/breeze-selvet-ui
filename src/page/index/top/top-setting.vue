@@ -85,6 +85,8 @@ export default {
 .setting {
   margin-left: 10px;
   &__icon {
+    color:#fff;
+    font-size: 20px;
     transform: rotate(90deg);
   }
   &__header {
