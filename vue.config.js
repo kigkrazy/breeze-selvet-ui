@@ -11,6 +11,13 @@ module.exports = {
       'axios': 'axios',
       'element-ui': 'ELEMENT'
     })
+    const entry = config.entry('app')
+    entry
+      .add('babel-polyfill')
+      .end()
+    entry
+      .add('classlist-polyfill')
+      .end()
   },
   transpileDependencies: ['avue-plugin-transfer', 'avue-plugin-ueditor'],
   // 配置转发代理
