@@ -3,11 +3,11 @@ import {
 } from '@/util/validate'
 import website from '@/const/website'
 
-const keyName = website.key + '-'
+const keyName = website.key + '-';
 /**
  * 存储localStorage
  */
-export const setStore = (params) => {
+export const setStore = (params = {}) => {
   let {
     name,
     content,
@@ -27,7 +27,7 @@ export const setStore = (params) => {
  * 获取localStorage
  */
 
-export const getStore = (params) => {
+export const getStore = (params = {}) => {
   let {
     name,
     debug
@@ -60,7 +60,7 @@ export const getStore = (params) => {
 /**
  * 删除localStorage
  */
-export const removeStore = params => {
+export const removeStore = (params = {}) => {
   let {
     name,
     type
@@ -77,7 +77,7 @@ export const removeStore = params => {
 /**
  * 获取全部localStorage
  */
-export const getAllStore = (params) => {
+export const getAllStore = (params = {}) => {
   let list = [];
   let {
     type
@@ -110,13 +110,12 @@ export const getAllStore = (params) => {
 /**
  * 清空全部localStorage
  */
-export const clearStore = (params) => {
-  let {
-    type
-  } = params;
+export const clearStore = (params = {}) => {
+  let { type } = params;
   if (type) {
     window.sessionStorage.clear();
   } else {
     window.localStorage.clear()
   }
+
 }
