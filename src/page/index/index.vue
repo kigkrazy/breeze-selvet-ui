@@ -43,6 +43,7 @@
   import SockJS from 'sockjs-client';
   import Stomp from 'stompjs';
   import store from "@/store";
+
   export default {
     components: {
       top,
@@ -72,7 +73,7 @@
       this.init()
       this.initWebSocket()
     },
-    computed: mapGetters(['isLock', 'isCollapse', 'website', 'expires_in']),
+    computed: mapGetters(['userInfo', 'isLock', 'isCollapse', 'website', 'expires_in']),
     props: [],
     methods: {
       showCollapse() {
@@ -125,24 +126,25 @@
         }, 5000);
       },
       connection() {
-        let token =  store.getters.access_token
-        const TENANT_ID = getStore({name: 'tenantId'})
+        let token = store.getters.access_token
+        let TENANT_ID = getStore({name: 'tenantId'})
+        let headers = {
+           'Authorization': 'Bearer ' + token
+        }
         // 建立连接对象
-        this.socket = new SockJS('http://localhost:9999/auth/ws');//连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息
+        this.socket = new SockJS('/act/ws');//连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息
         // 获取STOMP子协议的客户端对象
         this.stompClient = Stomp.over(this.socket);
-        var headers = {
-          'Authorization':'Bearer '+token
-        };
+
         // 向服务器发起websocket连接
-        this.stompClient.connect(headers, (frame) => {
-          this.stompClient.subscribe('/user/' + TENANT_ID + '/loginToAll', (msg) => { // 订阅服务端提供的某个topic
-            console.log(msg.body); // msg.body存放的是服务端发送给我们的信息
-            //alert("用户"+msg.body+"登陆");
+        this.stompClient.connect(headers, () => {
+          this.stompClient.subscribe('/task/' + this.userInfo.username + "-" + TENANT_ID + '/remind', (msg) => { // 订阅服务端提供的某个topic;
+            console.log(msg)
             this.$notify({
-              title: "用户登陆通知",
+              title: "协同提醒",
+              type: 'warning',
               dangerouslyUseHTMLString: true,
-              message: '用户 <strong>' + msg.body + '</strong> 登陆',
+              message: msg.body + '任务，请及时处理',
               offset: 60
             });
           });
