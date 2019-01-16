@@ -40,6 +40,8 @@
   import {validatenull} from '@/util/validate';
   import {calcDate} from '@/util/date.js';
   import {getStore} from '@/util/store.js';
+  import SockJS from 'sockjs-client';
+  import Stomp from 'stompjs';
 
   export default {
     components: {
@@ -64,9 +66,11 @@
       console.log("销毁")
       console.log(this.refreshTime)
       clearInterval(this.refreshTime)
+      this.disconnect()
     },
     mounted() {
       this.init()
+      this.initWebSocket()
     },
     computed: mapGetters(['isLock', 'isCollapse', 'website', 'expires_in']),
     props: [],
@@ -104,9 +108,57 @@
               });
             this.refreshLock = false
           }
-          this.$store.commit("SET_EXPIRES_IN",this.expires_in - 10);
+          this.$store.commit("SET_EXPIRES_IN", this.expires_in - 10);
         }, 10000);
       },
+      initWebSocket() {
+        this.connection();
+        let self = this;
+        //断开重连机制,尝试发送消息,捕获异常发生时重连
+        this.timer = setInterval(() => {
+          try {
+            self.stompClient.send("test");
+          } catch (err) {
+            console.log("断线了: " + err);
+            self.connection();
+          }
+        }, 5000);
+      },
+      connection() {
+        // const token = getStore({
+        //   name: 'access_token',
+        //   debug: true,
+        // });
+        const TENANT_ID = getStore({name: 'tenantId'})
+        // 建立连接对象
+        this.socket = new SockJS('http://localhost:9999/auth/ws');//连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息
+        // 获取STOMP子协议的客户端对象
+        this.stompClient = Stomp.over(this.socket);
+        var headers = {
+          //'Authorization':'Bearer '+token.toString()
+        };
+        // 向服务器发起websocket连接
+        this.stompClient.connect(headers, (frame) => {
+          this.stompClient.subscribe('/user/' + TENANT_ID + '/loginToAll', (msg) => { // 订阅服务端提供的某个topic
+            console.log(msg.body); // msg.body存放的是服务端发送给我们的信息
+            //alert("用户"+msg.body+"登陆");
+            this.$notify({
+              title: "用户登陆通知",
+              dangerouslyUseHTMLString: true,
+              message: '用户' + msg.body + '登陆',
+              offset: 60
+            });
+          });
+        }, (err) => {
+
+        });
+      },
+      disconnect() {
+        if (this.stompClient != null) {
+          this.stompClient.disconnect();
+          console.log("Disconnected");
+        }
+      }
     }
   }
 </script>
