@@ -42,7 +42,7 @@
   import {getStore} from '@/util/store.js';
   import SockJS from 'sockjs-client';
   import Stomp from 'stompjs';
-
+  import store from "@/store";
   export default {
     components: {
       top,
@@ -125,17 +125,14 @@
         }, 5000);
       },
       connection() {
-        // const token = getStore({
-        //   name: 'access_token',
-        //   debug: true,
-        // });
+        let token =  store.getters.access_token
         const TENANT_ID = getStore({name: 'tenantId'})
         // 建立连接对象
         this.socket = new SockJS('http://localhost:9999/auth/ws');//连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息
         // 获取STOMP子协议的客户端对象
         this.stompClient = Stomp.over(this.socket);
         var headers = {
-          //'Authorization':'Bearer '+token.toString()
+          'Authorization':'Bearer '+token
         };
         // 向服务器发起websocket连接
         this.stompClient.connect(headers, (frame) => {
@@ -145,7 +142,7 @@
             this.$notify({
               title: "用户登陆通知",
               dangerouslyUseHTMLString: true,
-              message: '用户' + msg.body + '登陆',
+              message: '用户 <strong>' + msg.body + '</strong> 登陆',
               offset: 60
             });
           });
