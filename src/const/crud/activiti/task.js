@@ -25,7 +25,6 @@ export const tableOption = {
   delBtn: false,
   addBtn: false,
   menuType: 'menu',
-  dic: [],
   column: [
     {
       label: 'ID',

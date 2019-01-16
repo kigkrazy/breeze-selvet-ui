@@ -40,7 +40,6 @@ export const tableOption = {
   delBtn: false,
   addBtn: false,
   viewBtn: true,
-  dic: [],
   column: [{
     label: 'ID',
     prop: 'id',

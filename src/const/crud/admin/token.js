@@ -35,7 +35,6 @@ export const tableOption = {
   addBtn: false,
   editBtn: false,
   delBtn: false,
-  dic: [],
   column: [{
     label: '用户ID',
     prop: 'user_id',
