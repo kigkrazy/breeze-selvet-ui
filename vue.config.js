@@ -19,7 +19,6 @@ module.exports = {
       .add('classlist-polyfill')
       .end()
   },
-  transpileDependencies: ['avue-plugin-transfer', 'avue-plugin-ueditor'],
   // 配置转发代理
   devServer: {
     proxy: {
