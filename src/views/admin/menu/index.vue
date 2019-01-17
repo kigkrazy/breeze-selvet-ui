@@ -69,7 +69,7 @@
               <el-form-item label="节点ID"
                             prop="menuId">
                 <el-input v-model="form.menuId"
-                          :disabled="formEdit"
+                          :disabled="formEdit || form.menuId"
                           placeholder="请输入节点ID"></el-input>
               </el-form-item>
               <el-form-item label="标题"

@@ -129,7 +129,7 @@
         let token = store.getters.access_token
         let TENANT_ID = getStore({name: 'tenantId'})
         let headers = {
-           'Authorization': 'Bearer ' + token
+          'Authorization': 'Bearer ' + token
         }
         // 建立连接对象
         this.socket = new SockJS('/act/ws');//连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息
@@ -139,7 +139,6 @@
         // 向服务器发起websocket连接
         this.stompClient.connect(headers, () => {
           this.stompClient.subscribe('/task/' + this.userInfo.username + "-" + TENANT_ID + '/remind', (msg) => { // 订阅服务端提供的某个topic;
-            console.log(msg)
             this.$notify({
               title: "协同提醒",
               type: 'warning',
