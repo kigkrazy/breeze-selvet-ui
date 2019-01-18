@@ -84,6 +84,7 @@
       }
     },
     created() {
+      this.active = getStore({ name: "tenantId" });
       this.getTime();
       setInterval(() => {
         this.getTime();
