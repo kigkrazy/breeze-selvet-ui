@@ -6,16 +6,16 @@
           <a href="https://avue.top/#/pay" target="_blank">
             <img src="https://img.shields.io/badge/Avue-原子弹-green.svg" alt="Build Status">
           </a>
-          <img src="https://img.shields.io/badge/Spring%20Boot-2.0.8.RELEASE-yellowgreen.svg" alt="Downloads">
-          <img src="https://img.shields.io/badge/Spring%20Cloud-Finchley.SR2-blue.svg" alt="Coverage Status">
+          <img src="https://img.shields.io/badge/Spring%20Boot-2.1.2.RELEASE-yellowgreen.svg" alt="Downloads">
+          <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.RELEASE-blue.svg" alt="Coverage Status">
         </span>
         <br/>
         <span>
           <el-collapse v-model="activeNames">
             <el-collapse-item title="完整的微服务架构" name="1">
               <div>基于Spring Cloud Gateway</div>
-              <div>基于Spring Cloud Finchley.SR2</div>
-              <div>基于Spring Boot 2.0.8.RELEASE</div>
+              <div>基于Spring Cloud Greenwich.RELEASE</div>
+              <div>基于Spring Boot 2.1.2.RELEASE</div>
             </el-collapse-item>
             <el-collapse-item title="完善的权限控制" name="2">
               <div>基于Spring Security OAuth实现鉴权体系；</div>

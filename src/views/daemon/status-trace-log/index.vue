@@ -98,7 +98,7 @@
       },
       rowDel: function (row, index) {
         var _this = this
-        this.$confirm('是否确认删除ID为' + row.clientId, '提示', {
+        this.$confirm('是否确认删除ID为' + row.id, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'

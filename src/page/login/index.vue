@@ -11,6 +11,7 @@
              src="/img/logo.png"
              alt="">
         <p class="title">{{website.infoTitle}}</p>
+        <p>v 2.2.0</p>
       </div>
       <div class="login-border">
         <div class="login-main">
@@ -40,6 +41,7 @@
 
       </div>
     </div>
+    <top-color v-show="false"></top-color>
   </div>
 </template>
 <script>
@@ -50,12 +52,14 @@
   import { setStore, getStore } from "@/util/store";
   import { dateFormat } from "@/util/date";
   import { validatenull } from "@/util/validate";
+  import topColor from "@/page/index/top/top-color";
   export default {
     name: "login",
     components: {
       userLogin,
       codeLogin,
-      thirdLogin
+      thirdLogin,
+      topColor
     },
     data() {
       return {
@@ -136,7 +140,7 @@
     border-bottom-left-radius: 5px;
     justify-content: center;
     flex-direction: column;
-    background-color: #409eff;
+    background-color: #409EFF;
     color: #fff;
     float: left;
     width: 50%;
