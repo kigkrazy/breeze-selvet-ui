@@ -11,7 +11,7 @@
              src="/img/logo.png"
              alt="">
         <p class="title">{{website.infoTitle}}</p>
-        <p>v 2.2.1</p>
+        <p>v 2.5.0</p>
       </div>
       <div class="login-border">
         <div class="login-main">
