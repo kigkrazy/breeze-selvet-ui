@@ -25,55 +25,56 @@
 </template>
 
 <script>
-import { setTheme } from "@/util/util";
-import { mapGetters } from "vuex";
-export default {
-  data() {
-    return {
-      box: false,
-      text: "",
-      list: [
-        {
-          name: "默认",
-          value: "default"
-        },
-        {
-          name: "白色",
-          value: "theme-white"
-        },
-        {
-          name: "炫彩",
-          value: "theme-star"
-        }
-      ]
-    };
-  },
-  watch: {
-    text: function(val) {
-      this.$store.commit("SET_THEME_NAME", val);
-      setTheme(val);
+  import {setTheme} from "@/util/util";
+  import {mapGetters} from "vuex";
+
+  export default {
+    data() {
+      return {
+        box: false,
+        text: "",
+        list: [
+          {
+            name: "默认",
+            value: "default"
+          },
+          {
+            name: "白色",
+            value: "theme-white"
+          },
+          {
+            name: "炫彩",
+            value: "theme-star"
+          }
+        ]
+      };
+    },
+    watch: {
+      text: function (val) {
+        this.$store.commit("SET_THEME_NAME", val);
+        setTheme(val);
+      }
+    },
+    computed: {
+      ...mapGetters(["themeName"])
+    },
+    mounted() {
+      this.text = this.themeName;
+      if (!this.text) {
+        this.text = "";
+      }
+    },
+    methods: {
+      open() {
+        this.box = true;
+      }
     }
-  },
-  computed: {
-    ...mapGetters(["themeName"])
-  },
-  mounted() {
-    this.text = this.themeName;
-    if (!this.text) {
-      this.text = "";
-    }
-  },
-  methods: {
-    open() {
-      this.box = true;
-    }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-.list {
-  width: 100%;
-}
+  .list {
+    width: 100%;
+  }
 </style>
 

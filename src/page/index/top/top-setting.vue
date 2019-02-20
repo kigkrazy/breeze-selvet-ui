@@ -3,13 +3,11 @@
     <div class="setting__shade"
          :class="{'setting__shade--show':isShade}"
          @click="close"></div>
-    <i class="el-icon-more setting__icon"
-       @click="open"></i>
     <div class="setting__content"
          :class="{'setting__content--show':box}">
       <div class="setting__header">版权信息</div>
       <div class="setting__body setting__about">
-        <p>Version：PigX 2.5.0</p>
+        <p>Version：PigX 2.6.0</p>
         <p>Copyright: Pig4Cloud ©2018-2025</p>
       </div>
       <div class="setting__header">设置
@@ -53,7 +51,9 @@ export default {
     })
   },
   created () {
-    this.init();
+   setTimeout(()=>{
+     this.init();
+   },0)
   },
   methods: {
     close () {
