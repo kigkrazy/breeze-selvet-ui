@@ -21,8 +21,6 @@ import { validatenull } from '@/util/validate'
 
 Vue.prototype.validatenull = validatenull
 
-Vue.use(window.AVUE, { menuType: 'text' })
-
 Vue.use(router)
 
 Vue.use(vueJsonTreeView)
