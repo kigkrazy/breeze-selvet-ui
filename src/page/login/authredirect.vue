@@ -31,7 +31,7 @@ export default {
       })
     } else {
       window.close()
-      window.opener.location.href = `${window.location.origin}/#/login?state=${state}&code=${code}`
+      window.opener.location.href = `${window.location.origin}/#/login?state=${state}&code=${code}&time=`+new Date().getTime()
     }
   }
 }

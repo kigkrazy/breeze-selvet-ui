@@ -21,6 +21,7 @@ module.exports = {
   },
   // 配置转发代理
   devServer: {
+    disableHostCheck: true,
     proxy: {
       '/auth': {
         target: url,

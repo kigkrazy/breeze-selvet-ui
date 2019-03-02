@@ -75,5 +75,16 @@ export default [{
     {
       path: '*',
       redirect: '/404',
-    }
+    },
+    {
+      path: '/authredirect',
+      name: '授权页',
+      component: () =>
+      import ( /* webpackChunkName: "page" */ '@/page/login/authredirect'),
+      meta: {
+        keepAlive: true,
+        isTab: false,
+        isAuth: false
+      }
+    },
 ]
