@@ -60,10 +60,12 @@
              @click="handleScreen"></i>
         </div>
       </el-tooltip>
-      <el-tooltip v-if="this.userInfo.avatar" effect="dark"
+      <el-tooltip v-if="this.userInfo.avatar"
+                  effect="dark"
                   content="用户头像"
                   placement="bottom">
-        <img id="thumbnail" class="top-bar__img">
+        <img id="thumbnail"
+             class="top-bar__img">
       </el-tooltip>
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -81,20 +83,20 @@
                             divided>退出系统</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <top-setting></top-setting>
+      <!-- <top-setting></top-setting> -->
     </div>
   </div>
 </template>
 <script>
 import { mapGetters, mapState } from "vuex";
-import { fullscreenToggel, listenfullscreen,handleImg } from "@/util/util";
+import { fullscreenToggel, listenfullscreen, handleImg } from "@/util/util";
 import topLock from "./top-lock";
 import topMenu from "./top-menu";
 import topSearch from "./top-search";
 import topTheme from "./top-theme";
 import topLogs from "./top-logs";
 import topColor from "./top-color";
-import topSetting from "./top-setting";
+// import topSetting from "./top-setting";
 export default {
   components: {
     topLock,
@@ -102,8 +104,8 @@ export default {
     topSearch,
     topTheme,
     topLogs,
-    topColor,
-    topSetting
+    topColor
+    // topSetting
   },
   name: "top",
   data() {
@@ -111,7 +113,7 @@ export default {
   },
   filters: {},
   created() {
-    handleImg(this.userInfo.avatar, 'thumbnail');
+    handleImg(this.userInfo.avatar, "thumbnail");
   },
   mounted() {
     listenfullscreen(this.setScreen);
