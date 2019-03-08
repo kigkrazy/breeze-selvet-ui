@@ -64,8 +64,6 @@
       this.refreshToken()
     },
     destroyed() {
-      console.log("销毁")
-      console.log(this.refreshTime)
       clearInterval(this.refreshTime)
       this.disconnect()
     },

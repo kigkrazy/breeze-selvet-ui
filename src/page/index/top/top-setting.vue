@@ -3,8 +3,6 @@
     <div class="setting__shade"
          :class="{'setting__shade--show':isShade}"
          @click="close"></div>
-    <i class="el-icon-more setting__icon"
-       @click="open"></i>
     <div class="setting__content"
          :class="{'setting__content--show':box}">
       <div class="setting__header">版权信息</div>
@@ -53,7 +51,9 @@ export default {
     })
   },
   created () {
-    this.init();
+   setTimeout(()=>{
+     this.init();
+   },0)
   },
   methods: {
     close () {

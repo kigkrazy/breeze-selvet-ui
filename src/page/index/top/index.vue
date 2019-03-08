@@ -79,90 +79,95 @@
           <el-dropdown-item>
             <router-link to="/info/index">个人信息</router-link>
           </el-dropdown-item>
+          <el-dropdown-item @click.native="$refs.seting.open()"
+                            divided>界面设置
+          </el-dropdown-item>
           <el-dropdown-item @click.native="logout"
-                            divided>退出系统</el-dropdown-item>
+                            divided>退出系统
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <!-- <top-setting></top-setting> -->
+      <top-setting ref="seting"></top-setting>
     </div>
   </div>
 </template>
 <script>
-import { mapGetters, mapState } from "vuex";
-import { fullscreenToggel, listenfullscreen, handleImg } from "@/util/util";
-import topLock from "./top-lock";
-import topMenu from "./top-menu";
-import topSearch from "./top-search";
-import topTheme from "./top-theme";
-import topLogs from "./top-logs";
-import topColor from "./top-color";
-// import topSetting from "./top-setting";
-export default {
-  components: {
-    topLock,
-    topMenu,
-    topSearch,
-    topTheme,
-    topLogs,
-    topColor
-    // topSetting
-  },
-  name: "top",
-  data() {
-    return {};
-  },
-  filters: {},
-  created() {
-    handleImg(this.userInfo.avatar, "thumbnail");
-  },
-  mounted() {
-    listenfullscreen(this.setScreen);
-  },
-  computed: {
-    ...mapState({
-      showDebug: state => state.common.showDebug,
-      showTheme: state => state.common.showTheme,
-      showLock: state => state.common.showLock,
-      showFullScren: state => state.common.showFullScren,
-      showCollapse: state => state.common.showCollapse,
-      showSearch: state => state.common.showSearch,
-      showMenu: state => state.common.showMenu,
-      showColor: state => state.common.showColor
-    }),
-    ...mapGetters([
-      "userInfo",
-      "isFullScren",
-      "tagWel",
-      "tagList",
-      "isCollapse",
-      "tag",
-      "logsLen",
-      "logsFlag"
-    ])
-  },
-  methods: {
-    handleScreen() {
-      fullscreenToggel();
+  import {mapGetters, mapState} from "vuex";
+  import {fullscreenToggel, handleImg, listenfullscreen} from "@/util/util";
+  import topLock from "./top-lock";
+  import topMenu from "./top-menu";
+  import topSearch from "./top-search";
+  import topTheme from "./top-theme";
+  import topLogs from "./top-logs";
+  import topColor from "./top-color";
+  import topSetting from "./top-setting";
+
+  export default {
+    components: {
+      topLock,
+      topMenu,
+      topSearch,
+      topTheme,
+      topLogs,
+      topColor,
+      topSetting
     },
-    setCollapse() {
-      this.$store.commit("SET_COLLAPSE");
+    name: "top",
+    data() {
+      return {};
     },
-    setScreen() {
-      this.$store.commit("SET_FULLSCREN");
+    filters: {},
+    created() {
+      handleImg(this.userInfo.avatar, "thumbnail");
     },
-    logout() {
-      this.$confirm("是否退出系统, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
-      }).then(() => {
-        this.$store.dispatch("LogOut").then(() => {
-          this.$router.push({ path: "/login" });
+    mounted() {
+      listenfullscreen(this.setScreen);
+    },
+    computed: {
+      ...mapState({
+        showDebug: state => state.common.showDebug,
+        showTheme: state => state.common.showTheme,
+        showLock: state => state.common.showLock,
+        showFullScren: state => state.common.showFullScren,
+        showCollapse: state => state.common.showCollapse,
+        showSearch: state => state.common.showSearch,
+        showMenu: state => state.common.showMenu,
+        showColor: state => state.common.showColor
+      }),
+      ...mapGetters([
+        "userInfo",
+        "isFullScren",
+        "tagWel",
+        "tagList",
+        "isCollapse",
+        "tag",
+        "logsLen",
+        "logsFlag"
+      ])
+    },
+    methods: {
+      handleScreen() {
+        fullscreenToggel();
+      },
+      setCollapse() {
+        this.$store.commit("SET_COLLAPSE");
+      },
+      setScreen() {
+        this.$store.commit("SET_FULLSCREN");
+      },
+      logout() {
+        this.$confirm("是否退出系统, 是否继续?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }).then(() => {
+          this.$store.dispatch("LogOut").then(() => {
+            this.$router.push({path: "/login"});
+          });
         });
-      });
+      }
     }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>
