@@ -25,7 +25,7 @@ export const tableOption = {
   delBtn: false,
   addBtn: false,
   viewBtn: true,
-  dicUrl: '/admin/dict/type/social_type',
+  url: '/admin/dict/type/social_type',
   column: [{
     label: 'ID',
     prop: 'id',

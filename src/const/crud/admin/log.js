@@ -29,7 +29,7 @@ export const tableOption = {
   editBtn: false,
   delBtn: false,
   viewBtn: true,
-  dicUrl: '/admin/dict/type/log_type',
+  url: '/admin/dict/type/log_type',
   props: {
     label: 'label',
     value: 'value'

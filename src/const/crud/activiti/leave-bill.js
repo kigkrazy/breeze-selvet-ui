@@ -26,7 +26,7 @@ export const tableOption = {
   delBtn: false,
   addBtn: false,
   menuType: 'menu',
-  dicUrl: '/admin/dict/type/leave_status',
+  url: '/admin/dict/type/leave_status',
   column: [
     {
       label: 'ID',
