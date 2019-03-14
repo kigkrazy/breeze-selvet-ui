@@ -206,7 +206,7 @@
       },
       handleFilter(param) {
         this.page.page = 1;
-        this.getList(this.page, param);
+        this.getList(this.page, this.filterForm(param));
       },
       handleRefreshChange() {
         this.getList(this.page)

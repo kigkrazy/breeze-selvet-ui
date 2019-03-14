@@ -148,6 +148,7 @@ export const listenfullscreen = (callback) => {
   function listen() {
     callback()
   }
+
   document.addEventListener("fullscreenchange", function () {
     listen();
   });
@@ -311,7 +312,7 @@ export const openWindow = (url, title, w, h) => {
  * @returns {PromiseLike<T | never> | Promise<T | never>}
  */
 export function handleImg(fileName, id) {
-  return validatenull(fileName)?null: request({
+  return validatenull(fileName) ? null : request({
     url: '/admin/file/' + fileName,
     method: 'get',
     responseType: 'blob'
@@ -325,3 +326,12 @@ export function handleImg(fileName, id) {
   })
 }
 
+export const filterForm = (form) => {
+  let obj = {};
+  Object.keys(form).forEach(ele => {
+    if (!validatenull(form[ele])) {
+      obj[ele] = form[ele]
+    }
+  });
+  return obj;
+}

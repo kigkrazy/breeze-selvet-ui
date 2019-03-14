@@ -58,6 +58,13 @@ module.exports = {
           '^/daemon': '/daemon'
         }
       },
+      '/job': {
+        target: url,
+        ws: true,
+        pathRewrite: {
+          '^/job': '/job'
+        }
+      },
       '/tx': {
         target: url,
         ws: true,
