@@ -3,6 +3,7 @@
     <basic-container>
       <avue-crud ref="crud"
                  :page="page"
+                 v-model="form"
                  :data="tableData"
                  :table-loading="tableLoading"
                  :option="tableOption"
@@ -31,6 +32,17 @@
             <el-tag type="danger">{{getDicNameJobExecuteStatus(scope.row.jobExecuteStatus)}}</el-tag>
           </div>
         </template>
+
+        <template slot="cronExpressionForm" slot-scope="scope">
+          <div class="cron">
+            <el-popover v-model="cronPopover">
+              <cron @change="changeCron" @close="cronPopover=false" i18n="cn"></cron>
+              <el-input slot="reference" @click="cronPopover=true" v-model="form.cronExpression"
+                        placeholder="请输入定时策略"></el-input>
+            </el-popover>
+          </div>
+        </template>
+
         <template slot="menuLeft">
           <el-button type="primary" @click="handleAdd" size="small" v-if="permissions.job_sysjob_add">
             新建任务
@@ -128,11 +140,15 @@
   import {tableLogOption, tableOption} from '@/const/crud/daemon/sysjob'
   import {remote} from '@/api/admin/dict'
   import {mapGetters} from 'vuex'
+  import {cron} from 'vue-cron'
 
   export default {
+    components: {cron},
     name: 'sysmanage',
     data() {
       return {
+        form: {},
+        cronPopover: false,
         queryParams: [],//全局检索条件
         tableData: [],
         tableLogData: [],
@@ -156,9 +172,6 @@
         JobStatusDicCache: [],
       }
     },
-    created() {
-
-    },
     mounted: function () {
       this.getDicJobExecuteStatusCache("job_execute_status");//获取定时任务运行时状态
       this.getDicJobStatusCache("job_status");//获取定时任务状态
@@ -167,6 +180,9 @@
       ...mapGetters(['permissions'])
     },
     methods: {
+      changeCron(val) {
+        this.form.cronExpression = val
+      },
       /**
        * 关闭执行日志对话框重置信息
        */
@@ -223,12 +239,12 @@
             startJobRa(row.jobId).then(response => {
               let code = response.data.code;
               if ('0' == code) {
-                this.getList(this.page);
                 this.$notify({
                   title: "成功",
                   message: "启动成功",
                   type: "success"
                 });
+                this.refreshChange()
               }
             }).catch(() => {
               this.$notify.error({
@@ -289,6 +305,7 @@
                   type: "success"
                 });
               }
+              this.refreshChange()
             }).catch(() => {
               this.$notify.error({
                 title: '错误',
@@ -356,6 +373,7 @@
                 message: msg,
                 type: "success"
               });
+              this.refreshChange()
             } else {
               this.$notify.error({
                 title: '错误',
@@ -392,6 +410,7 @@
                 message: '启动成功',
                 type: "success"
               });
+              this.refreshChange()
             } else {
               this.$notify.error({
                 title: '错误',
@@ -428,6 +447,7 @@
                 message: '重置成功',
                 type: "success"
               });
+              this.refreshChange()
             } else {
               this.$notify.error({
                 title: '错误',
@@ -466,8 +486,8 @@
               loading();
             });
           }
-          this.getList(this.page)
           done();
+          this.refreshChange()
         })
       }
       ,
@@ -484,6 +504,7 @@
             type: 'success',
             duration: 2000
           })
+          this.refreshChange()
         }).catch(() => {
           loading();
         });
@@ -508,6 +529,7 @@
               type: 'success',
               duration: 2000
             })
+            this.refreshChange()
           }).catch(function () {
           })
         } else {

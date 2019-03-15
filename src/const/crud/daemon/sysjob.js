@@ -217,13 +217,15 @@ export const tableOption = {
         hide: true,
         addDisplay: false,
         editDisplay: false,
-        rules: [{ validator: (rule, value, callback) => {
-            if(value>9){
-              callback(new Error('请输入1-9数字') );
+        rules: [{
+          validator: (rule, value, callback) => {
+            if (value > 9) {
+              callback(new Error('请输入1-9数字'));
             }
             callback();
 
-          }, trigger: 'blur' }],
+          }, trigger: 'blur'
+        }],
       }
       ,
       {
@@ -283,12 +285,9 @@ export const tableOption = {
       ,
       {
         label: 'cron表达式',
-        prop:
-          'cronExpression',
-        width:
-          100,
-        overHidden:
-          true,
+        prop:'cronExpression',
+        width: 100,
+        formsolt: true,
         rules:
           [{
             required: true,
@@ -296,7 +295,6 @@ export const tableOption = {
             message: '请输入cron表达式',
             trigger: 'blur'
           }, {validator: validateCron, trigger: 'blur'}]
-
       }
       ,
       {

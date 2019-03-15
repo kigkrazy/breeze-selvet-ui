@@ -49,11 +49,6 @@ export const tableOption = {
       width: 100,
     },
     {
-      label: '执行路径',
-      prop: 'executePath',
-      overHidden: true,
-    },
-    {
       label: '执行文件',
       prop: 'className',
       overHidden: true,
