@@ -335,3 +335,10 @@ export const filterForm = (form) => {
   });
   return obj;
 }
+
+export const vaildData = (val, dafult) => {
+  if (typeof val === 'boolean') {
+    return val;
+  }
+  return !validatenull(val) ? val : dafult;
+};

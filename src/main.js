@@ -8,7 +8,7 @@ import './permission' // 权限
 import './error' // 日志
 import router from './router/router'
 import store from './store'
-import {loadStyle,filterForm} from './util/util'
+import {loadStyle,filterForm,vaildData} from './util/util'
 import * as urls from '@/config/env'
 import {iconfontUrl, iconfontVersion} from '@/config/env'
 import * as filters from './filters' // 全局filter
@@ -21,6 +21,7 @@ import {validatenull} from '@/util/validate'
 
 Vue.prototype.validatenull = validatenull
 Vue.prototype.filterForm = filterForm
+Vue.prototype.vaildData = vaildData
 
 Vue.use(router)
 
