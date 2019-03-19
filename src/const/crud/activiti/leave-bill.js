@@ -26,7 +26,6 @@ export const tableOption = {
   delBtn: false,
   addBtn: false,
   menuType: 'menu',
-  dicUrl: '/admin/dict/type/leave_status',
   column: [
     {
       label: 'ID',
@@ -67,7 +66,7 @@ export const tableOption = {
       label: '状态',
       prop: 'state',
       type: 'select',
-      dicData: 'leave_status',
+      dicUrl: '/admin/dict/type/leave_status',
       search: true,
       addVisdiplay: false
     },

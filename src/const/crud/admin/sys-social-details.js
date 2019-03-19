@@ -25,7 +25,6 @@ export const tableOption = {
   delBtn: false,
   addBtn: false,
   viewBtn: true,
-  dicUrl: '/admin/dict/type/social_type',
   column: [{
     label: 'ID',
     prop: 'id',
@@ -37,7 +36,7 @@ export const tableOption = {
     label: '类型',
     prop: 'type',
     type: 'select',
-    dicData: 'social_type',
+    dicUrl: '/admin/dict/type/social_type',
     search: true,
     rules: [{
       required: true,
