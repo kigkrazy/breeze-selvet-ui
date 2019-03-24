@@ -21,6 +21,7 @@
     "stompjs": "^2.3.3",
     "vue": "^2.5.16",
     "vue-axios": "^2.1.2",
+    "vue-cron": "^1.0.9",
     "vue-json-editor": "^1.2.3",
     "vue-json-tree-view": "^2.1.4",
     "vue-router": "^3.0.2",
