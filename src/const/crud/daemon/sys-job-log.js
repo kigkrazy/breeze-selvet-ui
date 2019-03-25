@@ -15,22 +15,22 @@ export const tableOption = {
     {
       label: 'id',
       prop: 'jobLogId',
-      hide: true,
+      hide: true
     },
     {
       label: '任务id',
       prop: 'jobId',
-      hide: true,
+      hide: true
     },
     {
       label: '任务名称',
       prop: 'jobName',
-      search: true,
+      search: true
     },
     {
       label: '任务组名',
       prop: 'jobGroup',
-      search: true,
+      search: true
     },
     {
       label: '组内顺序',
@@ -40,18 +40,14 @@ export const tableOption = {
     {
       label: '类型',
       prop: 'jobType',
-      type:
-        'select',
-      dicUrl:
-        '/admin/dict/type/job_type',
-      dicMethod:
-        'get',
-      width: 100,
+      type: 'select',
+      dicUrl: '/admin/dict/type/job_type',
+      width: 100
     },
     {
       label: '执行文件',
       prop: 'className',
-      overHidden: true,
+      overHidden: true
     },
     {
       label: '执行方法',
@@ -63,24 +59,20 @@ export const tableOption = {
       label: '执行参数值',
       prop: 'methodParamsValue',
       width: 100,
-      overHidden: true,
+      overHidden: true
     },
     {
       label: 'cron表达式',
       prop: 'cronExpression',
       width: 100,
-      overHidden: true,
+      overHidden: true
     },
     {
       label: '状态',
       prop: 'jobLogStatus',
       search: true,
-      type:
-        'select',
-      dicUrl:
-        '/admin/dict/type/job_execute_status',
-      dicMethod:
-        'get',
+      type: 'select',
+      dicUrl: '/admin/dict/type/job_execute_status',
       slot: true
     },
     {
@@ -104,11 +96,6 @@ export const tableOption = {
       format: 'yyyy-MM-dd HH:mm:ss',
       valueFormat: 'yyyy-MM-dd HH:mm:ss',
       width: 160,
-    },
-    {
-      label: '租户',
-      prop: 'tenantId',
-      hide: true
     }
   ]
 };

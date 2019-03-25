@@ -1,15 +1,5 @@
-import {isValidCron} from '@/api/daemon/sysjob'
+import {isValidCron} from '@/api/daemon/sys-job'
 
-var validateCron = (rule, value, callback) => {
-  isValidCron(value).then(response => {
-    let result = response.data.data;
-    if (result != 0) {
-      callback(new Error('cron表达式错误'))
-    } else {
-      callback();
-    }
-  })
-}
 export const tableOption = {
     border: true,
     card: true,
@@ -56,10 +46,8 @@ export const tableOption = {
       },
       {
         label: '任务组名',
-        prop:
-          'jobGroup',
-        search:
-          true,
+        prop: 'jobGroup',
+        search: true,
         rules:
           [{
             required: true,
@@ -73,171 +61,100 @@ export const tableOption = {
         prop: 'jobStatus',
         type: 'select',
         dicUrl: '/admin/dict/type/job_status',
-        dicMethod: 'get',
         addVisdiplay: false,
-        search:
-          true,
-        slot:
-          true
-      }
-      ,
+        search: true,
+        slot: true
+      },
       {
         label: '执行状态',
         prop: 'jobExecuteStatus',
         type: 'select',
         dicUrl: '/admin/dict/type/job_execute_status',
-        dicMethod: 'get',
         addVisdiplay: false,
         search: true,
         slot: true
-      }
-      ,
+      },
       {
         label: '创建者',
-        prop:
-          'createBy',
-        hide:
-          true,
-        addVisdiplay:
-          false,
-        editVisdiplay:
-          false
-      }
-      ,
+        prop: 'createBy',
+        hide: true,
+        addVisdiplay: false,
+        editVisdiplay: false
+      },
       {
         label: '创建时间',
-        prop:
-          'createTime',
-        type:
-          'datetime',
-        hide:
-          true,
-        format:
-          'yyyy-MM-dd HH:mm:ss',
-        valueFormat:
-          'yyyy-MM-dd HH:mm:ss',
-        width:
-          120,
-        addVisdiplay:
-          false,
-        editVisdiplay:
-          false
-      }
-      ,
+        prop: 'createTime',
+        type: 'datetime',
+        hide: true,
+        format: 'yyyy-MM-dd HH:mm:ss',
+        valueFormat: 'yyyy-MM-dd HH:mm:ss',
+        width: 120,
+        addVisdiplay: false,
+        editVisdiplay: false
+      },
       {
         label: '更新者',
-        prop:
-          'updateBy',
-        hide:
-          true,
-        addVisdiplay:
-          false,
-        editVisdiplay:
-          false
-      }
-      ,
+        prop: 'updateBy',
+        hide: true,
+        addVisdiplay: false,
+        editVisdiplay: false
+      },
       {
         label: '更新时间',
-        prop:
-          'updateTime',
-        type:
-          'datetime',
-        hide:
-          true,
-        format:
-          'yyyy-MM-dd HH:mm:ss',
-        valueFormat:
-          'yyyy-MM-dd HH:mm:ss',
-        width:
-          160,
-        addVisdiplay:
-          false,
-        editVisdiplay:
-          false
-      }
-      ,
+        prop: 'updateTime',
+        type: 'datetime',
+        hide: true,
+        format: 'yyyy-MM-dd HH:mm:ss',
+        valueFormat: 'yyyy-MM-dd HH:mm:ss',
+        width: 160,
+        addVisdiplay: false,
+        editVisdiplay: false
+      },
       {
         label: '首次执行时间',
-        prop:
-          'starttime',
-        type:
-          'datetime',
-        format:
-          'yyyy-MM-dd HH:mm:ss',
-        valueFormat:
-          'yyyy-MM-dd HH:mm:ss',
-        width:
-          160,
-        addVisdiplay:
-          false,
-        editDisabled:
-          true
-      }
-      ,
-      {
+        prop: 'startTime',
+        type: 'datetime',
+        format: 'yyyy-MM-dd HH:mm:ss',
+        valueFormat: 'yyyy-MM-dd HH:mm:ss',
+        width: 160,
+        addVisdiplay: false,
+        editDisabled: true
+      }, {
         label: '上次执行时间',
-        prop:
-          'previoustime',
-        type:
-          'datetime',
-        format:
-          'yyyy-MM-dd HH:mm:ss',
-        valueFormat:
-          'yyyy-MM-dd HH:mm:ss',
-        width:
-          160,
-        addVisdiplay:
-          false,
-        editDisabled:
-          true
-      }
-      ,
-      {
+        prop: 'previousTime',
+        type: 'datetime',
+        format: 'yyyy-MM-dd HH:mm:ss',
+        valueFormat: 'yyyy-MM-dd HH:mm:ss',
+        width: 160,
+        addVisdiplay: false,
+        editDisabled: true
+      }, {
         label: '下次执行时间',
-        prop:
-          'nexttime',
-        type:
-          'datetime',
-        format:
-          'yyyy-MM-dd HH:mm:ss',
-        valueFormat:
-          'yyyy-MM-dd HH:mm:ss',
-        width:
-          160,
-        addVisdiplay:
-          false,
-        editDisabled:
-          true
-      }
-      ,
+        prop: 'nextTime',
+        type: 'datetime',
+        format: 'yyyy-MM-dd HH:mm:ss',
+        valueFormat: 'yyyy-MM-dd HH:mm:ss',
+        width: 160,
+        addVisdiplay: false,
+        editDisabled: true
+      },
       {
         label: '组内顺序',
-        prop:
-          'jobOrder',
+        prop: 'jobOrder',
         hide: true,
         addDisplay: false,
         editDisplay: false,
-        rules: [{
-          validator: (rule, value, callback) => {
-            if (value > 9) {
-              callback(new Error('请输入1-9数字'));
-            }
-            callback();
-
-          }, trigger: 'blur'
-        }],
-      }
-      ,
+        type: 'silder',
+        step: 1,
+        min:1,
+        max: 9,
+        showStops: true
+      },
       {
         label: '类型',
-        prop:
-          'jobType',
-        type:
-          'select',
-        dicUrl:
-          '/admin/dict/type/job_type',
-        dicMethod:
-          'get',
+        prop: 'jobType',
+        type: 'select',
+        dicUrl: '/admin/dict/type/job_type',
         width: 100,
         rules:
           [{
@@ -245,44 +162,29 @@ export const tableOption = {
             message: '请输入任务类型',
             trigger: 'blur'
           }]
-      }
-      ,
+      },
       {
         label: '执行路径',
-        prop:
-          'executePath',
-        overHidden:
-          true,
-      }
-      ,
+        prop: 'executePath',
+        overHidden: true,
+      },
       {
         label: '执行文件',
-        prop:
-          'className',
-        overHidden:
-          true
-      }
-      ,
+        prop: 'className',
+        overHidden: true
+      },
       {
         label: '执行方法',
-        prop:
-          'methodName',
-        overHidden:
-          true,
-        width:
-          120
-      }
-      ,
+        prop: 'methodName',
+        overHidden: true,
+        width: 120
+      },
       {
         label: '执行参数值',
-        prop:
-          'methodParamsValue',
-        width:
-          100,
-        overHidden:
-          true,
-      }
-      ,
+        prop: 'methodParamsValue',
+        width: 100,
+        overHidden: true
+      },
       {
         label: 'cron表达式',
         prop:'cronExpression',
@@ -294,50 +196,34 @@ export const tableOption = {
             max: 200,
             message: '请输入cron表达式',
             trigger: 'blur'
-          }, {validator: validateCron, trigger: 'blur'}]
-      }
-      ,
+          }]
+      },
       {
         label: '错失执行策略',
-        prop:
-          'misfirePolicy',
-        type:
-          'select',
-        dicUrl:
-          '/admin/dict/type/misfire_policy',
-        dicMethod:
-          'get',
-        width:
-          120,
+        prop: 'misfirePolicy',
+        type: 'select',
+        dicUrl: '/admin/dict/type/misfire_policy',
+        width: 120,
         rules:
           [{
             required: true,
             message: '请输入任务错失执行策略',
             trigger: 'blur'
           }]
-      }
-      ,
+      },
       {
         label: '租户',
-        prop:
-          'tenantId',
+        prop: 'tenantId',
         hide: true,
-        addVisdiplay:
-          false,
-        editVisdiplay:
-          false
-      }
-      ,
+        addVisdiplay: false,
+        editVisdiplay: false
+      },
       {
         label: '备注信息',
-        prop:
-          'remark',
-        type:
-          'textarea',
-        span:
-          20,
-        overHidden:
-          true,
+        prop: 'remark',
+        type: 'textarea',
+        span: 20,
+        overHidden: true,
         rules:
           [{
             max: 500,
@@ -346,8 +232,7 @@ export const tableOption = {
           }]
       }
     ]
-  }
-;
+  };
 
 export const tableLogOption = {
   border: true,
@@ -385,8 +270,7 @@ export const tableLogOption = {
       prop: 'jobLogStatus',
       type: 'select',
       dicUrl: '/admin/dict/type/job_execute_status',
-      dicMethod: 'get',
-      slot: true,
+      slot: true
     },
     {
       label: '组内顺序',
@@ -398,8 +282,7 @@ export const tableLogOption = {
       prop: 'jobType',
       type: 'select',
       dicUrl: '/admin/dict/type/job_type',
-      dicMethod: 'get',
-      width: 100,
+      width: 100
     },
     {
       label: '执行路径',
@@ -450,11 +333,6 @@ export const tableLogOption = {
       format: 'yyyy-MM-dd HH:mm:ss',
       valueFormat: 'yyyy-MM-dd HH:mm:ss',
       width: 160
-    },
-    {
-      label: '租户',
-      prop: 'tenantId',
-      hide: true
     }
   ]
 };

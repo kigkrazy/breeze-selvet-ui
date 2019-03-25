@@ -1,3 +1,7 @@
+/**
+ * 配置参考:
+ * https://cli.vuejs.org/zh/config/
+ */
 const url = 'http://127.0.0.1:9999'
 module.exports = {
   lintOnSave: true,
@@ -22,6 +26,7 @@ module.exports = {
   // 配置转发代理
   devServer: {
     disableHostCheck: true,
+    port:8080,
     proxy: {
       '/auth': {
         target: url,

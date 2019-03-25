@@ -24,13 +24,21 @@
 </template>
 
 <script>
-  import {fetchList} from '@/api/daemon/sysjoblog'
-  import {tableOption} from '@/const/crud/daemon/sysjoblog'
-  import {remote} from '@/api/admin/dict'
-  import {mapGetters} from 'vuex'
+  import {
+    fetchList
+  } from '@/api/daemon/sys-job-log'
+  import {
+    tableOption
+  } from '@/const/crud/daemon/sys-job-log'
+  import {
+    remote
+  } from '@/api/admin/dict'
+  import {
+    mapGetters
+  } from 'vuex'
 
   export default {
-    name: 'joblog',
+    name: 'job-log',
     data() {
       return {
         queryParams: [],//全局检索条件

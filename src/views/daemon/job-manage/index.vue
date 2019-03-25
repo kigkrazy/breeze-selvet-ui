@@ -44,21 +44,21 @@
         </template>
 
         <template slot="menuLeft">
-          <el-button type="primary" @click="handleAdd" size="small" v-if="permissions.job_sysjob_add">
+          <el-button type="primary" @click="handleAdd" size="small" v-if="permissions.job_sys_job_add">
             新建任务
           </el-button>
           <el-tooltip content="暂停全部运行状态的定时任务" placement="top">
-            <el-button type="warning" @click="shutdownJobs" size="small" v-if="permissions.job_sysjob_shutdownJob">
+            <el-button type="warning" @click="shutdownJobs" size="small" v-if="permissions.job_sys_job_shutdown_job">
               暂停全部任务
             </el-button>
           </el-tooltip>
           <el-tooltip content="启动全部暂停状态的定时任务" placement="top">
-            <el-button type="success" @click="startJobs" size="small" v-if="permissions.job_sysjob_startJob">
+            <el-button type="success" @click="startJobs" size="small" v-if="permissions.job_sys_job_start_job">
               启动全部任务
             </el-button>
           </el-tooltip>
           <el-tooltip content="谨慎使用" placement="top">
-            <el-button type="danger" @click="refreshJobs" size="small" v-if="permissions.job_sysjob_refreshJob">重置全部任务
+            <el-button type="danger" @click="refreshJobs" size="small" v-if="permissions.job_sys_job_refresh_job">重置全部任务
             </el-button>
           </el-tooltip>
         </template>
@@ -73,26 +73,26 @@
           <el-button type="text"
                      icon="el-icon-caret-right"
                      size="mini"
-                     v-if="permissions.job_sysjob_startJob"
+                     v-if="permissions.job_sys_job_start_job"
                      plain
                      @click="handleStartJob(scope.row)">启动
           </el-button>
           <el-button type="text"
                      icon="el-icon-error"
                      size="mini"
-                     v-if="permissions.job_sysjob_shutdownJob"
+                     v-if="permissions.job_sys_job_shutdown_job"
                      plain
                      @click="handleShutDownJob(scope.row)">暂停
           </el-button>
           <el-button type="text"
                      icon="el-icon-edit"
                      size="mini"
-                     v-if="permissions.job_sysjob_edit"
+                     v-if="permissions.job_sys_job_edit"
                      plain
                      @click="handleUpdate(scope.row,scope.index)">修改
           </el-button>
           <el-button type="text"
-                     v-if="permissions.job_sysjob_del"
+                     v-if="permissions.job_sys_job_del"
                      icon="el-icon-delete"
                      size="mini"
                      plain
@@ -136,15 +136,24 @@
     shutdownJobsRa,
     startJobRa,
     startJobsRa
-  } from '@/api/daemon/sysjob'
-  import {tableLogOption, tableOption} from '@/const/crud/daemon/sysjob'
-  import {remote} from '@/api/admin/dict'
-  import {mapGetters} from 'vuex'
-  import {cron} from 'vue-cron'
+  } from '@/api/daemon/sys-job'
+  import {
+    tableLogOption,
+    tableOption
+  } from '@/const/crud/daemon/sys-job'
+  import {
+    remote
+  } from '@/api/admin/dict'
+  import {
+    mapGetters
+  } from 'vuex'
+  import {
+    cron
+  } from 'vue-cron'
 
   export default {
     components: {cron},
-    name: 'sysmanage',
+    name: 'sys-manage',
     data() {
       return {
         form: {},

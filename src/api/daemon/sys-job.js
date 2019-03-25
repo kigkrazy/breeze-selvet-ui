@@ -2,7 +2,7 @@ import request from '@/router/axios'
 
 export function fetchList(query) {
   return request({
-    url: '/job/sysjob/page',
+    url: '/job/sys-job/page',
     method: 'get',
     params: query
   })
@@ -10,7 +10,7 @@ export function fetchList(query) {
 
 export function getJobLogList(query) {
   return request({
-    url: '/job/sysjob/getJobLog',
+    url: '/job/sys-job/job-log',
     method: 'get',
     params: query
   })
@@ -18,42 +18,42 @@ export function getJobLogList(query) {
 
 export function shutdownJobsRa() {
   return request({
-    url: '/job/sysjob/shutdownJobs',
+    url: '/job/sys-job/shutdown-jobs',
     method: 'post'
   })
 }
 
 export function startJobsRa() {
   return request({
-    url: '/job/sysjob/startJobs',
+    url: '/job/sys-job/start-jobs',
     method: 'post'
   })
 }
 
 export function refreshJobsRa() {
   return request({
-    url: '/job/sysjob/refreshJobs',
+    url: '/job/sys-job/refresh-jobs',
     method: 'post'
   })
 }
 
 export function startJobRa(jobId) {
   return request({
-    url: '/job/sysjob/startJob/' + jobId,
+    url: '/job/sys-job/start-job/' + jobId,
     method: 'get'
   })
 }
 
 export function shutDownJobRa(jobId) {
   return request({
-    url: '/job/sysjob/shutdownJob/' + jobId,
+    url: '/job/sys-job/shutdown-job/' + jobId,
     method: 'get'
   })
 }
 
 export function addObj(obj) {
   return request({
-    url: '/job/sysjob',
+    url: '/job/sys-job',
     method: 'post',
     data: obj
   })
@@ -61,21 +61,21 @@ export function addObj(obj) {
 
 export function getObj(id) {
   return request({
-    url: '/job/sysjob/' + id,
+    url: '/job/sys-job/' + id,
     method: 'get'
   })
 }
 
 export function delObj(id) {
   return request({
-    url: '/job/sysjob/' + id,
+    url: '/job/sys-job/' + id,
     method: 'delete'
   })
 }
 
 export function putObj(obj) {
   return request({
-    url: '/job/sysjob',
+    url: '/job/sys-job',
     method: 'put',
     data: obj
   })
@@ -83,14 +83,14 @@ export function putObj(obj) {
 
 export function isValidCron(obj) {
   return request({
-    url: "/job/sysjob/isValidCron?cronExpression=" + obj,
+    url: "/job/sys-job/is-valid-cron?cronExpression=" + obj,
     method: 'post',
   })
 }
 
 export function isValidTaskName(jobName, jobGroup) {
   return request({
-    url: "/job/sysjob/isValidTaskName?jobName=" + jobName + "&jobGroup=" + jobGroup,
+    url: "/job/sys-job/is-valid-task-name?jobName=" + jobName + "&jobGroup=" + jobGroup,
     method: 'post',
   })
 }
