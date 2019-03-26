@@ -476,7 +476,10 @@
        * 新增定时任务持久化处理
        */
       save(row, done, loading) {
-        isValidTaskName(row.jobName, row.jobGroup).then(response => {
+        isValidTaskName({
+          'jobName':row.jobName,
+          'jobGroup': row.jobGroup
+        }).then(response => {
           let result = response.data.data;
           if (result != 0) {
             this.$notify.error({

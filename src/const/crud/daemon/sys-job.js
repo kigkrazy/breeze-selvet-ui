@@ -1,5 +1,3 @@
-import {isValidCron} from '@/api/daemon/sys-job'
-
 export const tableOption = {
     border: true,
     card: true,
@@ -10,7 +8,7 @@ export const tableOption = {
     menuAlign: 'center',
     filterBtn: false,
     menuWidth: 300,
-    align: 'left',
+    align: 'center',
     viewBtn: false,
     editBtn: false,
     delBtn: false,

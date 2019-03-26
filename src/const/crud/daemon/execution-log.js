@@ -34,7 +34,6 @@ export const tableOption = {
   menuAlign: 'center',
   align: 'center',
   editBtn: false,
-  delBtn: false,
   addBtn: false,
   viewBtn: true,
   column: [
