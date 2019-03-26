@@ -23,19 +23,11 @@
                  :data="tableData"
                  :table-loading="tableLoading"
                  :option="tableOption"
+                 :permission="permissionList"
                  @on-load="getList"
                  @search-change="searchChange"
                  @refresh-change="refreshChange"
-                 @row-del="rowDel">
-        <template slot-scope="scope"
-                  slot="menu">
-          <el-button type="text"
-                     v-if="permissions.sys_log_del"
-                     icon="el-icon-delete"
-                     size="mini"
-                     @click="handleDel(scope.row,scope.index)">删除
-          </el-button>
-        </template>
+                 @row-del="handleDel">
       </avue-crud>
     </basic-container>
   </div>
@@ -65,7 +57,12 @@
     mounted: function () {
     },
     computed: {
-      ...mapGetters(['permissions'])
+      ...mapGetters(['permissions']),
+      permissionList() {
+        return {
+          delBtn: this.vaildData(this.permissions.sys_log_del, false),
+        };
+      }
     },
     methods: {
       getList(page, params) {
@@ -80,10 +77,7 @@
           this.tableLoading = false
         })
       },
-      handleDel(row, index) {
-        this.$refs.crud.rowDel(row, index)
-      },
-      rowDel: function (row, index) {
+      handleDel: function (row, index) {
         var _this = this
         this.$confirm('是否确认删除ID为"' + row.id + '"的日志?', '警告', {
           confirmButtonText: '确定',
