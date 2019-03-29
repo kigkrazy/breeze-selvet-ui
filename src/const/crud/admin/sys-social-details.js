@@ -18,12 +18,10 @@
 export const tableOption = {
   border: true,
   index: true,
+  indexLabel: '序号',
   stripe: true,
   menuAlign: 'center',
   align: 'center',
-  editBtn: false,
-  delBtn: false,
-  addBtn: false,
   viewBtn: true,
   column: [{
     label: 'ID',

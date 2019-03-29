@@ -31,8 +31,6 @@ export const tableOption = {
   stripe: true,
   menuAlign: 'center',
   align: 'center',
-  editBtn: false,
-  delBtn: false,
   viewBtn: true,
   column: [{
     width: 150,

@@ -40,14 +40,14 @@ export function refreshJobsRa() {
 export function startJobRa(jobId) {
   return request({
     url: '/job/sys-job/start-job/' + jobId,
-    method: 'get'
+    method: 'post'
   })
 }
 
 export function shutDownJobRa(jobId) {
   return request({
     url: '/job/sys-job/shutdown-job/' + jobId,
-    method: 'get'
+    method: 'post'
   })
 }
 
@@ -81,16 +81,10 @@ export function putObj(obj) {
   })
 }
 
-export function isValidCron(obj) {
+export function isValidTaskName(query) {
   return request({
-    url: "/job/sys-job/is-valid-cron?cronExpression=" + obj,
-    method: 'post',
-  })
-}
-
-export function isValidTaskName(jobName, jobGroup) {
-  return request({
-    url: "/job/sys-job/is-valid-task-name?jobName=" + jobName + "&jobGroup=" + jobGroup,
-    method: 'post',
+    url: '/job/sys-job/is-valid-task-name',
+    method: 'get',
+    params: query
   })
 }
