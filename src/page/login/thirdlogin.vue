@@ -14,7 +14,7 @@
       <span class="container"
             :style="{backgroundColor:'#8dc349'}">
         <i icon-class="qq"
-           class="iconfont icon-qq"></i>
+           class="iconfont icon-qq1"></i>
       </span>
       <p class="title">QQ</p>
     </div>

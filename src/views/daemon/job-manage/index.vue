@@ -137,19 +137,10 @@
     startJobRa,
     startJobsRa
   } from '@/api/daemon/sys-job'
-  import {
-    tableLogOption,
-    tableOption
-  } from '@/const/crud/daemon/sys-job'
-  import {
-    remote
-  } from '@/api/admin/dict'
-  import {
-    mapGetters
-  } from 'vuex'
-  import {
-    cron
-  } from 'vue-cron'
+  import {tableLogOption, tableOption} from '@/const/crud/daemon/sys-job'
+  import {remote} from '@/api/admin/dict'
+  import {mapGetters} from 'vuex'
+  import {cron} from 'vue-cron'
 
   export default {
     components: {cron},

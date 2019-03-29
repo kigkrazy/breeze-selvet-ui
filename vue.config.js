@@ -26,7 +26,7 @@ module.exports = {
   // 配置转发代理
   devServer: {
     disableHostCheck: true,
-    port:8080,
+    port: 8080,
     proxy: {
       '/auth': {
         target: url,
@@ -54,6 +54,13 @@ module.exports = {
         ws: true,
         pathRewrite: {
           '^/gen': '/gen'
+        }
+      },
+      '/mp': {
+        target: url,
+        ws: true,
+        pathRewrite: {
+          '^/mp': '/mp'
         }
       },
       '/daemon': {
