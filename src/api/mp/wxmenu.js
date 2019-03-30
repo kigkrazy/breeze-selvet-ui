@@ -17,22 +17,6 @@
 
 import request from '@/router/axios'
 
-export function fetchList(query) {
-  return request({
-    url: '/mp/wxmenu/page',
-    method: 'get',
-    params: query
-  })
-}
-
-export function addObj(obj) {
-  return request({
-    url: '/mp/wxmenu',
-    method: 'post',
-    data: obj
-  })
-}
-
 export function getObj(id) {
   return request({
     url: '/mp/wxmenu/' + id,
@@ -40,17 +24,18 @@ export function getObj(id) {
   })
 }
 
-export function delObj(id) {
+export function putObj(appId) {
   return request({
-    url: '/mp/wxmenu/' + id,
-    method: 'delete'
+    url: '/mp/wxmenu/' + appId,
+    method: 'put'
   })
 }
 
-export function putObj(obj) {
+
+export function addObj(appId, obj) {
   return request({
-    url: '/mp/wxmenu',
-    method: 'put',
+    url: '/mp/wxmenu/' + appId,
+    method: 'post',
     data: obj
   })
 }
