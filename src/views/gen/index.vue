@@ -79,9 +79,11 @@
                  :table-loading="tableLoading"
                  @close="dsBox=false">
         <avue-crud ref="crud"
+                   v-modle="dsForm"
                    :page="dsPage"
                    :data="tableDsData"
                    :option="tableDsOption"
+                   :before-open="handleOpenBefore"
                    @row-update="handleUpdate"
                    @row-save="handleSave"
                    @row-del="rowDel"
@@ -120,6 +122,7 @@
           currentPage: 1, // 当前页数
           pageSize: 20 // 每页显示多少条
         },
+        dsForm: {},
         tableLoading: false,
         tableOption: tableOption,
         tableDsOption: tableDsOption,
@@ -157,6 +160,9 @@
           this.getDsList(this.page)
         }).catch(function (err) {
         })
+      },
+      handleOpenBefore: function () {
+        this.dsForm.password = undefined
       },
       handleUpdate: function (row, index, done) {
         putObj(row).then(data => {
