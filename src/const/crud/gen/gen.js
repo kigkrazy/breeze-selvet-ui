@@ -28,7 +28,6 @@ export const tableOption = {
     label: '表名称',
     prop: 'tableName',
     align: 'center',
-    search: true
   }, {
     label: '表注释',
     prop: 'tableComment',
@@ -74,6 +73,56 @@ export const formOption = {
       label: '注释',
       prop: 'comments',
       placeholder: '可为空，加载表备注'
+    }
+  ]
+}
+
+
+export const tableDsOption = {
+  border: true,
+  index: true,
+  indexLabel: '序号',
+  stripe: true,
+  menuAlign: 'center',
+  align: 'center',
+  column: [
+    {
+      label: '主键',
+      prop: 'id',
+      hide: true,
+      addVisdiplay: false,
+      editVisdiplay: false
+    },
+    {
+      label: '名称',
+      prop: 'name'
+    },
+    {
+      label: 'jdbcUrl',
+      prop: 'url',
+      overHidden: true
+    },
+    {
+      label: '用户名',
+      prop: 'username'
+    },
+    {
+      label: '密码',
+      prop: 'password'
+    },
+    {
+      label: '创建时间',
+      prop: 'createDate',
+      addVisdiplay: false,
+      editVisdiplay: false,
+      overHidden: true
+    },
+    {
+      label: '更新时间',
+      prop: 'updateDate',
+      overHidden: true,
+      addVisdiplay: false,
+      editVisdiplay: false
     }
   ]
 }
