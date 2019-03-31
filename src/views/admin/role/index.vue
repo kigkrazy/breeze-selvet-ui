@@ -72,7 +72,6 @@
           <el-button size="mini"
                      type="text"
                      icon="el-icon-plus"
-                     plain
                      @click="handlePermission(scope.row,scope.index)"
                      v-if="roleManager_btn_perm">权限
           </el-button>

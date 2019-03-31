@@ -14,7 +14,7 @@
  * this software without specific prior written permission.
  * Author: lengleng (wangiegie@gmail.com)
  */
-import { getDetails } from '@/api/admin/user'
+import {getDetails} from '@/api/admin/user'
 
 var validateUsername = (rule, value, callback) => {
   getDetails(value).then(response => {
@@ -57,13 +57,13 @@ export const tableOption = {
       required: true,
       message: '请输入用户名'
     },
-    {
-      min: 3,
-      max: 20,
-      message: '长度在 3 到 20 个字符',
-      trigger: 'blur'
-    },
-    { validator: validateUsername, trigger: 'blur' }
+      {
+        min: 3,
+        max: 20,
+        message: '长度在 3 到 20 个字符',
+        trigger: 'blur'
+      },
+      {validator: validateUsername, trigger: 'blur'}
     ]
   }, {
     label: '密码',
@@ -93,12 +93,12 @@ export const tableOption = {
   }, {
     label: '手机号',
     prop: 'phone',
-    type: 'phone',
+    type: 'tel',
     value: '',
     span: 24,
     rules: [{
-      min: 6,
-      max: 20,
+      min: 11,
+      max: 11,
       message: '长度在 11 个字符',
       trigger: 'blur'
     }]

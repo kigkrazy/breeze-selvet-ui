@@ -17,14 +17,6 @@
 
 import request from '@/router/axios'
 
-export function fetchDeptTree (query) {
-  return request({
-    url: '/admin/dept/user-tree',
-    method: 'get',
-    params: query
-  })
-}
-
 export function fetchTree (query) {
   return request({
     url: '/admin/dept/tree',
