@@ -18,11 +18,14 @@
 @import './media.scss';
 //通用配置
 @import './normalize.scss';
+//微信
+@import './wechat/index.scss';
 
-a{
+a {
   text-decoration: none;
-  color:#333;
+  color: #333;
 }
-*{
+
+* {
   outline: none;
 }
