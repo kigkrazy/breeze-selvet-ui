@@ -1,8 +1,6 @@
 <template>
   <div class="menu_setting_box js_menuBox dn"
        style="display: block;">
-    <textarea id="result"
-              style="border: none;position: absolute;width: 317px;height: 462px;left: 31px;top: 79px;z-index: 2;word-break: break-all;"></textarea>
     <div class="highlight_box border icon_wrap menu_setting_msg js_menustatus dn"
          id="menustatus_1"
          style="display: none;">

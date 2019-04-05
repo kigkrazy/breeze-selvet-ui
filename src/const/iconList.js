@@ -22,7 +22,13 @@ export default [
       "icon-caidanguanli",
       "icon-guanwang",
       "icon-guanwangfangwen",
-      "icon-guiji"
+      "icon-guiji",
+      "icon-fensiguanli",
+      "icon-gongzhonghao",
+      "icon-anniu_weixincaidanlianjie",
+      "icon-weixincaidan",
+      "icon-xiaoxiguanli",
+      "icon-zhexiantu"
     ]
   }
 ]

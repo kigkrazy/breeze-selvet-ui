@@ -68,3 +68,11 @@ export function fetchAccountList() {
     method: 'get'
   })
 }
+
+export function fetchStatistics(q) {
+  return request({
+    url: '/mp/wxaccount/statistics',
+    method: 'get',
+    params: q
+  })
+}
