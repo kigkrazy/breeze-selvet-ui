@@ -87,16 +87,5 @@ export default [{
       isTab: false,
       isAuth: false
     }
-  },
-  {
-    path: '/wechat',
-    name: '微信',
-    component: () =>
-      import( /* webpackChunkName: "page" */ '@/views/mp/wxstatistics'),
-    meta: {
-      keepAlive: true,
-      isTab: false,
-      isAuth: false
-    }
   }
 ]

@@ -537,11 +537,8 @@
       </div>
     </div>
     <div class="tool_bar tc js_editBox">
-      <span id="pubBt"
-            class="btn btn_input btn_primary"
-            style="display: block;"
-            @click="saveData()"><button>保存并发布</button></span>
-      <!--<a href="javascript:void(0);" class="btn btn_default" id="viewBt" style="display: block;">预览</a>-->
+      <el-button type="primary" @click="saveData()">保存菜单</el-button>
+      <el-button type="success" @click="pubData()">发布菜单</el-button>
     </div>
   </div>
 </template>
@@ -633,7 +630,6 @@
       saveData: function () {
         //补全数据,无数据也要为空
         this.menu_data_completing();
-        console.log(this.menu);
         for (let i = 0; i < this.menu.button.length; i++) {
           if (this.menu.button[i].sub_button.length > 0) {
             const _sub_button = [];
@@ -698,7 +694,10 @@
             }
           }
         }
-        this.$emit("submit", this.new_menu);
+        this.$emit("saveData", this.new_menu);
+      },
+      pubData: function () {
+        this.$emit("pubData", this.new_menu);
       },
       menu_selected: function (name, index) {
         this.showDelBtnType = 1;
