@@ -31,6 +31,12 @@ export function putObj(appId) {
   })
 }
 
+export function delObj(appId) {
+  return request({
+    url: '/mp/wxmenu/' + appId,
+    method: 'delete'
+  })
+}
 
 export function addObj(appId, obj) {
   return request({

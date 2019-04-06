@@ -538,6 +538,7 @@
     </div>
     <div class="tool_bar tc js_editBox">
       <el-button type="primary" @click="saveData()">保存菜单</el-button>
+      <el-button type="danger" @click="delData()">删除菜单</el-button>
       <el-button type="success" @click="pubData()">发布菜单</el-button>
     </div>
   </div>
@@ -698,6 +699,9 @@
       },
       pubData: function () {
         this.$emit("pubData", this.new_menu);
+      },
+      delData: function () {
+        this.$emit("delData", this.new_menu);
       },
       menu_selected: function (name, index) {
         this.showDelBtnType = 1;

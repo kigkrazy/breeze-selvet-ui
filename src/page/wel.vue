@@ -15,7 +15,7 @@
             <el-collapse-item title="完整的微服务架构" name="1">
               <div>基于Spring Cloud Gateway</div>
               <div>基于Spring Cloud Greenwich.SR1</div>
-              <div>基于Spring Boot 2.1.3.RELEASE</div>
+              <div>基于Spring Boot 2.1.4.RELEASE</div>
             </el-collapse-item>
             <el-collapse-item title="完善的权限控制" name="2">
               <div>基于Spring Security OAuth实现鉴权体系；</div>

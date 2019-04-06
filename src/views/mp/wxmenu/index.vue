@@ -9,6 +9,7 @@
       <el-col :md="20">
         <wechat :data="data"
                 @pubData="pubData"
+                @delData="delData"
                 @saveData="saveData"/>
       </el-col>
     </el-row>
@@ -17,7 +18,7 @@
 
 <script>
   import wechat from "@/components/wechat/"
-  import {addObj, getObj, putObj} from '@/api/mp/wxmenu'
+  import {addObj,delObj, getObj, putObj} from '@/api/mp/wxmenu'
   import {fetchAccountList} from '@/api/mp/wxaccount'
   import {mapGetters} from 'vuex'
 
@@ -65,7 +66,7 @@
           this.$message.error("权限不足，不能保存");
         }
       },
-      pubData(form) {
+      pubData() {
         if (this.validatenull(this.checkAppId)) {
           this.$message.error("请先选择公众号");
           return false;
@@ -82,6 +83,20 @@
           this.$message.error("权限不足，不能保存");
         }
       },
+      delData() {
+        if (this.validatenull(this.checkAppId)) {
+          this.$message.error("请先选择公众号");
+          return false;
+        }
+        if (this.permissions.mp_wxmenu_add) {
+          delObj(this.checkAppId).then(response => {
+            this.$message.success("删除并发布成功")
+          })
+        } else {
+          this.$message.error("权限不足，不能保存");
+        }
+      },
+
       getAccountMenu() {
         getObj(this.checkAppId).then(response => {
           if (response.data.data) {
