@@ -47,6 +47,10 @@ axios.interceptors.response.use(res => {
   const status = Number(res.status) || 200
   const message = res.data.msg || errorCode[status] || errorCode['default']
   if (status === 401) {
+    Message({
+      message: message,
+      type: 'error'
+    })
     store.dispatch('FedLogOut').then(() => {
       router.push({ path: '/login' })
     })

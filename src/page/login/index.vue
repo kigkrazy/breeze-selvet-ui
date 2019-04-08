@@ -78,6 +78,7 @@
 
           this.socialForm.state = params.state
           this.socialForm.code = params.code
+
           const loading = this.$loading({
             lock: true,
             text: `登录中,请稍后。。。`,
