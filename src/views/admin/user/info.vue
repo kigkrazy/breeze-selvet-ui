@@ -57,7 +57,13 @@
                             prop="social">
                 <a href="#"
                    style="color: blue"
-                   @click="handleClick('wechat')">绑定微信</a>
+                   @click="handleClick('wechat')">绑定微信</a>｜
+                <a href="#"
+                   style="color: blue"
+                   @click="handleClick('gitee')">绑定码云</a> |
+                <a href="#"
+                   style="color: blue"
+                   @click="handleClick('osc')">开源中国</a>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary"
@@ -213,13 +219,19 @@
       },
       handleClick(thirdpart) {
         let appid, client_id, redirect_uri, url
-        redirect_uri = encodeURIComponent(window.location.origin + '/#/authredirect?type=BIND')
+        redirect_uri = encodeURIComponent(window.location.origin + '/#/authredirect')
         if (thirdpart === 'wechat') {
           appid = 'wxd1678d3f83b1d83a'
-          url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&state=' + appid + '&response_type=code&scope=snsapi_login#wechat_redirect'
+          url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&state=WX-BIND&response_type=code&scope=snsapi_login#wechat_redirect'
         } else if (thirdpart === 'tencent') {
           client_id = '101322838'
-          url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=' + appid + '&client_id=' + client_id + '&redirect_uri=' + redirect_uri
+          url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ-BIND&client_id=' + client_id + '&redirect_uri=' + redirect_uri
+        } else if (thirdpart === 'gitee') {
+          client_id = '8fc54e0e76e7842cf767c3ae3b9fdc48c03cefed27aa565ff7b2a39d142d9892'
+          url = 'https://gitee.com/oauth/authorize?response_type=code&state=GITEE--BIND&client_id=' + client_id + '&redirect_uri=' +redirect_uri
+        } else if (thirdpart === 'osc') {
+          client_id = 'neIIqlwGsjsfsA6uxNqD'
+          url = 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=' + client_id + '&state=OSC-BIND&redirect_uri=' + redirect_uri
         }
         openWindow(url, thirdpart, 540, 540)
       },
@@ -244,12 +256,12 @@
   }
 
   .avatar-uploader-icon {
-    font-size: 28px!important;
-    color: #8c939d!important;
-    width: 178px!important;
-    height: 178px!important;
-    line-height: 178px!important;
-    text-align: center!important;
+    font-size: 28px !important;
+    color: #8c939d !important;
+    width: 178px !important;
+    height: 178px !important;
+    line-height: 178px !important;
+    text-align: center !important;
   }
 
   .avatar {
