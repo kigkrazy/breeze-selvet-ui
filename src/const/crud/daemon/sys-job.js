@@ -193,7 +193,7 @@ export const tableOption = {
             required: true,
             max: 200,
             message: '请输入cron表达式',
-            trigger: 'blur'
+            trigger: 'change'
           }]
       },
       {
