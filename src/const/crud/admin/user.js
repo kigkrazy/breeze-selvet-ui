@@ -88,7 +88,7 @@ export const tableOption = {
     rules: [{
       required: true,
       message: '请选择部门',
-      trigger: 'blur'
+      trigger: 'change'
     }]
   }, {
     label: '手机号',
