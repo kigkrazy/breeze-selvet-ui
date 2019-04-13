@@ -49,7 +49,7 @@
     <el-dialog title="接入" :visible.sync="dialogFormVisible">
       <el-row :gutter="20">
         <el-col :span="6">服务器地址(URL)</el-col>
-        <el-col :span="12">{{wxurl}}</el-col>
+        <el-col :span="12" id="target">{{wxurl}}</el-col>
         <el-col :span="6">
           <el-button id="btn" @click="copyLink" type="primary" size="small" style="float: right;">点击复制</el-button>
         </el-col>

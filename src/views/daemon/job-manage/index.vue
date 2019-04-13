@@ -316,7 +316,7 @@
         } else {
           this.$notify.error({
             title: '错误',
-            message: '运行中定时任务可暂停'
+            message: '已暂停，不要重复操作'
           });
         }
       },
@@ -490,7 +490,7 @@
             });
           }
           done();
-          this.refreshChange()
+          this.getList()
         })
       }
       ,

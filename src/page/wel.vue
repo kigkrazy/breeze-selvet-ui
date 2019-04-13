@@ -6,7 +6,7 @@
           <a href="https://avue.top/#/pay" target="_blank">
             <img src="https://img.shields.io/badge/Avue-原子弹-green.svg" alt="Build Status">
           </a>
-          <img src="https://img.shields.io/badge/Spring%20Boot-2.1.3.RELEASE-yellowgreen.svg" alt="Downloads">
+          <img src="https://img.shields.io/badge/Spring%20Boot-2.1.4.RELEASE-yellowgreen.svg" alt="Downloads">
           <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR1-blue.svg" alt="Coverage Status">
         </span>
         <br/>
