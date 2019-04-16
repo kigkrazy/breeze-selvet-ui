@@ -25,6 +25,7 @@
                  :option="tableOption"
                  @on-load="getList"
                  @refresh-change="refreshChange"
+                 @search-change="searchChange"
                  @row-save="handleSave"
                  @row-del="rowDel">
         <template slot-scope="scope"
@@ -176,10 +177,18 @@
       refreshChange() {
         this.getList(this.page)
       },
+      /**
+       * 搜索回调
+       */
+      searchChange(form) {
+        this.getList(this.page, form)
+      },
       reply: function (row) {
         this.msgId = row.id
         this.dialogFormVisible = true
         this.getResList(this.pageRes, {fansMsgId: this.msgId})
+        // 同时刷新 客户消息列表
+        this.getList(this.page)
       }
     }
   }
