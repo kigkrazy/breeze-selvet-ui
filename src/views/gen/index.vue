@@ -78,8 +78,8 @@
       <el-dialog title="数据源管理" :visible.sync="dsBox" width="90%"
                  :table-loading="tableLoading"
                  @close="dsBox=false">
-        <avue-crud ref="crud"
-                   v-modle="dsForm"
+        <avue-crud ref="data-source-settings-crud"
+                   v-model="dsForm"
                    :page="dsPage"
                    :data="tableDsData"
                    :option="tableDsOption"
@@ -99,7 +99,6 @@
 <script>
   import {addObj, delObj, fetchDsList, fetchList, fetchSelectDsList, handleDown, putObj} from '@/api/gen/gen'
   import {formOption, tableDsOption, tableOption} from '@/const/crud/gen/gen'
-  import {mapGetters} from 'vuex'
 
   export default {
     name: 'code-generator',
@@ -128,9 +127,6 @@
         tableDsOption: tableDsOption,
         formOption: formOption
       }
-    },
-    computed: {
-      ...mapGetters(['permissions'])
     },
     created() {
       this.getdataSourceList();
@@ -161,11 +157,12 @@
         }).catch(function (err) {
         })
       },
-      handleOpenBefore: function () {
+      handleOpenBefore: function (show,type) {
         this.dsForm.password = undefined
+        show()
       },
       handleUpdate: function (row, index, done) {
-        putObj(row).then(data => {
+        putObj(row).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message.success('修改成功')
           done()
@@ -173,8 +170,7 @@
         })
       },
       handleSave: function (row, done) {
-        row.qrUrl = undefined
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message.success('添加成功')
           done()
@@ -200,7 +196,7 @@
       refreshDsChange() {
         this.getDsList(this.page)
       },
-      gen(form) {
+      gen() {
         this.formData.id = this.q.id
         handleDown(this.formData).then(() => {
           this.box = true
