@@ -112,8 +112,7 @@
           this.tableLoading = false
         })
       },
-
-      audit: function (row, index) {
+      audit: function (row) {
         fetchDetail(row.taskId).then(response => {
           this.obj = response.data.data
           // 根据连线判断下次的流程
@@ -122,33 +121,15 @@
         })
         this.obj = row
       },
-      comment: function (row, index) {
+      comment: function (row) {
         fetchComment(row.taskId).then(response => {
           this.taskTableData = response.data.data
         })
         this.showComment = true
       },
-      handleSubmit: function (row, index) {
-        var _this = this
-        this.$confirm('是否确认提交ID为' + row.leaveId, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(function () {
-          return submit(row.leaveId)
-        }).then(data => {
-          _this.tableData.splice(index, 1)
-          _this.$message({
-            showClose: true,
-            message: '提交成功',
-            type: 'success'
-          })
-        }).catch(function (err) {
-        })
-      },
       handleTask: function (row, result) {
         this.obj.taskFlag = result
-        doTask(this.obj).then(response => {
+        doTask(this.obj).then(() => {
           this.$message({
             showClose: true,
             message: '提交成功',
@@ -158,7 +139,7 @@
           this.getList(this.page)
         })
       },
-      viewPic: function (row, index) {
+      viewPic: function (row) {
         this.actPicUrl = `/act/task/view/` + row.taskId
         this.showPicDialog = true
       },

@@ -77,7 +77,7 @@
           this.tableLoading = false
         })
       },
-      handleDel: function (row, index) {
+      handleDel: function (row) {
         var _this = this
         this.$confirm('是否确认删除ID为"' + row.id + '"的日志?', '警告', {
           confirmButtonText: '确定',
@@ -85,14 +85,14 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           this.getList(this.page)
           _this.$message({
             showClose: true,
             message: '删除成功',
             type: 'success'
           })
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**

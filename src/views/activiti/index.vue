@@ -88,7 +88,7 @@
           this.tableLoading = false
         })
       },
-      handleView(row, index) {
+      handleView(row) {
         const name = `模型id为${row.id}的${row.name}流程图`,
           src = `/activti/detail/${row.id}`;
         this.$router.push({
@@ -101,7 +101,7 @@
       handleDel(row, index) {
         this.$refs.crud.rowDel(row, index)
       },
-      handleDeploy: function (row, index) {
+      handleDeploy: function (row) {
         var _this = this
         this.$confirm('是否确认部署ID为"' + row.id + '"的模型?', '警告', {
           confirmButtonText: '确定',
@@ -109,17 +109,17 @@
           type: 'warning'
         }).then(function () {
           return deploy(row.id)
-        }).then(data => {
+        }).then(() => {
           this.getList(this.page)
           _this.$message({
             showClose: true,
             message: '部署成功',
             type: 'success'
           })
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
-      rowDel: function (row, index) {
+      rowDel: function (row) {
         var _this = this
         this.$confirm('是否确认删除ID为"' + row.id + '"的模型?', '警告', {
           confirmButtonText: '确定',
@@ -127,14 +127,14 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           this.getList(this.page)
           _this.$message({
             showClose: true,
             message: '删除成功',
             type: 'success'
           })
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**
@@ -144,7 +144,7 @@
        *
        **/
       handleSave: function (row, done) {
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,

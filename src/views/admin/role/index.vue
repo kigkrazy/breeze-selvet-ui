@@ -95,7 +95,7 @@
       <div slot="footer"
            class="dialog-footer">
         <el-button type="primary"
-                   @click="updatePermession(roleId, roleCode)">更 新
+                   @click="updatePermession(roleId)">更 新
         </el-button>
       </div>
     </el-dialog>
@@ -103,7 +103,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, fetchRoleTree, getObj, permissionUpd, putObj} from '@/api/admin/role'
+  import {addObj, delObj, fetchList, fetchRoleTree, permissionUpd, putObj} from '@/api/admin/role'
   import {tableOption} from '@/const/crud/admin/role'
   import {fetchTree} from '@/api/admin/dept'
   import {fetchMenuTree} from '@/api/admin/menu'
@@ -172,7 +172,7 @@
       handleCreate() {
         this.$refs.crud.rowAdd();
       },
-      handleOpenBefore(show, type) {
+      handleOpenBefore(show) {
         fetchTree().then(response => {
           this.dsScopeData = response.data.data;
           if (this.form.dsScope) {
@@ -281,7 +281,7 @@
           loading();
         });
       },
-      updatePermession(roleId, roleCode) {
+      updatePermession(roleId) {
         this.menuIds = ''
         this.menuIds = this.$refs.menuTree.getCheckedKeys().join(',').concat(',').concat(this.$refs.menuTree.getHalfCheckedKeys().join(','))
         permissionUpd(roleId, this.menuIds).then(() => {

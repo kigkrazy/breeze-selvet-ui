@@ -31,7 +31,7 @@
 </template>
 <script>
   import vueJsonEditor from 'vue-json-editor'
-  import {fallback, fetchList, putObj} from '@/api/admin/route'
+  import {fetchList, putObj} from '@/api/admin/route'
 
   export default {
     data() {
@@ -69,7 +69,7 @@
       },
 
       edit() {
-        putObj(this.json).then(response => {
+        putObj(this.json).then(() => {
           this.$notify({
             title: '成功',
             message: '更新成功',

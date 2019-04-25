@@ -83,14 +83,14 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.access_token)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
             message: '删除成功',
             type: 'success'
           })
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**

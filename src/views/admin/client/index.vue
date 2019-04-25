@@ -92,7 +92,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.clientId)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -100,7 +100,7 @@
             type: 'success'
           })
           this.refreshChange()
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**
@@ -111,7 +111,7 @@
        *
        **/
       handleUpdate: function (row, index, done) {
-        putObj(row).then(data => {
+        putObj(row).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -129,7 +129,7 @@
        *
        **/
       handleSave: function (row, done) {
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,

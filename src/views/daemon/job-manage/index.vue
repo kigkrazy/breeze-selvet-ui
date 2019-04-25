@@ -195,7 +195,7 @@
       /**
        * 定时任务分页查询
        */
-      getList(page) {
+      getList() {
         this.tableLoading = true
         fetchList(Object.assign({
           descs: 'create_time',
@@ -515,7 +515,7 @@
       /**
        * 删除定时任务持久化处理
        */
-      handleDelete(row, index) {
+      handleDelete(row) {
         let jobStatus = row.jobStatus;
         if ('1' == jobStatus || '3' == jobStatus) {
           this.$confirm('是否确认删除(任务名称:' + row.jobName + '), 是否继续?删除后不可恢复', '警告', {

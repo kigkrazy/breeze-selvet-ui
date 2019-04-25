@@ -121,7 +121,6 @@
           size: this.page.pageSize
         }, {dictId: dictId})).then(response => {
           this.tableDictItemData = response.data.data.records
-          this.page.total = response.data.data.total
           this.tableLoading = false
         })
       },
@@ -174,7 +173,7 @@
        *
        **/
       handleSave: function (row, done) {
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -186,7 +185,7 @@
         })
       },
       handleItemSave: function (row, done) {
-        addItemObj(row).then(data => {
+        addItemObj(row).then(() => {
           this.tableDictItemData.push(Object.assign({}, row))
           this.$message({
             showClose: true,

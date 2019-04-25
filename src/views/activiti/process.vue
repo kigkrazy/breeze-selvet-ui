@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, status} from "@/api/activiti/process";
+  import {delObj, fetchList, status} from "@/api/activiti/process";
   import {tableOption} from "@/const/crud/activiti/process";
   import {mapGetters} from "vuex";
 
@@ -111,7 +111,7 @@
           this.tableLoading = false;
         });
       },
-      handlePic(row, index) {
+      handlePic(row) {
         this.actPicUrl =
           `/act/process/resource/` +
           row.deploymentId +
@@ -132,7 +132,7 @@
           }
         ).then(function () {
           return status(row.processonDefinitionId, type);
-        }).then(data => {
+        }).then(() => {
           this.getList(this.page);
           _this.$message({
             showClose: true,
@@ -145,7 +145,7 @@
       handleDel(row, index) {
         this.$refs.crud.rowDel(row, index);
       },
-      rowDel: function (row, index) {
+      rowDel: function (row) {
         var _this = this;
         this.$confirm(
           '是否确认删除ID为"' + row.deploymentId + '"的模型?',
@@ -157,7 +157,7 @@
           }
         ).then(function () {
           return delObj(row.deploymentId);
-        }).then(data => {
+        }).then(() => {
           this.getList(this.page);
           _this.$message({
             showClose: true,
@@ -165,7 +165,7 @@
             type: "success"
           });
           this.getList(this.page);
-        }).catch(function (err) {
+        }).catch(function () {
         });
       },
       /**

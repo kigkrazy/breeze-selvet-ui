@@ -52,7 +52,7 @@
 </template>
 
 <script>
-  import {addObj, addResObj, delObj, delResObj, fetchList, fetchResList, getObj, putObj} from '@/api/mp/wxfansmsg'
+  import {addObj, addResObj, delObj, delResObj, fetchList, fetchResList} from '@/api/mp/wxfansmsg'
   import {tableOption, tableResOption} from '@/const/crud/mp/wxfansmsg'
   import {mapGetters} from 'vuex'
 
@@ -118,7 +118,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -126,11 +126,11 @@
             type: 'success'
           })
           this.getList(this.page)
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       handleSave: function (row, done) {
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableResData.push(Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -141,7 +141,7 @@
           this.getList(this.page)
         })
       },
-      rowResDel: function (row, index) {
+      rowResDel: function (row) {
         var _this = this
         this.$confirm('是否确认删除ID为' + row.id, '提示', {
           confirmButtonText: '确定',
@@ -149,19 +149,19 @@
           type: 'warning'
         }).then(function () {
           return delResObj(row.id)
-        }).then(data => {
+        }).then(() => {
           _this.$message({
             showClose: true,
             message: '删除成功',
             type: 'success'
           })
           this.getResList(this.pageRes, {fansMsgId: this.msgId})
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       handleResSave: function (row, done) {
         row.fansMsgId = this.msgId
-        addResObj(this.filterForm(row)).then(data => {
+        addResObj(this.filterForm(row)).then(() => {
           this.$message({
             showClose: true,
             message: '发送成功',

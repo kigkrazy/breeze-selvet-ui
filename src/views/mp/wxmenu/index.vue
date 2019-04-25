@@ -59,7 +59,7 @@
           return false;
         }
         if (this.permissions.mp_wxmenu_add) {
-          addObj(this.checkAppId, form).then(data => {
+          addObj(this.checkAppId, form).then(() => {
             this.$message.success("保存成功")
           })
         } else {
@@ -76,7 +76,7 @@
           return false;
         }
         if (this.permissions.mp_wxmenu_add) {
-          putObj(this.checkAppId).then(response => {
+          putObj(this.checkAppId).then(() => {
             this.$message.success("发布成功")
           })
         } else {
@@ -89,7 +89,7 @@
           return false;
         }
         if (this.permissions.mp_wxmenu_add) {
-          delObj(this.checkAppId).then(response => {
+          delObj(this.checkAppId).then(() => {
             this.$message.success("删除并发布成功")
           })
         } else {

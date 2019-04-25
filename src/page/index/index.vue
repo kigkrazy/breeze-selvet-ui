@@ -125,7 +125,7 @@
       },
       connection() {
         let token = store.getters.access_token
-        let TENANT_ID = getStore({name: 'tenantId'})
+        let TENANT_ID = getStore({name: 'tenantId'}) ? getStore({name: 'tenantId'}) : '1'
         let headers = {
           'Authorization': 'Bearer ' + token
         }

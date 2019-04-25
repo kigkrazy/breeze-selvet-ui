@@ -59,7 +59,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, generateQr, getObj, putObj} from '@/api/mp/wxaccount'
+  import {addObj, delObj, fetchList, generateQr, putObj} from '@/api/mp/wxaccount'
   import {tableOption} from '@/const/crud/mp/wxaccount'
   import {mapGetters} from 'vuex'
   import Clipboard from 'clipboard'
@@ -110,7 +110,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -118,7 +118,7 @@
             type: 'success'
           })
           this.getList(this.page)
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**
@@ -129,7 +129,7 @@
        *
        **/
       handleUpdate: function (row, index, done) {
-        putObj(row).then(data => {
+        putObj(row).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -148,7 +148,7 @@
        **/
       handleSave: function (row, done) {
         row.qrUrl = undefined
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -164,7 +164,7 @@
         this.getList(this.page)
       },
       generateQr: function (row) {
-        generateQr(row.appid).then(data => {
+        generateQr(row.appid).then(() => {
           this.$message({
             showClose: true,
             message: '获取成功',
@@ -182,7 +182,7 @@
           target: () => document.querySelector('#target')
         })
         //复制成功执行的回调
-        clipboard.on('success', (e) => {
+        clipboard.on('success', () => {
           this.$message({
             showClose: true,
             message: '复制成功',

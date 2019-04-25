@@ -59,7 +59,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, getObj, putObj, sync} from '@/api/mp/wxaccountfans'
+  import {addObj, delObj, fetchList, putObj, sync} from '@/api/mp/wxaccountfans'
   import {fetchAccountList} from '@/api/mp/wxaccount'
   import {tableOption} from '@/const/crud/mp/wxaccountfans'
   import {mapGetters} from 'vuex'
@@ -118,7 +118,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -126,7 +126,7 @@
             type: 'success'
           })
           this.getList(this.page)
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**
@@ -137,7 +137,7 @@
        *
        **/
       handleUpdate: function (row, index, done) {
-        putObj(row).then(data => {
+        putObj(row).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -155,7 +155,7 @@
        *
        **/
       handleSave: function (row, done) {
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -177,7 +177,7 @@
       },
       asyncFans() {
         if (this.q.account) {
-          sync(this.q.account).then(data => {
+          sync(this.q.account).then(() => {
             this.$message({
               showClose: true,
               message: '已开始从微信同步粉丝信息，建议等待后查询',

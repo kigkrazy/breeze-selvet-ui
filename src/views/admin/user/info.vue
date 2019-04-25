@@ -112,7 +112,6 @@
 
 
 <script>
-  import {handleDown} from "@/api/admin/user";
   import {handleImg, openWindow} from '@/util/util'
   import {mapState} from 'vuex'
   import store from "@/store";
@@ -166,7 +165,7 @@
       }),
     },
     methods: {
-      switchTab(tab, event) {
+      switchTab(tab) {
         if (tab.name === 'userManager') {
           handleImg(this.ruleForm2.avatar, 'avatar')
         }

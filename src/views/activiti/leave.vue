@@ -58,7 +58,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, getObj, putObj, submit} from '@/api/activiti/leave-bill'
+  import {addObj, delObj, fetchList, putObj, submit} from '@/api/activiti/leave-bill'
   import {tableOption} from '@/const/crud/activiti/leave-bill'
   import {mapGetters} from 'vuex'
 
@@ -118,7 +118,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.leaveId)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -135,7 +135,7 @@
           type: 'warning'
         }).then(function () {
           return submit(row.leaveId)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -153,7 +153,7 @@
        *
        **/
       handleUpdate: function (row, index, done) {
-        putObj(row).then(data => {
+        putObj(row).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -171,7 +171,7 @@
        *
        **/
       handleSave: function (row, done) {
-        addObj(row).then(data => {
+        addObj(row).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,

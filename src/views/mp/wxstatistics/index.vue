@@ -45,7 +45,6 @@
 </style>
 
 <script>
-  import {dateFormat} from "@/util/date";
   import ECharts from 'vue-echarts'
   import 'echarts/lib/chart/line'
   import 'echarts/lib/chart/bar'

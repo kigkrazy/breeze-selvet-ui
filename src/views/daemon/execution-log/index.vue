@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, getObj, putObj} from '@/api/daemon/execution-log'
+  import {delObj, fetchList} from '@/api/daemon/execution-log'
   import {tableOption} from '@/const/crud/daemon/execution-log'
   import {mapGetters} from 'vuex'
 
@@ -85,7 +85,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -93,7 +93,7 @@
             type: 'success'
           })
           this.getList(this.page)
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**

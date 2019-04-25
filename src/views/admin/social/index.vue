@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, getObj, putObj} from '@/api/admin/sys-social-details'
+  import {addObj, delObj, fetchList, putObj} from '@/api/admin/sys-social-details'
   import {tableOption} from '@/const/crud/admin/sys-social-details'
   import {mapGetters} from 'vuex'
 
@@ -88,7 +88,7 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           _this.tableData.splice(index, 1)
           _this.$message({
             showClose: true,
@@ -96,7 +96,7 @@
             type: 'success'
           })
           this.refreshChange()
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
       /**
@@ -107,7 +107,7 @@
        *
        **/
       handleUpdate: function (row, index, done) {
-        putObj(row).then(data => {
+        putObj(row).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message({
             showClose: true,

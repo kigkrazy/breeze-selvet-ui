@@ -150,14 +150,14 @@
           type: 'warning'
         }).then(function () {
           return delObj(row.id)
-        }).then(data => {
+        }).then(() => {
           this.tableData.splice(index, 1)
           this.$message.success('删除成功')
           this.getDsList(this.page)
-        }).catch(function (err) {
+        }).catch(function () {
         })
       },
-      handleOpenBefore: function (show,type) {
+      handleOpenBefore: function (show) {
         this.dsForm.password = undefined
         show()
       },
@@ -186,7 +186,7 @@
           this.dsPage.total = response.data.data.total
         })
       },
-      handleDown: function (row, index) {
+      handleDown: function (row) {
         this.formData.tableName = row.tableName
         this.box = true
       },

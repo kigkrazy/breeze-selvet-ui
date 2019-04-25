@@ -113,16 +113,14 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, getObj, putObj} from "@/api/admin/user";
-  import {deptRoleList} from "@/api/admin/role";
-  import {fetchTree} from "@/api/admin/dept";
-  import {tableOption} from '@/const/crud/admin/user';
-  import {mapGetters} from "vuex";
-  import {constants} from 'fs';
-  import {connect} from 'tls';
+  import {addObj, delObj, fetchList, putObj} from '@/api/admin/user'
+  import {deptRoleList} from '@/api/admin/role'
+  import {fetchTree} from '@/api/admin/dept'
+  import {tableOption} from '@/const/crud/admin/user'
+  import {mapGetters} from 'vuex'
 
   export default {
-    name: "table_user",
+    name: "sys_user",
     data() {
       return {
         treeOption: {
@@ -194,7 +192,7 @@
           this.listLoading = false;
         });
       },
-      getNodeData(data) {
+      getNodeData() {
         deptRoleList().then(response => {
           this.rolesOptions = response.data.data;
         });

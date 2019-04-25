@@ -45,7 +45,7 @@
           }).then(() => {
             this.$alert('社交账号绑定成功', '成功', {
               confirmButtonText: '确定',
-              callback: action => {
+              callback: () => {
                 window.close()
               }
             })
@@ -71,7 +71,7 @@
         }).then(() => {
           this.$alert('社交账号绑定成功', '成功', {
             confirmButtonText: '确定',
-            callback: action => {
+            callback: () => {
               window.close()
             }
           })
