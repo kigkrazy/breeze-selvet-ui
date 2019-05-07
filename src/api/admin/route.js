@@ -32,3 +32,10 @@ export function putObj (obj) {
     data: obj
   })
 }
+
+export function refreshObj () {
+  return request({
+    url: '/actuator/refresh',
+    method: 'post',
+  })
+}
