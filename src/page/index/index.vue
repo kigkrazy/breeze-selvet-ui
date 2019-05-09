@@ -38,7 +38,6 @@
   import sidebar from './sidebar/'
   import admin from '@/util/admin';
   import {validatenull} from '@/util/validate';
-  import {calcDate} from '@/util/date.js';
   import {getStore} from '@/util/store.js';
   import SockJS from 'sockjs-client';
   import Stomp from 'stompjs';
@@ -57,6 +56,8 @@
         refreshLock: false,
         //刷新token的时间
         refreshTime: '',
+        // 计时器
+        timer: '',
       }
     },
     created() {
@@ -65,6 +66,7 @@
     },
     destroyed() {
       clearInterval(this.refreshTime)
+      clearInterval(this.timer)
       this.disconnect()
     },
     mounted() {

@@ -63,6 +63,13 @@ module.exports = {
           '^/actuator': '/actuator'
         }
       },
+      '/monitor': {
+        target: url,
+        ws: true,
+        pathRewrite: {
+          '^/monitor': '/monitor'
+        }
+      },
       '/mp': {
         target: url,
         ws: true,
