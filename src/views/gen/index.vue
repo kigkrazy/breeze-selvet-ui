@@ -132,12 +132,12 @@
       this.getdataSourceList();
     },
     methods: {
-      getList(page, params) {
+·      getList(page) {
         this.tableLoading = true
         fetchList(Object.assign({
           current: page.currentPage,
-          size: page.pageSize
-        }, params)).then(response => {
+          size: page.pageSize,
+        }, this.filterForm(this.q))).then(response => {
           this.tableData = response.data.data.records
           this.page.total = response.data.data.total
           this.tableLoading = false
@@ -206,7 +206,7 @@
         this.dsBox = true
       },
       search() {
-        this.getList(this.page, this.filterForm(this.q))
+        this.getList(this.page)
       },
       getdataSourceList() {
         fetchSelectDsList().then(response => {
