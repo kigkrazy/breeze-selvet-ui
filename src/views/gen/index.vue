@@ -132,7 +132,7 @@
       this.getdataSourceList();
     },
     methods: {
-·      getList(page) {
+      getList(page) {
         this.tableLoading = true
         fetchList(Object.assign({
           current: page.currentPage,
