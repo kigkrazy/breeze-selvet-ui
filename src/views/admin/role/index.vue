@@ -160,6 +160,8 @@
           this.list = response.data.data.records
           this.page.total = response.data.data.total
           this.listLoading = false
+        }).catch(() => {
+            this.listLoading=false
         })
       },
       handleRefreshChange() {
@@ -189,14 +191,13 @@
       handlePermission(row) {
         fetchRoleTree(row.roleId)
           .then(response => {
-            this.checkedKeys = response.data
+            this.checkedKeys = response.data.data
             return fetchMenuTree()
           })
           .then(response => {
             this.treeData = response.data.data
             // 解析出所有的太监节点
             this.checkedKeys = this.resolveAllEunuchNodeId(this.treeData, this.checkedKeys, [])
-            this.dialogStatus = 'permission'
             this.dialogPermissionVisible = true
             this.roleId = row.roleId
             this.roleCode = row.roleCode

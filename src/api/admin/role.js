@@ -80,9 +80,9 @@ export function permissionUpd (roleId, menuIds) {
   })
 }
 
-export function fetchRoleTree (roleName) {
+export function fetchRoleTree (roleId) {
   return request({
-    url: '/admin/menu/tree/' + roleName,
+    url: '/admin/menu/tree/' + roleId,
     method: 'get'
   })
 }
