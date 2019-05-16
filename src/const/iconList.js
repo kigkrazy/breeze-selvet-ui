@@ -29,7 +29,8 @@ export default [
       "icon-weixincaidan",
       "icon-xiaoxiguanli",
       "icon-zhexiantu",
-      "icon-canshu"
+      "icon-canshu",
+      "icon-erji-zuhushouye"
     ]
   }
 ]

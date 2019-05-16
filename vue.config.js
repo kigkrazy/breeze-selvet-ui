@@ -49,11 +49,11 @@ module.exports = {
           '^/code': '/code'
         }
       },
-      '/code': {
+      '/gen': {
         target: url,
         ws: true,
         pathRewrite: {
-          '^/code': '/code'
+          '^/gen': '/gen'
         }
       },
       '/actuator': {

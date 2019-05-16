@@ -42,6 +42,14 @@ export const tableOption = {
       trigger: 'blur'
     }]
   }, {
+    label: '字典类型',
+    prop: 'system',
+    type: 'select',
+    dicUrl: '/admin/dict/type/dict_type',
+    addVisdiplay: false,
+    editVisdiplay: false,
+    search: true
+  }, {
     label: '备注信息',
     prop: 'remarks'
   }, {

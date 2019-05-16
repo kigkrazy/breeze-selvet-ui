@@ -1,35 +1,25 @@
 <template>
   <basic-container>
-    <el-tabs type="card" v-model="activeName">
-      <el-tab-pane label="缓存监控" name="first">
-        <el-row :span="24">
-          <el-col :span="12">
-            <v-chart :options="useKeyCumulate"/>
-          </el-col>
-          <el-col :span="12">
-            <avue-data-display :option="infomationCumulate"/>
-          </el-col>
-        </el-row>
-        <el-row :span="24">
-          <el-col :span="12">
-            <v-chart :options="memoryCumulate"/>
-          </el-col>
-          <el-col :span="12">
-            <v-chart :options="dbSizeCumulate"/>
-          </el-col>
-        </el-row>
-      </el-tab-pane>
-      <el-tab-pane label="命令行终端" name="second">
-        <el-row :span="24">
-          <terminal/>
-        </el-row>
-      </el-tab-pane>
-    </el-tabs>
+    <el-row :span="24">
+      <el-col :span="12">
+        <v-chart :options="useKeyCumulate"/>
+      </el-col>
+      <el-col :span="12">
+        <avue-data-display :option="infomationCumulate"/>
+      </el-col>
+    </el-row>
+    <el-row :span="24">
+      <el-col :span="12">
+        <v-chart :options="memoryCumulate"/>
+      </el-col>
+      <el-col :span="12">
+        <v-chart :options="dbSizeCumulate"/>
+      </el-col>
+    </el-row>
   </basic-container>
 </template>
 
 <script>
-  import Terminal from './terminal'
   import ECharts from 'vue-echarts'
   import 'echarts/lib/chart/line'
   import 'echarts/lib/chart/pie'
@@ -44,7 +34,6 @@
 
   export default {
     components: {
-      Terminal,
       'v-chart': ECharts
     },
 
@@ -280,43 +269,44 @@
       this.useKeyCumulate.backgroundColor.image = bgPatternImg
       this.useKeyCumulate.series[0].itemStyle.normal.color.image = piePatternImg
       this.getInfo()
+      clearInterval(this.timer)
+      this.timer = setInterval(() => {
+        this.getInfo()
+      }, 3000);
     },
     methods: {
       getInfo: function () {
-        clearInterval(this.timer)
-        this.timer = setInterval(() => {
-          fetchInfo().then(response => {
-            this.memoryCumulate.series[0].data.push(parseFloat(response.data.data.info.used_memory_human))
-            this.memoryCumulate.series[1].data.push(parseFloat(response.data.data.info.used_memory_peak_human))
-            this.memoryCumulate.xAxis.data.push(response.data.data.time)
-            this.dbSizeCumulate.series[0].data.push(parseInt(response.data.data.dbSize))
-            this.dbSizeCumulate.xAxis.data.push(response.data.data.time)
-            this.useKeyCumulate.series[0].data = response.data.data.commandStats
+        fetchInfo().then(response => {
+          this.memoryCumulate.series[0].data.push(parseFloat(response.data.data.info.used_memory_human))
+          this.memoryCumulate.series[1].data.push(parseFloat(response.data.data.info.used_memory_peak_human))
+          this.memoryCumulate.xAxis.data.push(response.data.data.time)
+          this.dbSizeCumulate.series[0].data.push(parseInt(response.data.data.dbSize))
+          this.dbSizeCumulate.xAxis.data.push(response.data.data.time)
+          this.useKeyCumulate.series[0].data = response.data.data.commandStats
 
-            // infomation
-            this.infomationCumulate.data[0].count = response.data.data.info.redis_version
-            this.infomationCumulate.data[1].count = response.data.data.info.redis_mode
-            this.infomationCumulate.data[2].count = response.data.data.info.tcp_port
-            this.infomationCumulate.data[3].count = response.data.data.info.connected_clients
-            this.infomationCumulate.data[4].count = response.data.data.info.uptime_in_seconds
-            this.infomationCumulate.data[5].count = response.data.data.info.uptime_in_days
-            this.infomationCumulate.data[6].count = response.data.data.info.maxmemory
-            this.infomationCumulate.data[7].count = response.data.data.info.maxmemory_human
-            this.infomationCumulate.data[8].count = response.data.data.info.aof_enabled
-            this.infomationCumulate.data[9].count = response.data.data.info.rdb_last_bgsave_status
-            this.infomationCumulate.data[10].count = response.data.data.info.instantaneous_input_kbps + "kps"
-            this.infomationCumulate.data[11].count = response.data.data.info.instantaneous_output_kbps + "kps"
+          // infomation
+          this.infomationCumulate.data[0].count = response.data.data.info.redis_version
+          this.infomationCumulate.data[1].count = response.data.data.info.redis_mode
+          this.infomationCumulate.data[2].count = response.data.data.info.tcp_port
+          this.infomationCumulate.data[3].count = response.data.data.info.connected_clients
+          this.infomationCumulate.data[4].count = response.data.data.info.uptime_in_seconds
+          this.infomationCumulate.data[5].count = response.data.data.info.uptime_in_days
+          this.infomationCumulate.data[6].count = response.data.data.info.maxmemory
+          this.infomationCumulate.data[7].count = response.data.data.info.maxmemory_human
+          this.infomationCumulate.data[8].count = response.data.data.info.aof_enabled
+          this.infomationCumulate.data[9].count = response.data.data.info.rdb_last_bgsave_status
+          this.infomationCumulate.data[10].count = response.data.data.info.instantaneous_input_kbps + "kps"
+          this.infomationCumulate.data[11].count = response.data.data.info.instantaneous_output_kbps + "kps"
 
-            // 删除第一个元素
-            if (this.memoryCumulate.series[0].data.length > 7) {
-              this.memoryCumulate.series[0].data.shift()
-              this.memoryCumulate.series[1].data.shift()
-              this.dbSizeCumulate.series[0].data.shift()
-              this.memoryCumulate.xAxis.data.shift()
-              this.dbSizeCumulate.xAxis.data.shift()
-            }
-          })
-        }, 3000);
+          // 删除第一个元素
+          if (this.memoryCumulate.series[0].data.length > 7) {
+            this.memoryCumulate.series[0].data.shift()
+            this.memoryCumulate.series[1].data.shift()
+            this.dbSizeCumulate.series[0].data.shift()
+            this.memoryCumulate.xAxis.data.shift()
+            this.dbSizeCumulate.xAxis.data.shift()
+          }
+        })
       }
     }
   }

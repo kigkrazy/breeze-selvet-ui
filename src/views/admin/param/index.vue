@@ -35,21 +35,11 @@
 </template>
 
 <script>
-    import {
-        fetchList,
-        getObj,
-        addObj,
-        putObj,
-        delObj
-    } from '@/api/admin/sys-public-param'
-    import {
-        tableOption
-    } from '@/const/crud/admin/sys-public-param'
-    import {
-        mapGetters
-    } from 'vuex'
+  import {addObj, delObj, fetchList, putObj} from '@/api/admin/sys-public-param'
+  import {tableOption} from '@/const/crud/admin/sys-public-param'
+  import {mapGetters} from 'vuex'
 
-    export default {
+  export default {
         name: 'syspublicparam',
         data() {
             return {
@@ -133,7 +123,7 @@
        *
        **/
       handleSave: function(row, done) {
-        addObj(row).then(data => {
+        addObj(this.filterForm(row)).then(data => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,

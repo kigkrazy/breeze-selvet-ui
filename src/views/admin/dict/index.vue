@@ -155,7 +155,7 @@
        *
        **/
       handleUpdate: function (row, index, done) {
-        putObj(row).then(() => {
+        putObj(this.filterForm(row)).then(() => {
           this.tableData.splice(index, 1, Object.assign({}, row))
           this.$message({
             showClose: true,
@@ -173,7 +173,7 @@
        *
        **/
       handleSave: function (row, done) {
-        addObj(row).then(() => {
+        addObj(this.filterForm(row)).then(() => {
           this.tableData.push(Object.assign({}, row))
           this.$message({
             showClose: true,

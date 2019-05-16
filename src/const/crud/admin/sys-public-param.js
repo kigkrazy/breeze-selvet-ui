@@ -65,21 +65,20 @@ export const tableOption = {
       prop: 'validateCode',
     },
     {
-      width: 150,
-      label: '创建时间',
-      prop: 'createTime',
-      type: 'datetime',
+      label: '作用',
+      prop: 'system',
+      type: 'select',
+      dicUrl: '/admin/dict/type/dict_type',
       addVisdiplay: false,
-      editDisabled: true,
-      format: 'yyyy-MM-dd HH:mm',
-      valueFormat: 'yyyy-MM-dd HH:mm:ss'
+      editVisdiplay: false,
+      search: true
     },
     {
       label: '状态',
-      prop: 'delFlag',
+      prop: 'status',
       width: 80,
       type: 'select',
-      dicUrl: '/admin/dict/type/log_type'
+      dicUrl: '/admin/dict/type/status_type'
     },
     {
       label: '类型',

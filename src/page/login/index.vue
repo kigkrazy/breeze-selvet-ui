@@ -22,8 +22,7 @@
               @change="handleCommand"
               placeholder="点击请选择租户"
               size="mini">
-              <el-option label="租户1 用户登录" value="1"></el-option>
-              <el-option label="租户2 用户登录" value="2"></el-option>
+              <el-option  :key="tenant.id" :label="tenant.name" :value="tenant.id" v-for="tenant in tenantList"/>
             </el-select>
           </h4>
           <userLogin v-if="activeName==='user'"></userLogin>
@@ -45,6 +44,7 @@
   </div>
 </template>
 <script>
+  import request from '@/router/axios'
   import userLogin from "./userlogin";
   import codeLogin from "./codelogin";
   import thirdLogin from "./thirdlogin";
@@ -64,6 +64,7 @@
     },
     data() {
       return {
+        tenantList:[],
         time: "",
         active: "",
         activeName: "user",
@@ -97,6 +98,7 @@
       }
     },
     created() {
+      this.getTenantList()
       this.active = getStore({name: "tenantId"});
       this.getTime();
       setInterval(() => {
@@ -106,7 +108,7 @@
     mounted() {
     },
     computed: {
-      ...mapGetters(["website",'tagWel'])
+      ...mapGetters(["website", 'tagWel'])
     },
     props: [],
     methods: {
@@ -115,6 +117,14 @@
       },
       getTime() {
         this.time = dateFormat(new Date());
+      },
+      getTenantList() {
+        request({
+          url: '/admin/tenant/list',
+          method: 'get'
+        }).then(response => {
+          this.tenantList = response.data.data
+        })
       }
     }
   };
