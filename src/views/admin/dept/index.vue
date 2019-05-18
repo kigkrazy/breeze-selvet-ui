@@ -79,7 +79,7 @@
                           placeholder="请输入名称"></el-input>
               </el-form-item>
               <el-form-item label="排序"
-                            prop="orderNum">
+                            prop="sort">
                 <el-input type="number"
                           v-model="form.sort"
                           :disabled="formEdit"
@@ -139,11 +139,14 @@
           name: [
             {required: true, message: '请输入部门名称', trigger: 'blur'}
           ],
+          sort: [
+            {required: true, message: '请输入排序值', trigger: 'blur'}
+          ]
         },
         labelPosition: 'right',
         form: {
           name: undefined,
-          orderNum: undefined,
+          sort: undefined,
           parentId: undefined,
           deptId: undefined
         },
