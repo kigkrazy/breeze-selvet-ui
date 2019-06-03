@@ -7,7 +7,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-.avue-crud-icon-select__item i {
+.avue-icon-select__item i {
   font-family: "iconfont" !important;
   /* 以下内容参照第三方图标库本身的规则 */
   font-size: 24px !important;

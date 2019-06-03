@@ -27,7 +27,7 @@ export const tableOption = {
     label: 'ID',
     prop: 'id',
     hide: true,
-    addVisdiplay: false,
+    addDisplay: false,
     editDisabled: true
   },
   {
@@ -82,7 +82,7 @@ export const tableOption = {
     label: '创建时间',
     prop: 'createTime',
     align: 'center',
-    addVisdiplay: false,
+    addDisplay: false,
     editDisabled: true
   }
   ]

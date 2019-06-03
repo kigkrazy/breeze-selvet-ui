@@ -90,8 +90,8 @@ export const tableDsOption = {
       label: '主键',
       prop: 'id',
       hide: true,
-      addVisdiplay: false,
-      editVisdiplay: false
+      addDisplay: false,
+      editDisplay: false
     },
     {
       label: '名称',
@@ -113,16 +113,16 @@ export const tableDsOption = {
     {
       label: '创建时间',
       prop: 'createDate',
-      addVisdiplay: false,
-      editVisdiplay: false,
+      addDisplay: false,
+      editDisplay: false,
       overHidden: true
     },
     {
       label: '更新时间',
       prop: 'updateDate',
       overHidden: true,
-      addVisdiplay: false,
-      editVisdiplay: false
+      addDisplay: false,
+      editDisplay: false
     }
   ]
 }

@@ -91,7 +91,7 @@ export const tableOption = {
   }, {
     label:'',
     prop: 'dsScope',
-    formsolt: true,
+    formslot: true,
     showClomnu:false,
     hide: true
   }, {
@@ -100,8 +100,8 @@ export const tableOption = {
     type: 'datetime',
     format: 'yyyy-MM-dd HH:mm',
     valueFormat: 'yyyy-MM-dd HH:mm:ss',
-    editVisdiplay: false,
-    addVisdiplay: false,
+    editDisplay: false,
+    addDisplay: false,
     span: 24
   }]
 }

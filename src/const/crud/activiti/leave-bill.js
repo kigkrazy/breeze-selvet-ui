@@ -31,13 +31,13 @@ export const tableOption = {
       label: 'ID',
       prop: 'leaveId',
       editDisabled: true,
-      addVisdiplay: false
+      addDisplay: false
     },
     {
       label: '申请人',
       prop: 'username',
       editDisabled: true,
-      addVisdiplay: false
+      addDisplay: false
     },
     {
       label: '天数',
@@ -59,7 +59,7 @@ export const tableOption = {
       overHidden: true,
       format: 'yyyy-MM-dd HH:mm',
       editDisabled: true,
-      addVisdiplay: false,
+      addDisplay: false,
       hide: true
     },
     {
@@ -68,7 +68,7 @@ export const tableOption = {
       type: 'select',
       dicUrl: '/admin/dict/type/leave_status',
       search: true,
-      addVisdiplay: false
+      addDisplay: false
     },
     {
       label: '备注',

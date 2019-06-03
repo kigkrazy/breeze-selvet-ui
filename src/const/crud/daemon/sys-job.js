@@ -21,8 +21,8 @@ export const tableOption = {
         label: 'jobId',
         prop: 'jobId',
         hide: true,
-        addVisdiplay: false,
-        editVisdiplay: false,
+        addDisplay: false,
+        editDisplay: false,
         rules:
           [{
             required: true,
@@ -59,7 +59,7 @@ export const tableOption = {
         prop: 'jobStatus',
         type: 'select',
         dicUrl: '/admin/dict/type/job_status',
-        addVisdiplay: false,
+        addDisplay: false,
         search: true,
         slot: true
       },
@@ -68,7 +68,7 @@ export const tableOption = {
         prop: 'jobExecuteStatus',
         type: 'select',
         dicUrl: '/admin/dict/type/job_execute_status',
-        addVisdiplay: false,
+        addDisplay: false,
         search: true,
         slot: true
       },
@@ -76,8 +76,8 @@ export const tableOption = {
         label: '创建者',
         prop: 'createBy',
         hide: true,
-        addVisdiplay: false,
-        editVisdiplay: false
+        addDisplay: false,
+        editDisplay: false
       },
       {
         label: '创建时间',
@@ -87,15 +87,15 @@ export const tableOption = {
         format: 'yyyy-MM-dd HH:mm:ss',
         valueFormat: 'yyyy-MM-dd HH:mm:ss',
         width: 120,
-        addVisdiplay: false,
-        editVisdiplay: false
+        addDisplay: false,
+        editDisplay: false
       },
       {
         label: '更新者',
         prop: 'updateBy',
         hide: true,
-        addVisdiplay: false,
-        editVisdiplay: false
+        addDisplay: false,
+        editDisplay: false
       },
       {
         label: '更新时间',
@@ -105,8 +105,8 @@ export const tableOption = {
         format: 'yyyy-MM-dd HH:mm:ss',
         valueFormat: 'yyyy-MM-dd HH:mm:ss',
         width: 160,
-        addVisdiplay: false,
-        editVisdiplay: false
+        addDisplay: false,
+        editDisplay: false
       },
       {
         label: '首次执行时间',
@@ -115,7 +115,7 @@ export const tableOption = {
         format: 'yyyy-MM-dd HH:mm:ss',
         valueFormat: 'yyyy-MM-dd HH:mm:ss',
         width: 160,
-        addVisdiplay: false,
+        addDisplay: false,
         editDisabled: true
       }, {
         label: '上次执行时间',
@@ -124,7 +124,7 @@ export const tableOption = {
         format: 'yyyy-MM-dd HH:mm:ss',
         valueFormat: 'yyyy-MM-dd HH:mm:ss',
         width: 160,
-        addVisdiplay: false,
+        addDisplay: false,
         editDisabled: true
       }, {
         label: '下次执行时间',
@@ -133,7 +133,7 @@ export const tableOption = {
         format: 'yyyy-MM-dd HH:mm:ss',
         valueFormat: 'yyyy-MM-dd HH:mm:ss',
         width: 160,
-        addVisdiplay: false,
+        addDisplay: false,
         editDisabled: true
       },
       {
@@ -187,7 +187,7 @@ export const tableOption = {
         label: 'cron表达式',
         prop:'cronExpression',
         width: 100,
-        formsolt: true,
+        formslot: true,
         rules:
           [{
             required: true,
@@ -213,8 +213,8 @@ export const tableOption = {
         label: '租户',
         prop: 'tenantId',
         hide: true,
-        addVisdiplay: false,
-        editVisdiplay: false
+        addDisplay: false,
+        editDisplay: false
       },
       {
         label: '备注信息',

@@ -22,6 +22,7 @@ export const tableOption = {
   stripe: true,
   menuAlign: 'center',
   align: 'center',
+  viewBtn: true,
   column: [
     {
       label: '主键',
@@ -31,85 +32,71 @@ export const tableOption = {
       addDisplay: false
     },
     {
-      label: '名称',
-      prop: 'name',
+      label: '内部商户号',
+      prop: 'mchId',
+      editDisabled: false,
+      addDisplay: false
+    },
+    {
+      label: '支付类型',
+      prop: 'channelId',
+      type: 'select',
+      dicUrl: '/admin/dict/type/channel_id',
+      search: true,
       rules: [{
         required: true,
-        message: '请输入名称',
+        message: '请选择支付类型',
         trigger: 'blur'
       }]
     },
     {
-      label: '微信号',
-      prop: 'account',
-      overHidden: true,
-      placeholder: '公众号设置->最下边原生ID',
+      label: '渠道名称',
+      prop: 'channelName',
       rules: [{
         required: true,
-        message: '请输入微信号',
+        message: '请输入渠道名称',
         trigger: 'blur'
       }]
     },
     {
-      label: 'appid',
-      prop: 'appid',
-      overHidden: true,
+      label: '商户号',
+      prop: 'channelMchId',
+      placeholder: '渠道商户号',
       rules: [{
         required: true,
-        message: '请输入appid',
+        message: '请输入商户编号',
         trigger: 'blur'
       }]
     },
     {
-      label: '密钥',
-      prop: 'appsecret',
-      overHidden: true,
-      rules: [{
-        required: true,
-        message: '请输入密钥',
-        trigger: 'blur'
-      }]
+      label: '渠道状态',
+      prop: 'state',
+      type: 'select',
+      dicUrl: '/admin/dict/type/channel_status',
+      search: true
     },
     {
-      label: '协议域名',
-      prop: 'url',
-      hide: true,
-      placeholder: 'scheme://domain',
-      rules: [{
-        required: true,
-        message: '输入不合法',
-        trigger: 'blur'
-      }]
+      label: '备注',
+      prop: 'remark'
     },
     {
-      label: 'token',
-      prop: 'token',
-      overHidden: true,
-      rules: [{
-        required: true,
-        message: '请输入token',
-        trigger: 'blur'
-      }]
+      label: '配置参数',
+      prop: 'param',
+      type: 'textarea',
+      placeholder: '扩展参数,json字符串',
+      minRows: 4,
+      row: true,
+      span: 24,
+      overHidden: true
     },
     {
-      label: '加密密钥',
-      prop: 'aeskey',
-      overHidden: true,
-      rules: [{
-        required: true,
-        message: '请输入加密密钥',
-        trigger: 'blur'
-      }]
-    },
-    {
-      label: '图片',
-      prop: 'qrUrl',
-      type: 'upload',
-      imgWidth: 60,
-      imgFullscreen: true,
-      editDisplay: false,
-      addDisplay: false,
-      listType: 'picture-img'
+      label: '创建时间',
+      prop: 'createTime',
+      type: 'datetime',
+      format: 'yyyy-MM-dd HH:mm',
+      valueFormat: 'timestamp',
+      editDisabled: true,
+      addDisplay: false
     }
   ]
 }

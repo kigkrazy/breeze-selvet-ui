@@ -33,7 +33,7 @@ export const tableOption = {
     label: '模型ID',
     prop: 'id',
     editDisabled: true,
-    addVisdiplay: false
+    addDisplay: false
   }, {
     fixed: true,
     label: '模型标识',
@@ -52,12 +52,12 @@ export const tableOption = {
     prop: 'desc',
     hide: true,
     editDisabled: false,
-    addVisdiplay: true
+    addDisplay: true
   }, {
     label: '版本号',
     prop: 'version',
     editDisabled: true,
-    addVisdiplay: false
+    addDisplay: false
   }, {
     width: 150,
     label: '创建时间',
@@ -66,7 +66,7 @@ export const tableOption = {
     format: 'yyyy-MM-dd HH:mm',
     valueFormat: 'timestamp',
     editDisabled: true,
-    addVisdiplay: false
+    addDisplay: false
   }, {
     width: 150,
     label: '最后更新时间',
@@ -75,6 +75,6 @@ export const tableOption = {
     format: 'yyyy-MM-dd HH:mm',
     valueFormat: 'timestamp',
     editDisabled: true,
-    addVisdiplay: false
+    addDisplay: false
   }]
 }

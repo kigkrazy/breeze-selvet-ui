@@ -68,7 +68,10 @@
     name: 'dict',
     data() {
       return {
-        form: {},
+        form: {
+          type: undefined,
+          dictId: undefined
+        },
         dictType: undefined,
         dictId: undefined,
         dialogFormVisible: false,

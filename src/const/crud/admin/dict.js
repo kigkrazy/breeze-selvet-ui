@@ -46,8 +46,8 @@ export const tableOption = {
     prop: 'system',
     type: 'select',
     dicUrl: '/admin/dict/type/dict_type',
-    addVisdiplay: false,
-    editVisdiplay: false,
+    addDisplay: false,
+    editDisplay: false,
     search: true
   }, {
     label: '备注信息',
@@ -57,7 +57,7 @@ export const tableOption = {
     label: '创建时间',
     prop: 'createTime',
     type: 'datetime',
-    addVisdiplay: false,
+    addDisplay: false,
     editDisabled: true,
     format: 'yyyy-MM-dd HH:mm',
     valueFormat: 'yyyy-MM-dd HH:mm:ss'

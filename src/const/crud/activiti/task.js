@@ -30,13 +30,13 @@ export const tableOption = {
       label: 'ID',
       prop: 'taskId',
       editDisabled: true,
-      addVisdiplay: false
+      addDisplay: false
     },
     {
       label: '任务名称',
       prop: 'taskName',
       editDisabled: true,
-      addVisdiplay: false
+      addDisplay: false
     },
     {
       label: '提交时间',

@@ -100,10 +100,10 @@
               </el-form-item>
               <el-form-item label="图标" v-if="form.type === '0'"
                             prop="icon">
-                <avue-crud-icon-select v-model="form.icon"
+                <avue-icon-select v-model="form.icon"
                                        :iconList="iconList"
                                        :disabled="formEdit"
-                                       placeholder="请输入图标"></avue-crud-icon-select>
+                                       placeholder="请输入图标"></avue-icon-select>
               </el-form-item>
               <el-form-item label="排序" v-if="form.type === '0'"
                             prop="sort">
@@ -319,6 +319,7 @@
           if (valid) {
             putObj(this.form).then(() => {
               this.getList();
+              this.formEdit = false
               this.$notify({
                 title: "成功",
                 message: "更新成功",
@@ -334,6 +335,7 @@
           if (valid) {
             addObj(this.form).then(() => {
               this.getList();
+              this.formEdit = false
               this.$notify({
                 title: "成功",
                 message: "创建成功",

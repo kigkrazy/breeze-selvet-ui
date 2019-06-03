@@ -28,7 +28,7 @@ export const tableOption = {
       prop: 'id',
       hide: true,
       editDisabled: true,
-      addVisdiplay: false
+      addDisplay: false
     },
     {
       label: '租户名称',

@@ -91,8 +91,8 @@ export const tableOption = {
       type: 'upload',
       imgWidth: 60,
       imgFullscreen: true,
-      editVisdiplay: false,
-      addVisdiplay: false,
+      editDisplay: false,
+      addDisplay: false,
       listType: 'picture-img'
     }
   ]

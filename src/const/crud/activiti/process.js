@@ -48,7 +48,7 @@ export const tableOption = {
     label: '版本号',
     prop: 'revision',
     editDisabled: true,
-    addVisdiplay: false
+    addDisplay: false
   }, {
     label: '部署时间',
     prop: 'deploymentTime',
@@ -56,6 +56,6 @@ export const tableOption = {
     format: 'yyyy-MM-dd HH:mm',
     valueFormat: 'timestamp',
     editDisabled: true,
-    addVisdiplay: false
+    addDisplay: false
   }]
 }

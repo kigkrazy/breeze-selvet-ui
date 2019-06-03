@@ -69,8 +69,8 @@ export const tableOption = {
       type: 'upload',
       imgWidth: 60,
       imgFullscreen: true,
-      editVisdiplay: false,
-      addVisdiplay: false,
+      editDisplay: false,
+      addDisplay: false,
       listType: 'picture-img'
     }
   ]
@@ -91,7 +91,7 @@ export const tableResOption = {
     {
       label: '回复人',
       prop: 'userName',
-      addVisdiplay: false,
+      addDisplay: false,
     },
     {
       label: '回复内容',
@@ -103,7 +103,7 @@ export const tableResOption = {
     {
       label: '时间',
       prop: 'createTime',
-      addVisdiplay: false,
+      addDisplay: false,
     }
   ]
 }

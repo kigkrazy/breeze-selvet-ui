@@ -45,6 +45,18 @@
           {
             name: "炫彩",
             value: "theme-star"
+          },
+          {
+            name: "iview主题",
+            value: "theme-iview"
+          },
+          {
+            name: "d2主题",
+            value: "theme-d2"
+          },
+          {
+            name: "hey主题",
+            value: "theme-hey"
           }
         ]
       };

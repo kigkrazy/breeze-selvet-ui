@@ -30,7 +30,13 @@ export default [
       "icon-xiaoxiguanli",
       "icon-zhexiantu",
       "icon-canshu",
-      "icon-erji-zuhushouye"
+      "icon-erji-zuhushouye",
+      "icon-pay6zhifu",
+      "icon-zhifuqudaoguanli",
+      "icon-dingdan",
+      "icon-tuikuan",
+      "icon-webicon14",
+      "icon-shouyintai"
     ]
   }
 ]

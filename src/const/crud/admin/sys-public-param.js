@@ -69,8 +69,8 @@ export const tableOption = {
       prop: 'system',
       type: 'select',
       dicUrl: '/admin/dict/type/dict_type',
-      addVisdiplay: false,
-      editVisdiplay: false,
+      addDisplay: false,
+      editDisplay: false,
       search: true
     },
     {
