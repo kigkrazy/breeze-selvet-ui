@@ -53,7 +53,7 @@ export const tableOption = {
       label: '执行方法',
       prop: 'methodName',
       overHidden: true,
-      width: 120,
+      width: 120
     },
     {
       label: '执行参数值',
@@ -82,12 +82,12 @@ export const tableOption = {
     {
       label: '执行时间(ms)',
       prop: 'executeTime',
-      width: 120,
+      width: 120
     },
     {
       label: '异常信息',
       prop: 'exceptionInfo',
-      overHidden: true,
+      overHidden: true
     },
     {
       label: '开始时间',
@@ -95,7 +95,7 @@ export const tableOption = {
       type: 'datetime',
       format: 'yyyy-MM-dd HH:mm:ss',
       valueFormat: 'yyyy-MM-dd HH:mm:ss',
-      width: 160,
+      width: 160
     }
   ]
-};
+}

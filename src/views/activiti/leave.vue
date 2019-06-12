@@ -18,38 +18,44 @@
 <template>
   <div class="execution">
     <basic-container>
-      <avue-crud ref="crud"
-                 :page="page"
-                 :data="tableData"
-                 :table-loading="tableLoading"
-                 :option="tableOption"
-                 @on-load="getList"
-                 @search-change="searchChange"
-                 @refresh-change="refreshChange"
-                 @row-update="handleUpdate"
-                 @row-save="handleSave"
-                 @row-del="rowDel">
+      <avue-crud
+        ref="crud"
+        :page="page"
+        :data="tableData"
+        :table-loading="tableLoading"
+        :option="tableOption"
+        @on-load="getList"
+        @search-change="searchChange"
+        @refresh-change="refreshChange"
+        @row-update="handleUpdate"
+        @row-save="handleSave"
+        @row-del="rowDel">
         <template slot="menuLeft">
-          <el-button type="primary"
-                     @click="handleAdd"
-                     size="small"
-                     v-if="permissions.act_leavebill_add">新 增
+          <el-button
+            v-if="permissions.act_leavebill_add"
+            type="primary"
+            size="small"
+            @click="handleAdd">新 增
           </el-button>
         </template>
-        <template slot-scope="scope"
-                  slot="menuBtn">
-          <el-dropdown-item divided
-                            v-if="permissions.act_leavebill_edit && scope.row.state == 0"
-                            @click.native="handleSubmit(scope.row,scope.index)">提交
+        <template
+          slot-scope="scope"
+          slot="menuBtn">
+          <el-dropdown-item
+            v-if="permissions.act_leavebill_edit && scope.row.state == 0"
+            divided
+            @click.native="handleSubmit(scope.row,scope.index)">提交
           </el-dropdown-item>
-          <el-dropdown-item divided
-                            v-if="permissions.act_leavebill_edit"
-                            @click.native="handleEdit(scope.row,scope.index)">编辑
+          <el-dropdown-item
+            v-if="permissions.act_leavebill_edit"
+            divided
+            @click.native="handleEdit(scope.row,scope.index)">编辑
           </el-dropdown-item>
 
-          <el-dropdown-item divided
-                            v-if="permissions.act_leavebill_del"
-                            @click.native="handleDel(scope.row,'suspend')">删除
+          <el-dropdown-item
+            v-if="permissions.act_leavebill_del"
+            divided
+            @click.native="handleDel(scope.row,'suspend')">删除
           </el-dropdown-item>
         </template>
       </avue-crud>
@@ -58,145 +64,145 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, putObj, submit} from '@/api/activiti/leave-bill'
-  import {tableOption} from '@/const/crud/activiti/leave-bill'
-  import {mapGetters} from 'vuex'
+import { addObj, delObj, fetchList, putObj, submit } from '@/api/activiti/leave-bill'
+import { tableOption } from '@/const/crud/activiti/leave-bill'
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'leave-bill',
-    data() {
-      return {
-        tableData: [],
-        page: {
-          total: 0, // 总页数
-          currentPage: 1, // 当前页数
-          pageSize: 20 // 每页显示多少条
-        },
-        tableLoading: false,
-        tableOption: tableOption
-      }
-    },
-    created() {
-    },
-    mounted: function () {
-    },
-    computed: {
-      ...mapGetters(['permissions'])
-    },
-    methods: {
-      getList(page, params) {
-        this.tableLoading = true
-        fetchList(Object.assign({
-          descs: 'create_time',
-          current: page.currentPage,
-          size: page.pageSize
-        }, params)).then(response => {
-          this.tableData = response.data.data.records
-          this.page.total = response.data.data.total
-          this.tableLoading = false
-        })
+export default {
+  name: 'LeaveBill',
+  data() {
+    return {
+      tableData: [],
+      page: {
+        total: 0, // 总页数
+        currentPage: 1, // 当前页数
+        pageSize: 20 // 每页显示多少条
       },
-      /**
+      tableLoading: false,
+      tableOption: tableOption
+    }
+  },
+  created() {
+  },
+  mounted: function() {
+  },
+  computed: {
+    ...mapGetters(['permissions'])
+  },
+  methods: {
+    getList(page, params) {
+      this.tableLoading = true
+      fetchList(Object.assign({
+        descs: 'create_time',
+        current: page.currentPage,
+        size: page.pageSize
+      }, params)).then(response => {
+        this.tableData = response.data.data.records
+        this.page.total = response.data.data.total
+        this.tableLoading = false
+      })
+    },
+    /**
        * @title 打开新增窗口
        * @detail 调用crud的handleadd方法即可
        *
        **/
-      handleAdd: function () {
-        this.$refs.crud.rowAdd()
-      },
-      handleEdit(row, index) {
-        this.$refs.crud.rowEdit(row, index)
-      },
-      handleDel(row, index) {
-        this.$refs.crud.rowDel(row, index)
-      },
-      rowDel: function (row, index) {
-        var _this = this
-        this.$confirm('是否确认删除ID为' + row.leaveId, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(function () {
-          return delObj(row.leaveId)
-        }).then(() => {
-          _this.tableData.splice(index, 1)
-          _this.$message({
-            showClose: true,
-            message: '删除成功',
-            type: 'success'
-          })
+    handleAdd: function() {
+      this.$refs.crud.rowAdd()
+    },
+    handleEdit(row, index) {
+      this.$refs.crud.rowEdit(row, index)
+    },
+    handleDel(row, index) {
+      this.$refs.crud.rowDel(row, index)
+    },
+    rowDel: function(row, index) {
+      var _this = this
+      this.$confirm('是否确认删除ID为' + row.leaveId, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function() {
+        return delObj(row.leaveId)
+      }).then(() => {
+        _this.tableData.splice(index, 1)
+        _this.$message({
+          showClose: true,
+          message: '删除成功',
+          type: 'success'
         })
-      },
-      handleSubmit: function (row, index) {
-        var _this = this
-        this.$confirm('是否确认提交ID为' + row.leaveId, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(function () {
-          return submit(row.leaveId)
-        }).then(() => {
-          _this.tableData.splice(index, 1)
-          _this.$message({
-            showClose: true,
-            message: '提交成功',
-            type: 'success'
-          })
-          this.getList(this.page)
+      })
+    },
+    handleSubmit: function(row, index) {
+      var _this = this
+      this.$confirm('是否确认提交ID为' + row.leaveId, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function() {
+        return submit(row.leaveId)
+      }).then(() => {
+        _this.tableData.splice(index, 1)
+        _this.$message({
+          showClose: true,
+          message: '提交成功',
+          type: 'success'
         })
-      },
-      /**
+        this.getList(this.page)
+      })
+    },
+    /**
        * @title 数据更新
        * @param row 为当前的数据
        * @param index 为当前更新数据的行数
        * @param done 为表单关闭函数
        *
        **/
-      handleUpdate: function (row, index, done) {
-        putObj(row).then(() => {
-          this.tableData.splice(index, 1, Object.assign({}, row))
-          this.$message({
-            showClose: true,
-            message: '修改成功',
-            type: 'success'
-          })
-          done()
-          this.getList(this.page)
+    handleUpdate: function(row, index, done) {
+      putObj(row).then(() => {
+        this.tableData.splice(index, 1, Object.assign({}, row))
+        this.$message({
+          showClose: true,
+          message: '修改成功',
+          type: 'success'
         })
-      },
-      /**
+        done()
+        this.getList(this.page)
+      })
+    },
+    /**
        * @title 数据添加
        * @param row 为当前的数据
        * @param done 为表单关闭函数
        *
        **/
-      handleSave: function (row, done) {
-        addObj(row).then(() => {
-          this.tableData.push(Object.assign({}, row))
-          this.$message({
-            showClose: true,
-            message: '添加成功',
-            type: 'success'
-          })
-          done()
-          this.getList(this.page)
+    handleSave: function(row, done) {
+      addObj(row).then(() => {
+        this.tableData.push(Object.assign({}, row))
+        this.$message({
+          showClose: true,
+          message: '添加成功',
+          type: 'success'
         })
-      },
-      /**
+        done()
+        this.getList(this.page)
+      })
+    },
+    /**
        * 搜索回调
        */
-      searchChange(form) {
-        this.page.state = form.state
-        this.getList(this.page, form)
-      },
-      /**
+    searchChange(form) {
+      this.page.state = form.state
+      this.getList(this.page, form)
+    },
+    /**
        * 刷新回调
        */
-      refreshChange() {
-        this.getList(this.page)
-      }
+    refreshChange() {
+      this.getList(this.page)
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

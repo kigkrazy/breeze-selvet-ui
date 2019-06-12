@@ -1,9 +1,9 @@
-import {getStore, setStore} from '@/util/store'
-import {isURL} from '@/util/validate'
-import {getUserInfo, loginByMobile, loginBySocial, loginByUsername, logout, refreshToken} from '@/api/login'
-import {deepClone, encryption} from '@/util/util'
+import { getStore, setStore } from '@/util/store'
+import { isURL } from '@/util/validate'
+import { getUserInfo, loginByMobile, loginBySocial, loginByUsername, logout, refreshToken } from '@/api/login'
+import { deepClone, encryption } from '@/util/util'
 import webiste from '@/const/website'
-import {GetMenu} from '@/api/admin/menu'
+import { GetMenu } from '@/api/admin/menu'
 
 function addPath(ele, first) {
   const propsConfig = webiste.menu.props
@@ -47,7 +47,7 @@ const user = {
   },
   actions: {
     // 根据用户名登录
-    LoginByUsername({commit}, userInfo) {
+    LoginByUsername({ commit }, userInfo) {
       const user = encryption({
         data: userInfo,
         key: 'pigxpigxpigxpigx',
@@ -67,7 +67,7 @@ const user = {
       })
     },
     // 根据手机号登录
-    LoginByPhone({commit}, userInfo) {
+    LoginByPhone({ commit }, userInfo) {
       return new Promise((resolve, reject) => {
         loginByMobile(userInfo.mobile, userInfo.code).then(response => {
           const data = response.data
@@ -82,7 +82,7 @@ const user = {
       })
     },
     // 根据OpenId登录
-    LoginBySocial({commit}, param) {
+    LoginBySocial({ commit }, param) {
       return new Promise((resolve, reject) => {
         loginBySocial(param.state, param.code).then(response => {
           const data = response.data
@@ -96,7 +96,7 @@ const user = {
         })
       })
     },
-    GetUserInfo({commit}) {
+    GetUserInfo({ commit }) {
       return new Promise((resolve, reject) => {
         getUserInfo().then((res) => {
           const data = res.data.data || {}
@@ -110,7 +110,7 @@ const user = {
       })
     },
     // 刷新token
-    RefreshToken({commit, state}) {
+    RefreshToken({ commit, state }) {
       return new Promise((resolve, reject) => {
         refreshToken(state.refresh_token).then(response => {
           const data = response.data
@@ -125,7 +125,7 @@ const user = {
       })
     },
     // 登出
-    LogOut({commit}) {
+    LogOut({ commit }) {
       return new Promise((resolve, reject) => {
         logout().then(() => {
           commit('SET_MENU', [])
@@ -144,7 +144,7 @@ const user = {
       })
     },
     // 注销session
-    FedLogOut({commit}) {
+    FedLogOut({ commit }) {
       return new Promise(resolve => {
         commit('SET_MENU', [])
         commit('SET_PERMISSIONS', [])
@@ -159,12 +159,12 @@ const user = {
     },
     // 获取系统菜单
     GetMenu({
-              commit
-            }) {
+      commit
+    }) {
       return new Promise(resolve => {
         GetMenu().then((res) => {
           const data = res.data.data
-          let menu = deepClone(data)
+          const menu = deepClone(data)
           menu.forEach(ele => {
             addPath(ele)
           })

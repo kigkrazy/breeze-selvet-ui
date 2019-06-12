@@ -27,7 +27,7 @@ export const tableOption = {
   column: [{
     label: '表名称',
     prop: 'tableName',
-    align: 'center',
+    align: 'center'
   }, {
     label: '表注释',
     prop: 'tableComment',
@@ -76,7 +76,6 @@ export const formOption = {
     }
   ]
 }
-
 
 export const tableDsOption = {
   border: true,

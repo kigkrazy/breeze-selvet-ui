@@ -1,13 +1,13 @@
-let RouterPlugin = function () {
+const RouterPlugin = function() {
   this.$router = null
   this.$store = null
 }
-RouterPlugin.install = function (router, store) {
+RouterPlugin.install = function(router, store) {
   this.$router = router
   this.$store = store
 
-  function objToform (obj) {
-    let result = []
+  function objToform(obj) {
+    const result = []
     Object.keys(obj).forEach(ele => {
       result.push(`${ele}=${obj[ele]}`)
     })
@@ -21,8 +21,8 @@ RouterPlugin.install = function (router, store) {
     group: '',
     safe: this,
     // 设置标题
-    setTitle: function (title) {
-      title = title ? `${title}——${this.$defaultTitle}` : this.$defaultTitle;
+    setTitle: function(title) {
+      title = title ? `${title}——${this.$defaultTitle}` : this.$defaultTitle
       document.title = title
     },
     closeTag: (value) => {
@@ -30,8 +30,8 @@ RouterPlugin.install = function (router, store) {
       this.$store.commit('DEL_TAG', tag)
     },
     // 处理路由
-    getPath: function (params) {
-      let { src } = params
+    getPath: function(params) {
+      const { src } = params
       let result = src || '/'
       if (src.includes('http') || src.includes('https')) {
         result = `/myiframe/urlPath?${objToform(params)}`
@@ -39,7 +39,7 @@ RouterPlugin.install = function (router, store) {
       return result
     },
     // 正则处理路由
-    vaildPath: function (list, path) {
+    vaildPath: function(list, path) {
       let result = false
       list.forEach(ele => {
         if (new RegExp('^' + ele + '.*', 'g').test(path)) {
@@ -49,7 +49,7 @@ RouterPlugin.install = function (router, store) {
       return result
     },
     // 设置路由值
-    getValue: function (route) {
+    getValue: function(route) {
       let value = ''
       if (route.query.src) {
         value = route.query.src
@@ -59,7 +59,7 @@ RouterPlugin.install = function (router, store) {
       return value
     },
     // 动态路由
-    formatRoutes: function (aMenu = [], first) {
+    formatRoutes: function(aMenu = [], first) {
       const aRouter = []
       const propsConfig = this.$website.menu.props
       const propsDefault = {
@@ -95,7 +95,7 @@ RouterPlugin.install = function (router, store) {
         const isChild = children.length !== 0
         const oRouter = {
           path: path,
-          component (resolve) {
+          component(resolve) {
             // 判断是否为首路由
             if (first) {
               require(['../page/index'], resolve)
@@ -121,7 +121,7 @@ RouterPlugin.install = function (router, store) {
             if (first) {
               oMenu[propsDefault.path] = `${path}/index`
               return [{
-                component (resolve) { require([`../${component}.vue`], resolve) },
+                component(resolve) { require([`../${component}.vue`], resolve) },
                 icon: icon,
                 name: name,
                 meta: meta,

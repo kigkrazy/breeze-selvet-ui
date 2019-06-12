@@ -1,22 +1,23 @@
 <template>
-  <div class="basic-container"
-       :class="{'basic-container--block':block}">
+  <div
+    :class="{'basic-container--block':block}"
+    class="basic-container">
     <el-card>
-      <slot></slot>
+      <slot/>
     </el-card>
   </div>
 </template>
 
 <script>
 export default {
-  name: "basicContainer",
+  name: 'BasicContainer',
   props: {
     block: {
       type: Boolean,
-      default: false,
+      default: false
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

@@ -74,6 +74,6 @@ export const tableOption = {
 	  {
       label: '更新时间',
       prop: 'updateTime'
-    },
+    }
   ]
 }

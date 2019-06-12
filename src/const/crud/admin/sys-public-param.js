@@ -39,17 +39,17 @@ export const tableOption = {
       search: true,
       prop: 'publicName',
       rules: [
-        {min: 6, max: 30, message: '长度在 6 到 30 个字符', trigger: 'blur'},
-        {pattern: /^[\u4E00-\u9FA5A-Za-z0-9_]+$/, message: '请输入中文、英文、数字包括下划线', trigger: 'blur'}
+        { min: 6, max: 30, message: '长度在 6 到 30 个字符', trigger: 'blur' },
+        { pattern: /^[\u4E00-\u9FA5A-Za-z0-9_]+$/, message: '请输入中文、英文、数字包括下划线', trigger: 'blur' }
       ]
     },
     {
       label: '键',
       prop: 'publicKey',
       rules: [
-        {required: true, message: '请输入键', trigger: 'blur'},
-        {pattern: /^[A-Z_]+$/, message: '请输入大写英文、下划线', trigger: 'blur'}
-      ],
+        { required: true, message: '请输入键', trigger: 'blur' },
+        { pattern: /^[A-Z_]+$/, message: '请输入大写英文、下划线', trigger: 'blur' }
+      ]
 
     },
     {
@@ -57,12 +57,12 @@ export const tableOption = {
       overHidden: true,
       prop: 'publicValue',
       rules: [
-        {required: true, message: '请输入值', trigger: 'blur'}
+        { required: true, message: '请输入值', trigger: 'blur' }
       ]
     },
     {
       label: '编码',
-      prop: 'validateCode',
+      prop: 'validateCode'
     },
     {
       label: '作用',
@@ -91,6 +91,6 @@ export const tableOption = {
         message: '请选择类型',
         trigger: 'blur'
       }]
-    },
+    }
   ]
 }

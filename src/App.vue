@@ -5,17 +5,17 @@
 </template>
 
 <script>
-  export default {
-    name: 'app',
-    data() {
-      return {}
-    },
-    watch: {},
-    created() {
-    },
-    methods: {},
-    computed: {}
-  }
+export default {
+  name: 'App',
+  data() {
+    return {}
+  },
+  computed: {},
+  watch: {},
+  created() {
+  },
+  methods: {}
+}
 </script>
 <style lang="scss">
   #app {

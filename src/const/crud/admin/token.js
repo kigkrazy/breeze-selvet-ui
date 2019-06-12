@@ -15,15 +15,6 @@
  * Author: lengleng (wangiegie@gmail.com)
  */
 
-const DIC = {
-  vaild: [{
-    label: '否',
-    value: 'false'
-  }, {
-    label: '是',
-    value: 'true'
-  }]
-}
 export const tableOption = {
   border: true,
   index: true,

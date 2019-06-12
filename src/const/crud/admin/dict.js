@@ -64,7 +64,6 @@ export const tableOption = {
   }]
 }
 
-
 export const tableDictItemOption = {
   border: true,
   index: true,

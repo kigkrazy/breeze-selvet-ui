@@ -49,7 +49,7 @@ export const tableOption = {
       label: '性别',
       prop: 'gender',
       type: 'select',
-      dicUrl: '/admin/dict/type/gender',
+      dicUrl: '/admin/dict/type/gender'
     },
     {
       label: '语言',
@@ -74,7 +74,7 @@ export const tableOption = {
       label: '订阅状态',
       prop: 'subscribeStatus',
       type: 'select',
-      dicUrl: '/admin/dict/type/subscribe',
+      dicUrl: '/admin/dict/type/subscribe'
     },
     {
       label: '订阅时间',

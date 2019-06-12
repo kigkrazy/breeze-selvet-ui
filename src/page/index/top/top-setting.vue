@@ -1,10 +1,12 @@
 <template>
   <span class="setting">
-    <div class="setting__shade"
-         :class="{'setting__shade--show':isShade}"
-         @click="close"></div>
-    <div class="setting__content"
-         :class="{'setting__content--show':box}">
+    <div
+      :class="{'setting__shade--show':isShade}"
+      class="setting__shade"
+      @click="close"/>
+    <div
+      :class="{'setting__content--show':box}"
+      class="setting__content">
       <div class="setting__header">版权信息</div>
       <div class="setting__body setting__about">
         <p>Version：PigX 3.1.0</p>
@@ -15,8 +17,9 @@
       </div>
       <el-scrollbar style="height:500px">
         <div class="setting__body setting__form">
-          <avue-form v-model="form"
-                     :option="option"></avue-form>
+          <avue-form
+            v-model="form"
+            :option="option"/>
         </div>
       </el-scrollbar>
     </div>
@@ -28,7 +31,7 @@ import { mapState, mapGetters } from 'vuex'
 import { validatenull } from '@/util/validate'
 import { option, list } from '@/const/setting/'
 export default {
-  data () {
+  data() {
     return {
       box: false,
       form: {},
@@ -50,32 +53,32 @@ export default {
       showTheme: state => state.common.showTheme
     })
   },
-  created () {
-   setTimeout(()=>{
-     this.init();
-   },0)
+  created() {
+    setTimeout(() => {
+      this.init()
+    }, 0)
   },
   methods: {
-    close () {
-      this.box = false;
-      this.$store.commit('SET_SHADE', false);
+    close() {
+      this.box = false
+      this.$store.commit('SET_SHADE', false)
     },
-    set (key) {
-      const ele = this.find(key);
-      this.$store.commit(ele.commit, eval(this.form[ele.key]));
+    set(key) {
+      const ele = this.find(key)
+      this.$store.commit(ele.commit, eval(this.form[ele.key]))
     },
-    find (key) {
+    find(key) {
       return this.list.filter(ele => ele.key === key)[0]
     },
-    init () {
+    init() {
       this.list.forEach(ele => {
-        this.form[ele.key] = validatenull(this[ele.key]) ? 'true' : this[ele.key] + '';
-        this.set(ele.key);
+        this.form[ele.key] = validatenull(this[ele.key]) ? 'true' : this[ele.key] + ''
+        this.set(ele.key)
       })
     },
-    open () {
-      this.box = true;
-      this.$store.commit('SET_SHADE', true);
+    open() {
+      this.box = true
+      this.$store.commit('SET_SHADE', true)
     }
   }
 }

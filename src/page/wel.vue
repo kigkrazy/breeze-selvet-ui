@@ -9,7 +9,7 @@
           <img src="https://img.shields.io/badge/Spring%20Boot-2.1.5.RELEASE-yellowgreen.svg" alt="Downloads">
           <img src="https://img.shields.io/badge/Spring%20Cloud-Greenwich.SR1-blue.svg" alt="Coverage Status">
         </span>
-        <br/>
+        <br>
         <span>
           <el-collapse v-model="activeNames">
             <el-collapse-item title="完整的微服务架构" name="1">
@@ -57,73 +57,73 @@
 </template>
 
 <script>
-  import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex'
 
-  export default {
-    name: 'wel',
-    data() {
-      return {
-        activeNames: ['1', '2', '3', '4'],
-        DATA: [],
-        text: '',
-        actor: '',
-        count: 0,
-        isText: false
+export default {
+  name: 'Wel',
+  data() {
+    return {
+      activeNames: ['1', '2', '3', '4'],
+      DATA: [],
+      text: '',
+      actor: '',
+      count: 0,
+      isText: false
+    }
+  },
+  computed: {
+    ...mapGetters(['website'])
+  },
+  methods: {
+    getData() {
+      if (this.count < this.DATA.length - 1) {
+        this.count++
+      } else {
+        this.count = 0
       }
+      this.isText = true
+      this.actor = this.DATA[this.count]
     },
-    computed: {
-      ...mapGetters(['website'])
-    },
-    methods: {
-      getData() {
-        if (this.count < this.DATA.length - 1) {
-          this.count++
-        } else {
-          this.count = 0
-        }
-        this.isText = true
-        this.actor = this.DATA[this.count]
-      },
-      setData() {
-        let num = 0
-        let count = 0
-        let active = false
-        let timeoutstart = 5000
-        let timeoutend = 1000
-        let timespeed = 10
-        setInterval(() => {
-          if (this.isText) {
-            if (count == this.actor.length) {
-              active = true
-            } else {
-              active = false
+    setData() {
+      let num = 0
+      let count = 0
+      let active = false
+      const timeoutstart = 5000
+      const timeoutend = 1000
+      const timespeed = 10
+      setInterval(() => {
+        if (this.isText) {
+          if (count == this.actor.length) {
+            active = true
+          } else {
+            active = false
+          }
+          if (active) {
+            num--
+            this.text = this.actor.substr(0, num)
+            if (num == 0) {
+              this.isText = false
+              setTimeout(() => {
+                count = 0
+                this.getData()
+              }, timeoutend)
             }
-            if (active) {
-              num--
-              this.text = this.actor.substr(0, num)
-              if (num == 0) {
-                this.isText = false
-                setTimeout(() => {
-                  count = 0
-                  this.getData()
-                }, timeoutend)
-              }
-            } else {
-              num++
-              this.text = this.actor.substr(0, num)
-              if (num == this.actor.length) {
-                this.isText = false
-                setTimeout(() => {
-                  this.isText = true
-                  count = this.actor.length
-                }, timeoutstart)
-              }
+          } else {
+            num++
+            this.text = this.actor.substr(0, num)
+            if (num == this.actor.length) {
+              this.isText = false
+              setTimeout(() => {
+                this.isText = true
+                count = this.actor.length
+              }, timeoutstart)
             }
           }
-        }, timespeed)
-      }
+        }
+      }, timespeed)
     }
   }
+}
 </script>
 
 <style scoped="scoped" lang="scss">

@@ -1,38 +1,50 @@
 <template>
   <div class="social-container">
-    <div class="box"
-         @click="handleClick('wechat')">
-      <span class="container"
-            :style="{backgroundColor:'#6ba2d6'}">
-        <i icon-class="wechat"
-           class="iconfont icon-weixin"></i>
+    <div
+      class="box"
+      @click="handleClick('wechat')">
+      <span
+        :style="{backgroundColor:'#6ba2d6'}"
+        class="container">
+        <i
+          icon-class="wechat"
+          class="iconfont icon-weixin"/>
       </span>
       <p class="title">微信</p>
     </div>
-    <div class="box"
-         @click="handleClick('tencent')">
-      <span class="container"
-            :style="{backgroundColor:'#8dc349'}">
-        <i icon-class="qq"
-           class="iconfont icon-qq1"></i>
+    <div
+      class="box"
+      @click="handleClick('tencent')">
+      <span
+        :style="{backgroundColor:'#8dc349'}"
+        class="container">
+        <i
+          icon-class="qq"
+          class="iconfont icon-qq1"/>
       </span>
       <p class="title">QQ</p>
     </div>
-    <div class="box"
-         @click="handleClick('gitee')">
-      <span class="container"
-            :style="{backgroundColor:'#bf3030'}">
-        <i icon-class="qq"
-           class="iconfont icon-logo_gitee_icon"></i>
+    <div
+      class="box"
+      @click="handleClick('gitee')">
+      <span
+        :style="{backgroundColor:'#bf3030'}"
+        class="container">
+        <i
+          icon-class="qq"
+          class="iconfont icon-logo_gitee_icon"/>
       </span>
       <p class="title">Gitee</p>
     </div>
-    <div class="box"
-         @click="handleClick('osc')">
-      <span class="container"
-            :style="{backgroundColor:'#007B25'}">
-        <i icon-class="qq"
-           class="iconfont icon-OSChina_logo_"></i>
+    <div
+      class="box"
+      @click="handleClick('osc')">
+      <span
+        :style="{backgroundColor:'#007B25'}"
+        class="container">
+        <i
+          icon-class="qq"
+          class="iconfont icon-OSChina_logo_"/>
       </span>
       <p class="title">开源中国</p>
     </div>
@@ -40,31 +52,31 @@
 </template>
 
 <script>
-  import {openWindow} from '@/util/util'
+import { openWindow } from '@/util/util'
 
-  export default {
-    name: 'social-signin',
-    methods: {
-      handleClick(thirdpart) {
-        let appid, client_id, redirect_uri, url
-        redirect_uri = encodeURIComponent(window.location.origin + '/#/authredirect')
-        if (thirdpart === 'wechat') {
-          appid = 'wxd1678d3f83b1d83a'
-          url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&state=WX-LOGIN&response_type=code&scope=snsapi_login#wechat_redirect'
-        } else if (thirdpart === 'tencent') {
-          client_id = '101322838'
-          url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ-LOGIN&client_id=' + client_id + '&redirect_uri=' + redirect_uri
-        } else if (thirdpart === 'gitee') {
-          client_id = '8fc54e0e76e7842cf767c3ae3b9fdc48c03cefed27aa565ff7b2a39d142d9892'
-          url = 'https://gitee.com/oauth/authorize?response_type=code&client_id=' + client_id + '&state=GITEE-LOGIN&redirect_uri=' + redirect_uri
-        } else if (thirdpart === 'osc') {
-          client_id = 'neIIqlwGsjsfsA6uxNqD'
-          url = 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=' + client_id + '&state=OSC-LOGIN&redirect_uri=' + redirect_uri
-        }
-        openWindow(url, thirdpart, 540, 540)
+export default {
+  name: 'SocialSignin',
+  methods: {
+    handleClick(thirdpart) {
+      let appid, client_id, redirect_uri, url
+      redirect_uri = encodeURIComponent(window.location.origin + '/#/authredirect')
+      if (thirdpart === 'wechat') {
+        appid = 'wxd1678d3f83b1d83a'
+        url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&state=WX-LOGIN&response_type=code&scope=snsapi_login#wechat_redirect'
+      } else if (thirdpart === 'tencent') {
+        client_id = '101322838'
+        url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ-LOGIN&client_id=' + client_id + '&redirect_uri=' + redirect_uri
+      } else if (thirdpart === 'gitee') {
+        client_id = '8fc54e0e76e7842cf767c3ae3b9fdc48c03cefed27aa565ff7b2a39d142d9892'
+        url = 'https://gitee.com/oauth/authorize?response_type=code&client_id=' + client_id + '&state=GITEE-LOGIN&redirect_uri=' + redirect_uri
+      } else if (thirdpart === 'osc') {
+        client_id = 'neIIqlwGsjsfsA6uxNqD'
+        url = 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=' + client_id + '&state=OSC-LOGIN&redirect_uri=' + redirect_uri
       }
+      openWindow(url, thirdpart, 540, 540)
     }
   }
+}
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

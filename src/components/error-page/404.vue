@@ -3,11 +3,11 @@
     <div class="error404-body-con">
       <el-card class="box-card">
         <div class="error404-body-con-title">4
-          <span>0</span>4</div>
+        <span>0</span>4</div>
         <p class="error404-body-con-message">YOU&nbsp;&nbsp;LOOK&nbsp;&nbsp;LOST</p>
         <div class="error404-btn-con">
-          <el-button @click="goHome" size="large" style="width: 200px;" type="text">返回首页</el-button>
-          <el-button @click="backPage" size="large" style="width: 200px;margin-left: 40px;" type="primary">返回上一页</el-button>
+          <el-button size="large" style="width: 200px;" type="text" @click="goHome">返回首页</el-button>
+          <el-button size="large" style="width: 200px;margin-left: 40px;" type="primary" @click="backPage">返回上一页</el-button>
         </div>
       </el-card>
     </div>
@@ -16,18 +16,18 @@
 
 <script>
 export default {
-  name: "Error404",
+  name: 'Error404',
   methods: {
     backPage() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     },
     goHome() {
       this.$router.push({
-        path: "/"
-      });
+        path: '/'
+      })
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
 @keyframes error404animation {

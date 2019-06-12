@@ -17,41 +17,47 @@
 <template>
   <div class="execution">
     <basic-container>
-      <avue-crud ref="crud"
-                 :page="page"
-                 :data="tableData"
-                 :permission="permissionList"
-                 :table-loading="tableLoading"
-                 :option="tableOption"
-                 @on-load="getList"
-                 @refresh-change="refreshChange"
-                 @row-update="handleUpdate"
-                 @row-save="handleSave"
-                 @row-del="rowDel">
-        <template slot-scope="scope"
-                  slot="menu">
-          <el-button type="text" v-if="permissionList.addBtn"
-                     icon="el-icon-upload"
-                     size="mini"
-                     plain
-                     @click="access(scope.row,scope.index)">
+      <avue-crud
+        ref="crud"
+        :page="page"
+        :data="tableData"
+        :permission="permissionList"
+        :table-loading="tableLoading"
+        :option="tableOption"
+        @on-load="getList"
+        @refresh-change="refreshChange"
+        @row-update="handleUpdate"
+        @row-save="handleSave"
+        @row-del="rowDel">
+        <template
+          slot-scope="scope"
+          slot="menu">
+          <el-button
+            v-if="permissionList.addBtn"
+            type="text"
+            icon="el-icon-upload"
+            size="mini"
+            plain
+            @click="access(scope.row,scope.index)">
             接入
           </el-button>
-          <el-button type="text" v-if="permissionList.addBtn"
-                     icon="el-icon-check"
-                     size="mini"
-                     plain
-                     @click="generateQr(scope.row,scope.index)">二维码
+          <el-button
+            v-if="permissionList.addBtn"
+            type="text"
+            icon="el-icon-check"
+            size="mini"
+            plain
+            @click="generateQr(scope.row,scope.index)">二维码
           </el-button>
         </template>
       </avue-crud>
     </basic-container>
-    <el-dialog title="接入" :visible.sync="dialogFormVisible">
+    <el-dialog :visible.sync="dialogFormVisible" title="接入">
       <el-row :gutter="20">
         <el-col :span="6">服务器地址(URL)</el-col>
-        <el-col :span="12" id="target">{{wxurl}}</el-col>
+        <el-col id="target" :span="12">{{ wxurl }}</el-col>
         <el-col :span="6">
-          <el-button id="btn" @click="copyLink" type="primary" size="small" style="float: right;">点击复制</el-button>
+          <el-button id="btn" type="primary" size="small" style="float: right;" @click="copyLink">点击复制</el-button>
         </el-col>
       </el-row>
     </el-dialog>
@@ -59,139 +65,139 @@
 </template>
 
 <script>
-  import {addObj, delObj, fetchList, generateQr, putObj} from '@/api/mp/wxaccount'
-  import {tableOption} from '@/const/crud/mp/wxaccount'
-  import {mapGetters} from 'vuex'
-  import Clipboard from 'clipboard'
+import { addObj, delObj, fetchList, generateQr, putObj } from '@/api/mp/wxaccount'
+import { tableOption } from '@/const/crud/mp/wxaccount'
+import { mapGetters } from 'vuex'
+import Clipboard from 'clipboard'
 
-  export default {
-    name: 'wxaccount',
-    data() {
+export default {
+  name: 'Wxaccount',
+  data() {
+    return {
+      wxurl: '',
+      dialogFormVisible: false,
+      tableData: [],
+      page: {
+        total: 0, // 总页数
+        currentPage: 1, // 当前页数
+        pageSize: 20 // 每页显示多少条
+      },
+      tableLoading: false,
+      tableOption: tableOption
+    }
+  },
+  computed: {
+    ...mapGetters(['permissions']),
+    permissionList() {
       return {
-        wxurl: '',
-        dialogFormVisible: false,
-        tableData: [],
-        page: {
-          total: 0, // 总页数
-          currentPage: 1, // 当前页数
-          pageSize: 20 // 每页显示多少条
-        },
-        tableLoading: false,
-        tableOption: tableOption
+        addBtn: this.vaildData(this.permissions.mp_wxaccount_add, false),
+        delBtn: this.vaildData(this.permissions.mp_wxaccount_del, false),
+        editBtn: this.vaildData(this.permissions.mp_wxaccount_edit, false)
       }
+    }
+  },
+  methods: {
+    getList(page, params) {
+      this.tableLoading = true
+      fetchList(Object.assign({
+        current: page.currentPage,
+        size: page.pageSize
+      }, params)).then(response => {
+        this.tableData = response.data.data.records
+        this.page.total = response.data.data.total
+        this.tableLoading = false
+      })
     },
-    computed: {
-      ...mapGetters(['permissions']),
-      permissionList() {
-        return {
-          addBtn: this.vaildData(this.permissions.mp_wxaccount_add, false),
-          delBtn: this.vaildData(this.permissions.mp_wxaccount_del, false),
-          editBtn: this.vaildData(this.permissions.mp_wxaccount_edit, false)
-        };
-      }
+    rowDel: function(row, index) {
+      var _this = this
+      this.$confirm('是否确认删除ID为' + row.id, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(function() {
+        return delObj(row.id)
+      }).then(() => {
+        _this.tableData.splice(index, 1)
+        _this.$message({
+          showClose: true,
+          message: '删除成功',
+          type: 'success'
+        })
+        this.getList(this.page)
+      }).catch(function() {
+      })
     },
-    methods: {
-      getList(page, params) {
-        this.tableLoading = true
-        fetchList(Object.assign({
-          current: page.currentPage,
-          size: page.pageSize
-        }, params)).then(response => {
-          this.tableData = response.data.data.records
-          this.page.total = response.data.data.total
-          this.tableLoading = false
-        })
-      },
-      rowDel: function (row, index) {
-        var _this = this
-        this.$confirm('是否确认删除ID为' + row.id, '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(function () {
-          return delObj(row.id)
-        }).then(() => {
-          _this.tableData.splice(index, 1)
-          _this.$message({
-            showClose: true,
-            message: '删除成功',
-            type: 'success'
-          })
-          this.getList(this.page)
-        }).catch(function () {
-        })
-      },
-      /**
+    /**
        * @title 数据更新
        * @param row 为当前的数据
        * @param index 为当前更新数据的行数
        * @param done 为表单关闭函数
        *
        **/
-      handleUpdate: function (row, index, done) {
-        putObj(row).then(() => {
-          this.tableData.splice(index, 1, Object.assign({}, row))
-          this.$message({
-            showClose: true,
-            message: '修改成功',
-            type: 'success'
-          })
-          done()
-          this.getList(this.page)
+    handleUpdate: function(row, index, done) {
+      putObj(row).then(() => {
+        this.tableData.splice(index, 1, Object.assign({}, row))
+        this.$message({
+          showClose: true,
+          message: '修改成功',
+          type: 'success'
         })
-      },
-      /**
+        done()
+        this.getList(this.page)
+      })
+    },
+    /**
        * @title 数据添加
        * @param row 为当前的数据
        * @param done 为表单关闭函数
        *
        **/
-      handleSave: function (row, done) {
-        row.qrUrl = undefined
-        addObj(row).then(() => {
-          this.tableData.push(Object.assign({}, row))
-          this.$message({
-            showClose: true,
-            message: '添加成功',
-            type: 'success'
-          })
-          done()
-          this.getList(this.page)
+    handleSave: function(row, done) {
+      row.qrUrl = undefined
+      addObj(row).then(() => {
+        this.tableData.push(Object.assign({}, row))
+        this.$message({
+          showClose: true,
+          message: '添加成功',
+          type: 'success'
         })
-      },
-
-      refreshChange() {
+        done()
         this.getList(this.page)
-      },
-      generateQr: function (row) {
-        generateQr(row.appid).then(() => {
-          this.$message({
-            showClose: true,
-            message: '获取成功',
-            type: 'success'
-          })
-          this.getList(this.page)
+      })
+    },
+
+    refreshChange() {
+      this.getList(this.page)
+    },
+    generateQr: function(row) {
+      generateQr(row.appid).then(() => {
+        this.$message({
+          showClose: true,
+          message: '获取成功',
+          type: 'success'
         })
-      },
-      access: function (row) {
-        this.dialogFormVisible = true
-        this.wxurl = row.url + "/mp/" + row.appid + "/portal"
-      },
-      copyLink() {
-        let clipboard = new Clipboard('#btn', {
-          target: () => document.querySelector('#target')
+        this.getList(this.page)
+      })
+    },
+    access: function(row) {
+      this.dialogFormVisible = true
+      this.wxurl = row.url + '/mp/' + row.appid + '/portal'
+    },
+    copyLink() {
+      const clipboard = new Clipboard('#btn', {
+        target: () => document.querySelector('#target')
+      })
+      // 复制成功执行的回调
+      clipboard.on('success', () => {
+        this.$message({
+          showClose: true,
+          message: '复制成功',
+          type: 'success'
         })
-        //复制成功执行的回调
-        clipboard.on('success', () => {
-          this.$message({
-            showClose: true,
-            message: '复制成功',
-            type: 'success'
-          })
-        });
-      }
+      })
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

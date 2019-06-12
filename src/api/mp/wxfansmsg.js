@@ -71,7 +71,6 @@ export function addResObj(obj) {
   })
 }
 
-
 export function delResObj(id) {
   return request({
     url: '/mp/wxfansmsgres/' + id,

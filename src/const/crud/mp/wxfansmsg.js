@@ -76,7 +76,6 @@ export const tableOption = {
   ]
 }
 
-
 export const tableResOption = {
   border: true,
   index: true,
@@ -91,19 +90,19 @@ export const tableResOption = {
     {
       label: '回复人',
       prop: 'userName',
-      addDisplay: false,
+      addDisplay: false
     },
     {
       label: '回复内容',
       prop: 'resContent',
-      type:'textarea',
+      type: 'textarea',
       span: 24,
       minRows: 5
     },
     {
       label: '时间',
       prop: 'createTime',
-      addDisplay: false,
+      addDisplay: false
     }
   ]
 }

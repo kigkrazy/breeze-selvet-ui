@@ -24,7 +24,7 @@ export const tableOption = {
   delBtn: false,
   align: 'center',
   addBtn: false,
-  viewBtn:true,
+  viewBtn: true,
   column: [{
     label: '角色名称',
     prop: 'roleName',
@@ -51,12 +51,12 @@ export const tableOption = {
       message: '角色标识不能为空',
       trigger: 'blur'
     },
-      {
-        min: 3,
-        max: 20,
-        message: '长度在 3 到 20 个字符',
-        trigger: 'blur'
-      }
+    {
+      min: 3,
+      max: 20,
+      message: '长度在 3 到 20 个字符',
+      trigger: 'blur'
+    }
     ]
   }, {
     width: 150,
@@ -89,10 +89,10 @@ export const tableOption = {
       value: 3
     }]
   }, {
-    label:'',
+    label: '',
     prop: 'dsScope',
     formslot: true,
-    showClomnu:false,
+    showClomnu: false,
     hide: true
   }, {
     label: '创建时间',

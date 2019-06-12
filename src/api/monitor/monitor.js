@@ -17,7 +17,7 @@
 
 import request from '@/router/axios'
 
-export function fetchInfo(q) {
+export function fetchInfo() {
   return request({
     url: '/monitor/redis/info',
     method: 'get'

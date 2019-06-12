@@ -70,7 +70,6 @@ export function putObj(obj) {
   })
 }
 
-
 export function handleDown(table) {
   return request({
     url: '/gen/generator/code',
@@ -78,14 +77,14 @@ export function handleDown(table) {
     data: table,
     responseType: 'arraybuffer'
   }).then((response) => { // 处理返回的文件流
-    let blob = new Blob([response.data], {type: 'application/zip'})
-    let filename = table.tableName + '.zip'
-    let link = document.createElement('a')
+    const blob = new Blob([response.data], { type: 'application/zip' })
+    const filename = table.tableName + '.zip'
+    const link = document.createElement('a')
     link.href = URL.createObjectURL(blob)
     link.download = filename
     document.body.appendChild(link)
     link.click()
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       URL.revokeObjectURL(blob)
       document.body.removeChild(link)
     }, 0)

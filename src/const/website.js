@@ -1,10 +1,10 @@
 export default {
   title: 'PigX',
   logo: 'PigX',
-  key: 'pigx',   //配置主键,目前用于存储
+  key: 'pigx', // 配置主键,目前用于存储
   indexTitle: 'PigX Pro 快速开发框架',
   whiteList: ['/login', '/404', '/401', '/lock'], // 配置无权限可以访问的页面
-  whiteTagList: ['/login', '/404', '/401', '/lock' ], // 配置不添加tags页面 （'/advanced-router/mutative-detail/*'——*为通配符）
+  whiteTagList: ['/login', '/404', '/401', '/lock'], // 配置不添加tags页面 （'/advanced-router/mutative-detail/*'——*为通配符）
   lockPage: '/lock',
   tokenTime: 6000,
   infoTitle: 'PigX Pro 快速开发框架',

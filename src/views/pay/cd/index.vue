@@ -6,7 +6,7 @@
 
     <el-row>
       <el-col :span="24">
-        <qrcode :value="msg" :options="options"></qrcode>
+        <qrcode :value="msg" :options="options"/>
       </el-col>
     </el-row>
     <el-row>
@@ -31,27 +31,27 @@
 </style>
 
 <script>
-  import VueQrcode from '@xkeshi/vue-qrcode';
+import VueQrcode from '@xkeshi/vue-qrcode'
 
-  export default {
-    components: {
-      'qrcode': VueQrcode
-    },
-    data() {
-      return {
-        amount: '1',
-        msg: 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=0.01',
-        options: {
-          size: 300
-        }
+export default {
+  components: {
+    'qrcode': VueQrcode
+  },
+  data() {
+    return {
+      amount: '1',
+      msg: 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=0.01',
+      options: {
+        size: 300
       }
-    },
-    watch: {
-      amount: function (amount) {
-        this.msg = "http://pigx.huaxiadaowei.com/pay/goods/buy?amount=" + amount
-      }
-    },
+    }
+  },
+  watch: {
+    amount: function(amount) {
+      this.msg = 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=' + amount
+    }
   }
+}
 </script>
 <style>
   .basic-container {

@@ -98,11 +98,11 @@ export const tableOption = {
   }, {
     label: '令牌时效',
     prop: 'accessTokenValidity',
-    align: 'center',
+    align: 'center'
   }, {
     label: '刷新时效',
     prop: 'refreshTokenValidity',
-    align: 'center',
+    align: 'center'
   }, {
     label: '扩展信息',
     prop: 'additionalInformation',

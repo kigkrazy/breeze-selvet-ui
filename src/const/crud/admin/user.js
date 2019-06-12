@@ -14,12 +14,12 @@
  * this software without specific prior written permission.
  * Author: lengleng (wangiegie@gmail.com)
  */
-import {getDetails} from '@/api/admin/user'
+import { getDetails } from '@/api/admin/user'
 
 var validateUsername = (rule, value, callback) => {
   getDetails(value).then(response => {
     if (window.boxType === 'edit') callback()
-    let result = response.data.data
+    const result = response.data.data
     if (result !== null) {
       callback(new Error('用户名已经存在'))
     } else {
@@ -57,13 +57,13 @@ export const tableOption = {
       required: true,
       message: '请输入用户名'
     },
-      {
-        min: 3,
-        max: 20,
-        message: '长度在 3 到 20 个字符',
-        trigger: 'blur'
-      },
-      {validator: validateUsername, trigger: 'blur'}
+    {
+      min: 3,
+      max: 20,
+      message: '长度在 3 到 20 个字符',
+      trigger: 'blur'
+    },
+    { validator: validateUsername, trigger: 'blur' }
     ]
   }, {
     label: '密码',

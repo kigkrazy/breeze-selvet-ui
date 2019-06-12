@@ -23,7 +23,7 @@ export const loginByUsername = (username, password, code, randomStr) => {
   return request({
     url: '/auth/oauth/token',
     headers: {
-      isToken:false,
+      isToken: false,
       'TENANT_ID': '1',
       'Authorization': 'Basic cGlnOnBpZw=='
     },
@@ -39,7 +39,7 @@ export const refreshToken = (refresh_token) => {
     headers: {
       'isToken': false,
       'TENANT_ID': '1',
-      'Authorization': 'Basic cGlnOnBpZw==',
+      'Authorization': 'Basic cGlnOnBpZw=='
     },
     method: 'post',
     params: { refresh_token, grant_type, scope }

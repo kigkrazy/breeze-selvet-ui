@@ -2,13 +2,13 @@ import { serialize } from '@/util/util'
 import { getStore } from '../util/store'
 import NProgress from 'nprogress' // progress bar
 import errorCode from '@/const/errorCode'
-import router from "@/router/router"
+import router from '@/router/router'
 import { Message } from 'element-ui'
 import 'nprogress/nprogress.css'
-import store from "@/store"; // progress bar style
+import store from '@/store' // progress bar style
 axios.defaults.timeout = 30000
 // 返回其他状态吗
-axios.defaults.validateStatus = function (status) {
+axios.defaults.validateStatus = function(status) {
   return status >= 200 && status <= 500 // 默认的
 }
 // 跨域请求，允许保存cookie
@@ -23,7 +23,7 @@ axios.interceptors.request.use(config => {
   NProgress.start() // start progress bar
   const TENANT_ID = getStore({ name: 'tenantId' })
   const isToken = (config.headers || {}).isToken === false
-  let token = store.getters.access_token
+  const token = store.getters.access_token
   if (token && !isToken) {
     config.headers['Authorization'] = 'Bearer ' + token// token
   }
@@ -39,7 +39,6 @@ axios.interceptors.request.use(config => {
 }, error => {
   return Promise.reject(error)
 })
-
 
 // HTTPresponse拦截
 axios.interceptors.response.use(res => {

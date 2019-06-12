@@ -1,10 +1,10 @@
-import {validatenull} from './validate'
+import { validatenull } from './validate'
 import request from '@/router/axios'
-import * as CryptoJS from'crypto-js'
+import * as CryptoJS from 'crypto-js'
 
 // 表单序列化
 export const serialize = data => {
-  let list = []
+  const list = []
   Object.keys(data).forEach(ele => {
     list.push(`${ele}=${data[ele]}`)
   })
@@ -137,11 +137,11 @@ export const encryption = (params) => {
  */
 export const fullscreenToggel = () => {
   if (fullscreenEnable()) {
-    exitFullScreen();
+    exitFullScreen()
   } else {
-    reqFullScreen();
+    reqFullScreen()
   }
-};
+}
 /**
  * esc监听全屏
  */
@@ -150,19 +150,19 @@ export const listenfullscreen = (callback) => {
     callback()
   }
 
-  document.addEventListener("fullscreenchange", function () {
-    listen();
-  });
-  document.addEventListener("mozfullscreenchange", function () {
-    listen();
-  });
-  document.addEventListener("webkitfullscreenchange", function () {
-    listen();
-  });
-  document.addEventListener("msfullscreenchange", function () {
-    listen();
-  });
-};
+  document.addEventListener('fullscreenchange', function() {
+    listen()
+  })
+  document.addEventListener('mozfullscreenchange', function() {
+    listen()
+  })
+  document.addEventListener('webkitfullscreenchange', function() {
+    listen()
+  })
+  document.addEventListener('msfullscreenchange', function() {
+    listen()
+  })
+}
 /**
  * 浏览器判断是否全屏
  */
@@ -175,37 +175,37 @@ export const fullscreenEnable = () => {
  */
 export const reqFullScreen = () => {
   if (document.documentElement.requestFullScreen) {
-    document.documentElement.requestFullScreen();
+    document.documentElement.requestFullScreen()
   } else if (document.documentElement.webkitRequestFullScreen) {
-    document.documentElement.webkitRequestFullScreen();
+    document.documentElement.webkitRequestFullScreen()
   } else if (document.documentElement.mozRequestFullScreen) {
-    document.documentElement.mozRequestFullScreen();
+    document.documentElement.mozRequestFullScreen()
   }
-};
+}
 /**
  * 浏览器退出全屏
  */
 export const exitFullScreen = () => {
   if (document.documentElement.requestFullScreen) {
-    document.exitFullScreen();
+    document.exitFullScreen()
   } else if (document.documentElement.webkitRequestFullScreen) {
-    document.webkitCancelFullScreen();
+    document.webkitCancelFullScreen()
   } else if (document.documentElement.mozRequestFullScreen) {
-    document.mozCancelFullScreen();
+    document.mozCancelFullScreen()
   }
-};
+}
 /**
  * 递归寻找子类的父类
  */
 
 export const findParent = (menu, id) => {
   for (let i = 0; i < menu.length; i++) {
-    if (menu[i].children.length != 0) {
+    if (menu[i].children.length !== 0) {
       for (let j = 0; j < menu[i].children.length; j++) {
-        if (menu[i].children[j].id == id) {
+        if (menu[i].children[j].id === id) {
           return menu[i]
         } else {
-          if (menu[i].children[j].children.length != 0) {
+          if (menu[i].children[j].children.length !== 0) {
             return findParent(menu[i].children[j].children, id)
           }
         }
@@ -247,7 +247,7 @@ export const findByvalue = (dic, value) => {
   if (typeof (value) === 'string' || typeof (value) === 'number' || typeof (value) === 'boolean') {
     let index = 0
     index = findArray(dic, value)
-    if (index != -1) {
+    if (index !== -1) {
       result = dic[index].label
     } else {
       result = value
@@ -257,7 +257,7 @@ export const findByvalue = (dic, value) => {
     let index = 0
     value.forEach(ele => {
       index = findArray(dic, ele)
-      if (index != -1) {
+      if (index !== -1) {
         result.push(dic[index].label)
       } else {
         result.push(value)
@@ -272,7 +272,7 @@ export const findByvalue = (dic, value) => {
  */
 export const findArray = (dic, value) => {
   for (let i = 0; i < dic.length; i++) {
-    if (dic[i].value == value) {
+    if (dic[i].value === value) {
       return i
     }
   }
@@ -318,28 +318,28 @@ export function handleImg(fileName, id) {
     method: 'get',
     responseType: 'blob'
   }).then((response) => { // 处理返回的文件流
-    let blob = response.data;
-    let img = document.getElementById(id);
-    img.src = URL.createObjectURL(blob);
-    window.setTimeout(function () {
+    const blob = response.data
+    const img = document.getElementById(id)
+    img.src = URL.createObjectURL(blob)
+    window.setTimeout(function() {
       window.URL.revokeObjectURL(blob)
     }, 0)
   })
 }
 
 export const filterForm = (form) => {
-  let obj = {};
+  const obj = {}
   Object.keys(form).forEach(ele => {
     if (!validatenull(form[ele])) {
       obj[ele] = form[ele]
     }
-  });
-  return obj;
+  })
+  return obj
 }
 
 export const vaildData = (val, dafult) => {
   if (typeof val === 'boolean') {
-    return val;
+    return val
   }
-  return !validatenull(val) ? val : dafult;
-};
+  return !validatenull(val) ? val : dafult
+}

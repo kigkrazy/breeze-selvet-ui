@@ -13,8 +13,8 @@ const tagObj = {
 }
 
 // 处理首个标签
-function setFistTag (list) {
-  if (list.length == 1) {
+function setFistTag(list) {
+  if (list.length === 1) {
     list[0].close = false
   } else {
     list.forEach(ele => {
@@ -57,9 +57,9 @@ const navs = {
     DEL_TAG_OTHER: (state) => {
       state.tagList = state.tagList.filter(item => {
         if (item.value === state.tag.value) {
-          return true;
+          return true
         } else if (!website.isFirstPage && item.value === website.fistPage.value) {
-          return true;
+          return true
         }
       })
       setFistTag(state.tagList)

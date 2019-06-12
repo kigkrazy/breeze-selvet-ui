@@ -17,7 +17,7 @@
 
 import request from '@/router/axios'
 
-export function fetchList (query) {
+export function fetchList(query) {
   return request({
     url: '/admin/route',
     method: 'get',
@@ -25,7 +25,7 @@ export function fetchList (query) {
   })
 }
 
-export function putObj (obj) {
+export function putObj(obj) {
   return request({
     url: '/admin/route',
     method: 'put',
@@ -33,9 +33,9 @@ export function putObj (obj) {
   })
 }
 
-export function refreshObj () {
+export function refreshObj() {
   return request({
     url: '/actuator/refresh',
-    method: 'post',
+    method: 'post'
   })
 }
