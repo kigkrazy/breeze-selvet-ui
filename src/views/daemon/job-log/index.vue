@@ -86,7 +86,7 @@ export default {
        * 检索查询
        */
     handleFilter(params) {
-      this.queryParams = this.filterForm(params)
+      this.queryParams = params
       this.getList(this.page)
     },
     /**

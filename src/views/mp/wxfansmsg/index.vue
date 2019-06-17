@@ -165,7 +165,7 @@ export default {
     },
     handleResSave: function(row, done) {
       row.fansMsgId = this.msgId
-      addResObj(this.filterForm(row)).then(() => {
+      addResObj(row).then(() => {
         this.$message({
           showClose: true,
           message: '发送成功',

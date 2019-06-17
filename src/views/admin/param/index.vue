@@ -123,7 +123,7 @@ export default {
        *
        **/
     handleSave: function(row, done) {
-      addObj(this.filterForm(row)).then(data => {
+      addObj(row).then(data => {
         this.tableData.push(Object.assign({}, row))
         this.$message({
           showClose: true,
@@ -138,7 +138,7 @@ export default {
        * 搜索回调
        */
     searchChange(form) {
-      this.getList(this.page, this.filterForm(form))
+      this.getList(this.page, form)
     },
     /**
        * 刷新回调

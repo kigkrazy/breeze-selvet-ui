@@ -221,7 +221,7 @@ export default {
     },
     handleFilter(param) {
       this.page.page = 1
-      this.getList(this.page, this.filterForm(param))
+      this.getList(this.page, param)
     },
     handleRefreshChange() {
       this.getList(this.page)

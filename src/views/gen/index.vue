@@ -143,7 +143,7 @@ export default {
       fetchList(Object.assign({
         current: page.currentPage,
         size: page.pageSize
-      }, this.filterForm(this.q))).then(response => {
+      }, this.q)).then(response => {
         this.tableData = response.data.data.records
         this.page.total = response.data.data.total
         this.tableLoading = false

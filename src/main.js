@@ -8,7 +8,7 @@ import './permission' // 权限
 import './error' // 日志
 import router from './router/router'
 import store from './store'
-import { filterForm, loadStyle, vaildData } from './util/util'
+import { loadStyle } from './util/util'
 import * as urls from '@/config/env'
 import { iconfontUrl, iconfontVersion } from '@/config/env'
 import * as filters from './filters' // 全局filter
@@ -18,12 +18,6 @@ import './styles/common.scss'
 import basicContainer from './components/basic-container/main'
 // 插件 json 展示
 import vueJsonTreeView from 'vue-json-tree-view'
-
-import { validatenull } from '@/util/validate'
-
-Vue.prototype.validatenull = validatenull
-Vue.prototype.filterForm = filterForm
-Vue.prototype.vaildData = vaildData
 
 Vue.use(router)
 

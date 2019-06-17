@@ -229,7 +229,7 @@ export default {
        * 定时任务检索查询分页查询
        */
     handleFilter(params) {
-      this.queryParams = this.filterForm(params)
+      this.queryParams = params
       this.getList(this.page)
     },
     /**

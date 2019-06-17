@@ -164,7 +164,7 @@ export default {
        *
        **/
     handleUpdate: function(row, index, done) {
-      putObj(this.filterForm(row)).then(() => {
+      putObj(row).then(() => {
         this.tableData.splice(index, 1, Object.assign({}, row))
         this.$message({
           showClose: true,
@@ -182,7 +182,7 @@ export default {
        *
        **/
     handleSave: function(row, done) {
-      addObj(this.filterForm(row)).then(() => {
+      addObj(row).then(() => {
         this.tableData.push(Object.assign({}, row))
         this.$message({
           showClose: true,
@@ -218,7 +218,7 @@ export default {
       })
     },
     searchChange(form) {
-      this.getList(this.page, this.filterForm(form))
+      this.getList(this.page, form)
     },
     /**
        * 加载 字典项

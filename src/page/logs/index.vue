@@ -5,12 +5,12 @@
     <template slot="menuLeft">
       <el-button
         type="primary"
-        size="small"
+        size="mini"
         icon="el-icon-upload"
         @click="send">上传服务器</el-button>
       <el-button
         type="danger"
-        size="small"
+        size="mini"
         icon="el-icon-delete"
         @click="clear">清空本地日志</el-button>
     </template>
@@ -19,7 +19,7 @@
       slot="type">
       <el-tag
         type="danger"
-        size="small">{{ scope.label }}</el-tag>
+        size="mini">{{ scope.label }}</el-tag>
     </template>
     <template
       slot-scope="props"

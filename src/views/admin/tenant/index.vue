@@ -103,7 +103,7 @@ export default {
        *
        **/
     handleUpdate: function(row, index, done, loading) {
-      putObj(this.filterForm(row)).then(data => {
+      putObj(row).then(data => {
         this.tableData.splice(index, 1, Object.assign({}, row))
         this.$message({
           showClose: true,
@@ -123,7 +123,7 @@ export default {
        *
        **/
     handleSave: function(row, done, loading) {
-      addObj(this.filterForm(row)).then(data => {
+      addObj(row).then(data => {
         this.tableData.push(Object.assign({}, row))
         this.$message({
           showClose: true,
@@ -140,7 +140,7 @@ export default {
        * 搜索回调
        */
     searchChange(form) {
-      this.getList(this.page, this.filterForm(form))
+      this.getList(this.page, form)
     },
     /**
        * 刷新回调
