@@ -72,40 +72,30 @@
           <el-button
             type="text"
             icon="el-icon-info"
-            size="mini"
-            plain
             @click="getJobLog(scope.row)">日志
           </el-button>
           <el-button
             v-if="permissions.job_sys_job_start_job"
             type="text"
             icon="el-icon-caret-right"
-            size="mini"
-            plain
             @click="handleStartJob(scope.row)">启动
           </el-button>
           <el-button
             v-if="permissions.job_sys_job_shutdown_job"
             type="text"
             icon="el-icon-error"
-            size="mini"
-            plain
             @click="handleShutDownJob(scope.row)">暂停
           </el-button>
           <el-button
             v-if="permissions.job_sys_job_edit"
             type="text"
             icon="el-icon-edit"
-            size="mini"
-            plain
             @click="handleUpdate(scope.row,scope.index)">修改
           </el-button>
           <el-button
             v-if="permissions.job_sys_job_del"
             type="text"
             icon="el-icon-delete"
-            size="mini"
-            plain
             @click="handleDelete(scope.row,scope.index)">删除
           </el-button>
         </template>

@@ -22,7 +22,6 @@
               v-model="active"
               class="login-select animated fadeIn"
               placeholder="点击请选择租户"
-              size="mini"
               @change="handleCommand">
               <el-option v-for="tenant in tenantList" :key="tenant.id" :label="tenant.name" :value="tenant.id"/>
             </el-select>

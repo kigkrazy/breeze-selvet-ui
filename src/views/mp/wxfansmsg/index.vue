@@ -36,8 +36,6 @@
             v-if="permissionList.addBtn"
             type="text"
             icon="el-icon-check"
-            size="mini"
-            plain
             @click="reply(scope.row,scope.index)">回复
           </el-button>
         </template>

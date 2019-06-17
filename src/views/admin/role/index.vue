@@ -61,21 +61,18 @@
           slot-scope="scope">
           <el-button
             v-if="roleManager_btn_edit"
-            size="mini"
             type="text"
             icon="el-icon-edit"
             @click="handleUpdate(scope.row,scope.index)">编辑
           </el-button>
           <el-button
             v-if="roleManager_btn_del"
-            size="mini"
             type="text"
             icon="el-icon-delete"
             @click="handleDelete(scope.row,scope.index)">删除
           </el-button>
           <el-button
             v-if="roleManager_btn_perm"
-            size="mini"
             type="text"
             icon="el-icon-plus"
             @click="handlePermission(scope.row,scope.index)">权限

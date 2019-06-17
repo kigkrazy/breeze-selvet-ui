@@ -37,8 +37,6 @@
             v-if="permissions.sys_dict_add"
             type="text"
             icon="el-icon-menu"
-            size="mini"
-            plain
             @click="handleItem(scope.row,scope.index)">字典项
           </el-button>
         </template>

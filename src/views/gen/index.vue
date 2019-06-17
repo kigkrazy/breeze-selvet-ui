@@ -57,8 +57,6 @@
           <el-button
             type="text"
             icon="el-icon-check"
-            size="mini"
-            plain
             @click="handleDown(scope.row,scope.index)">生成
           </el-button>
         </template>

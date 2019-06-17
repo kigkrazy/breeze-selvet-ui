@@ -36,8 +36,6 @@
             v-if="permissionList.addBtn"
             type="text"
             icon="el-icon-upload"
-            size="mini"
-            plain
             @click="access(scope.row,scope.index)">
             接入
           </el-button>
@@ -45,8 +43,6 @@
             v-if="permissionList.addBtn"
             type="text"
             icon="el-icon-check"
-            size="mini"
-            plain
             @click="generateQr(scope.row,scope.index)">二维码
           </el-button>
         </template>
