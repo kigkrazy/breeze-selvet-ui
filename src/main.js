@@ -12,6 +12,8 @@ import { filterForm, loadStyle, vaildData } from './util/util'
 import * as urls from '@/config/env'
 import { iconfontUrl, iconfontVersion } from '@/config/env'
 import * as filters from './filters' // 全局filter
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import './styles/common.scss'
 import basicContainer from './components/basic-container/main'
 // 插件 json 展示
@@ -28,6 +30,16 @@ Vue.use(router)
 Vue.use(vueJsonTreeView)
 
 Vue.use(VueAxios, axios)
+
+Vue.use(ElementUI,{
+  size: 'mini',
+  menuType: 'text'
+})
+
+Vue.use(window.AVUE, {
+  size: 'mini',
+  menuType: 'text'
+})
 
 // 注册全局容器
 Vue.component('basicContainer', basicContainer)
