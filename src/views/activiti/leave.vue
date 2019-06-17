@@ -34,7 +34,6 @@
           <el-button
             v-if="permissions.act_leavebill_add"
             type="primary"
-            size="small"
             @click="handleAdd">新 增
           </el-button>
         </template>

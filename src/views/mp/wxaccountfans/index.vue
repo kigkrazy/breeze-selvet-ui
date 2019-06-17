@@ -36,8 +36,8 @@
         </el-col>
         <el-col :span="6">
           <div class="grid-content bg-purple">
-            <el-button type="primary" size="small" icon="el-icon-search" @click="search">搜索</el-button>
-            <el-button type="primary" size="small" icon="el-icon-sort" @click="asyncFans">同步</el-button>
+            <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+            <el-button type="primary" icon="el-icon-sort" @click="asyncFans">同步</el-button>
           </div>
         </el-col>
       </el-row>

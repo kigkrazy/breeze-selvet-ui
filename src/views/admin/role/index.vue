@@ -36,7 +36,6 @@
           <el-button
             v-if="roleManager_btn_add"
             class="filter-item"
-            size="small"
             type="primary"
             icon="el-icon-edit"
             @click="handleCreate">添加

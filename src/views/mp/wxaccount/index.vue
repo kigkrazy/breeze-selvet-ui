@@ -57,7 +57,7 @@
         <el-col :span="6">服务器地址(URL)</el-col>
         <el-col id="target" :span="12">{{ wxurl }}</el-col>
         <el-col :span="6">
-          <el-button id="btn" type="primary" size="small" style="float: right;" @click="copyLink">点击复制</el-button>
+          <el-button id="btn" type="primary" style="float: right;" @click="copyLink">点击复制</el-button>
         </el-col>
       </el-row>
     </el-dialog>

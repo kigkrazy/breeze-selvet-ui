@@ -48,21 +48,21 @@
         </template>
 
         <template slot="menuLeft">
-          <el-button v-if="permissions.job_sys_job_add" type="primary" size="small" @click="handleAdd">
+          <el-button v-if="permissions.job_sys_job_add" type="primary" @click="handleAdd">
             新建任务
           </el-button>
           <el-tooltip content="暂停全部运行状态的定时任务" placement="top">
-            <el-button v-if="permissions.job_sys_job_shutdown_job" type="warning" size="small" @click="shutdownJobs">
+            <el-button v-if="permissions.job_sys_job_shutdown_job" type="warning" @click="shutdownJobs">
               暂停全部任务
             </el-button>
           </el-tooltip>
           <el-tooltip content="启动全部暂停状态的定时任务" placement="top">
-            <el-button v-if="permissions.job_sys_job_start_job" type="success" size="small" @click="startJobs">
+            <el-button v-if="permissions.job_sys_job_start_job" type="success" @click="startJobs">
               启动全部任务
             </el-button>
           </el-tooltip>
           <el-tooltip content="谨慎使用" placement="top">
-            <el-button v-if="permissions.job_sys_job_refresh_job" type="danger" size="small" @click="refreshJobs">重置全部任务
+            <el-button v-if="permissions.job_sys_job_refresh_job" type="danger" @click="refreshJobs">重置全部任务
             </el-button>
           </el-tooltip>
         </template>

@@ -37,8 +37,6 @@
             v-if="permissions.daemon_status_trace_log_del"
             type="text"
             icon="el-icon-delete"
-            size="small"
-            plain
             @click="handleDel(scope.row,scope.index)">删除
           </el-button>
         </template>

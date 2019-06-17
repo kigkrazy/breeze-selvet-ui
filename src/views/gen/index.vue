@@ -37,8 +37,8 @@
         </el-col>
         <el-col :span="6">
           <div class="grid-content bg-purple">
-            <el-button type="primary" size="small" icon="el-icon-search" @click="search">搜索</el-button>
-            <el-button type="primary" size="small" icon="el-icon-setting" @click="setting" @close="dsBox=false">维护
+            <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+            <el-button type="primary" icon="el-icon-setting" @click="setting" @close="dsBox=false">维护
             </el-button>
           </div>
         </el-col>
