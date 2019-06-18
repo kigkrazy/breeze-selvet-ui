@@ -298,7 +298,7 @@ export default {
             return fetchRoleTree(roleId)
           })
           .then(response => {
-            this.checkedKeys = response.data
+            this.checkedKeys = response.data.data
             this.$notify({
               title: '成功',
               message: '修改成功',
