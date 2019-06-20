@@ -14,7 +14,6 @@
   - this software without specific prior written permission.
   - Author: lengleng (wangiegie@gmail.com)
   -->
-
 <template>
   <div class="execution">
     <basic-container>
@@ -22,12 +21,12 @@
         ref="crud"
         :page="page"
         :data="tableData"
+        :permission="permissionList"
         :table-loading="tableLoading"
         :option="tableOption"
-        :permission="permissionList"
         @on-load="getList"
-        @refresh-change="refreshChange"
         @search-change="searchChange"
+        @refresh-change="refreshChange"
         @row-update="handleUpdate"
         @row-save="handleSave"
         @row-del="rowDel"/>
@@ -36,12 +35,12 @@
 </template>
 
 <script>
-import { addObj, delObj, fetchList, putObj } from '@/api/admin/sys-social-details'
-import { tableOption } from '@/const/crud/admin/sys-social-details'
+import { addObj, delObj, fetchList, putObj } from '@/api/pay/paygoodsorder'
+import { tableOption } from '@/const/crud/pay/paygoodsorder'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'SysSocialDetails',
+  name: 'Paygoodsorder',
   data() {
     return {
       tableData: [],
@@ -54,17 +53,13 @@ export default {
       tableOption: tableOption
     }
   },
-  created() {
-  },
-  mounted: function() {
-  },
   computed: {
     ...mapGetters(['permissions']),
     permissionList() {
       return {
-        addBtn: this.vaildData(this.permissions.sys_social_details_add, false),
-        delBtn: this.vaildData(this.permissions.sys_social_details_del, false),
-        editBtn: this.vaildData(this.permissions.sys_social_details_edit, false)
+        addBtn: this.vaildData(this.permissions.generator_paygoodsorder_add, false),
+        delBtn: this.vaildData(this.permissions.generator_paygoodsorder_del, false),
+        editBtn: this.vaildData(this.permissions.generator_paygoodsorder_edit, false)
       }
     }
   },
@@ -78,75 +73,67 @@ export default {
         this.tableData = response.data.data.records
         this.page.total = response.data.data.total
         this.tableLoading = false
+      }).catch(() => {
+        this.tableLoading = false
       })
     },
     rowDel: function(row, index) {
       var _this = this
-      this.$confirm('是否确认删除ID为' + row.id, '提示', {
+      this.$confirm('是否确认删除ID为' + row.goodsOrderId, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(function() {
-        return delObj(row.id)
-      }).then(() => {
+        return delObj(row.goodsOrderId)
+      }).then(data => {
         _this.tableData.splice(index, 1)
         _this.$message({
           showClose: true,
           message: '删除成功',
           type: 'success'
         })
-        this.refreshChange()
-      }).catch(function() {
+        this.getList(this.page)
       })
     },
-    /**
-       * @title 数据更新
-       * @param row 为当前的数据
-       * @param index 为当前更新数据的行数
-       * @param done 为表单关闭函数
-       *
-       **/
-    handleUpdate: function(row, index, done) {
-      putObj(row).then(() => {
+    handleUpdate: function(row, index, done, loading) {
+      putObj(row).then(data => {
         this.tableData.splice(index, 1, Object.assign({}, row))
         this.$message({
           showClose: true,
           message: '修改成功',
           type: 'success'
         })
-        this.refreshChange()
         done()
+        this.getList(this.page)
+      }).catch(() => {
+        loading()
       })
     },
-    /**
-       * @title 数据添加
-       * @param row 为当前的数据
-       * @param done 为表单关闭函数
-       *
-       **/
-    handleSave: function(row, done) {
-      addObj(row).then(() => {
+    handleSave: function(row, done, loading) {
+      addObj(row).then(data => {
         this.tableData.push(Object.assign({}, row))
         this.$message({
           showClose: true,
           message: '添加成功',
           type: 'success'
         })
-        this.refreshChange()
         done()
+        this.getList(this.page)
+      }).catch(() => {
+        loading()
       })
+    },
+    /**
+       * 搜索回调
+       */
+    searchChange(form) {
+      this.getList(this.page, this.filterForm(form))
     },
     /**
        * 刷新回调
        */
     refreshChange() {
       this.getList(this.page)
-    },
-    /**
-       * 搜索回调
-       */
-    searchChange(form) {
-      this.getList(this.page, form)
     }
   }
 }
@@ -154,4 +141,3 @@ export default {
 
 <style lang="scss" scoped>
 </style>
-

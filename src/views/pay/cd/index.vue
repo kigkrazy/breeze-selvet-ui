@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       amount: '1',
-      msg: 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=0.01',
+      msg: 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=1',
       options: {
         size: 300
       }

@@ -53,6 +53,7 @@
                 v-if="sys_user_add"
                 class="filter-item"
                 type="primary"
+                size="mini"
                 icon="el-icon-edit"
                 @click="handleCreate">添加
               </el-button>
@@ -87,12 +88,14 @@
               <el-button
                 v-if="sys_user_edit"
                 type="text"
+                size="mini"
                 icon="el-icon-edit"
                 @click="handleUpdate(scope.row,scope.index)">编辑
               </el-button>
               <el-button
                 v-if="sys_user_del"
                 type="text"
+                size="mini"
                 icon="el-icon-delete"
                 @click="deletes(scope.row,scope.index)">删除
               </el-button>

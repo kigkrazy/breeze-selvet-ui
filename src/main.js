@@ -26,12 +26,12 @@ Vue.use(vueJsonTreeView)
 Vue.use(VueAxios, axios)
 
 Vue.use(ElementUI,{
-  size: 'mini',
+  size: 'medium',
   menuType: 'text'
 })
 
 Vue.use(window.AVUE, {
-  size: 'mini',
+  size: 'medium',
   menuType: 'text'
 })
 

@@ -150,7 +150,7 @@ export default {
              * 搜索回调
              */
     searchChange(form) {
-      this.getList(this.page,form)
+      this.getList(this.page, this.filterForm(form))
     },
     /**
              * 刷新回调

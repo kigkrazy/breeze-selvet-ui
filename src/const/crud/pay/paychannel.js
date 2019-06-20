@@ -32,10 +32,13 @@ export const tableOption = {
       addDisplay: false
     },
     {
-      label: '内部商户号',
-      prop: 'mchId',
-      editDisabled: false,
-      addDisplay: false
+      label: 'appId',
+      prop: 'appId',
+      rules: [{
+        required: true,
+        message: '请输入应用标识',
+        trigger: 'blur'
+      }]
     },
     {
       label: '支付类型',
@@ -87,15 +90,21 @@ export const tableOption = {
       minRows: 4,
       row: true,
       span: 24,
-      overHidden: true
+      overHidden: true,
+      rules: [{
+        required: true,
+        message: '请输入支付参数',
+        trigger: 'blur'
+      }]
     },
     {
+      width: 150,
       label: '创建时间',
       prop: 'createTime',
       type: 'datetime',
       format: 'yyyy-MM-dd HH:mm',
-      valueFormat: 'timestamp',
-      editDisabled: true,
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
+      editDisplay: false,
       addDisplay: false
     }
   ]
