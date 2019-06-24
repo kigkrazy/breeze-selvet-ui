@@ -41,7 +41,6 @@ import tags from './tags'
 import top from './top/'
 import sidebar from './sidebar/'
 import admin from '@/util/admin'
-import { validatenull } from '@/util/validate'
 import { getStore } from '@/util/store.js'
 import SockJS from 'sockjs-client'
 import Stomp from 'stompjs'
@@ -100,7 +99,7 @@ export default {
           debug: true
         })
 
-        if (validatenull(token)) {
+        if (this.validatenull(token)) {
           return
         }
 

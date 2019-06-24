@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { validatenull } from '@/util/validate'
 import { mapGetters } from 'vuex'
 export default {
   name: 'TopLock',
@@ -61,7 +60,7 @@ export default {
       })
     },
     handleLock() {
-      if (validatenull(this.lockPasswd)) {
+      if (this.validatenull(this.lockPasswd)) {
         this.box = true
         return
       }

@@ -77,8 +77,8 @@
               </el-form-item>
               <el-form-item
                 label="节点ID"
-                prop="menuId"
-                v-if="form.menuId">
+                v-if="form.menuId"
+                prop="menuId">
                 <el-input
                   v-model="form.menuId"
                   :disabled="formEdit || formStatus === 'update'"
@@ -111,12 +111,12 @@
               </el-form-item>
               <el-form-item
                 v-if="form.type === '0'"
-                label="前端组件"
+                label="地址"
                 prop="component">
                 <el-input
-                  v-model="form.component"
+                  v-model="form.path"
                   :disabled="formEdit"
-                  placeholder="http://xx | views/xx/xx"/>
+                  placeholder="/xx/xxx || http://"/>
               </el-form-item>
               <el-form-item
                 v-if="form.type === '0'"
@@ -130,7 +130,7 @@
               </el-form-item>
               <el-form-item
                 v-if="form.type === '0'"
-                label="菜单排序"
+                label="排序"
                 prop="sort">
                 <el-input
                   v-model="form.sort"
@@ -141,7 +141,7 @@
               <el-form-item
                 v-if="form.type === '0'"
                 label="路由缓冲"
-                prop="keepAlive">
+                prop="type">
                 <el-switch
                   v-model="form.keepAlive"
                   :disabled="formEdit"
@@ -175,7 +175,6 @@
 <script>
   import {addObj, delObj, fetchMenuTree, getObj, putObj} from '@/api/admin/menu'
   import {mapGetters} from 'vuex'
-  import {validatenull} from '@/util/validate'
   import iconList from '@/const/iconList'
 
   export default {
@@ -222,30 +221,32 @@
           menuId: undefined,
           parentId: undefined,
           icon: undefined,
-          sort: 0,
+          sort: undefined,
           component: undefined,
           type: undefined,
-          path: undefined,
+          path: undefined
         },
         currentId: -1,
         menuManager_btn_add: false,
         menuManager_btn_edit: false,
         menuManager_btn_del: false,
         rules: {
-          name: [{required: true, message: '请输入标题', trigger: 'blur'}],
-          type: [{required: true, message: '请输入类型', trigger: 'blur'}],
-          component: [{validator: this.checkComponent, trigger: 'blur'}]
+          menuId: [{required: true, message: '节点ID不合法', trigger: 'blur'}],
+          name: [{required: true, message: '标题不合法', trigger: 'blur'}],
+          type: [{required: true, message: '类型不合法', trigger: 'blur'}],
+          path: [{validator: this.checkPath, trigger: 'blur'}]
         }
       }
+    },
+
+    computed: {
+      ...mapGetters(['elements', 'permissions'])
     },
     created() {
       this.getList()
       this.menuManager_btn_add = this.permissions['sys_menu_add']
       this.menuManager_btn_edit = this.permissions['sys_menu_edit']
       this.menuManager_btn_del = this.permissions['sys_menu_del']
-    },
-    computed: {
-      ...mapGetters(['elements', 'permissions'])
     },
     methods: {
       getList() {
@@ -303,6 +304,15 @@
         this.currentId = data.id
         this.showElement = true
       },
+      checkPath(rule, value, callback) {
+        if (this.form.type === '1') {
+          callback()
+        } else if (this.validatenull(value)) {
+          callback(new Error('请输入前端组件'))
+        } else {
+          callback()
+        }
+      },
       handlerEdit() {
         if (this.form.menuId) {
           this.formEdit = false
@@ -313,15 +323,6 @@
         this.resetForm()
         this.formEdit = false
         this.formStatus = 'create'
-      },
-      checkComponent(rule, value, callback) {
-        if (this.form.type === '1') {
-          callback()
-        } else if (validatenull(value)) {
-          callback(new Error('请输入前端组件'))
-        } else if (value.startsWith('/') || value.endsWith("/")) {
-          callback(new Error('组件不能以/开头或结尾'))
-        }
       },
       handleDelete() {
         this.$confirm('此操作将永久删除, 是否继续?', '提示', {
@@ -385,7 +386,7 @@
           menuId: undefined,
           parentId: this.currentId,
           icon: undefined,
-          sort: 0,
+          sort: undefined,
           component: undefined,
           type: undefined,
           path: undefined

@@ -28,7 +28,6 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { validatenull } from '@/util/validate'
 import { option, list } from '@/const/setting/'
 export default {
   data() {
@@ -72,7 +71,7 @@ export default {
     },
     init() {
       this.list.forEach(ele => {
-        this.form[ele.key] = validatenull(this[ele.key]) ? 'true' : this[ele.key] + ''
+        this.form[ele.key] = this.validatenull(this[ele.key]) ? 'true' : this[ele.key] + ''
         this.set(ele.key)
       })
     },
