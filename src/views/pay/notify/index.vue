@@ -133,7 +133,7 @@ export default {
       })
     },
     searchChange(form) {
-      this.getList(this.page, this.filterForm(form))
+      this.getList(this.page, form)
     },
     refreshChange() {
       this.getList(this.page)
