@@ -139,16 +139,7 @@
               </el-form-item>
               <el-form-item
                 v-if="form.type === '0'"
-                label="前端组件"
-                prop="component">
-                <el-input
-                  v-model="form.component"
-                  :disabled="formEdit"
-                  placeholder="请输入描述"/>
-              </el-form-item>
-              <el-form-item
-                v-if="form.type === '0'"
-                label="前端地址"
+                label="地址"
                 prop="component">
                 <el-input
                   v-model="form.path"
@@ -254,14 +245,15 @@ export default {
       }
     }
   },
+
+  computed: {
+    ...mapGetters(['elements', 'permissions'])
+  },
   created() {
     this.getList()
     this.menuManager_btn_add = this.permissions['sys_menu_add']
     this.menuManager_btn_edit = this.permissions['sys_menu_edit']
     this.menuManager_btn_del = this.permissions['sys_menu_del']
-  },
-  computed: {
-    ...mapGetters(['elements', 'permissions'])
   },
   methods: {
     getList() {

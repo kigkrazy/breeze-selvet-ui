@@ -5,7 +5,9 @@ const RouterPlugin = function() {
 RouterPlugin.install = function(router, store) {
   this.$router = router
   this.$store = store
-
+  function isURL(s) {
+    return /^http[s]?:\/\/.*/.test(s)
+  }
   function objToform(obj) {
     const result = []
     Object.keys(obj).forEach(ele => {
@@ -74,14 +76,17 @@ RouterPlugin.install = function(router, store) {
         const oMenu = aMenu[i]
         if (this.routerList.includes(oMenu[propsDefault.path])) return
         const path = (() => {
-          if (first) {
+          if (!oMenu[propsDefault.path]) {
+            return
+          } else if (first) {
             return oMenu[propsDefault.path].replace('/index', '')
           } else {
             return oMenu[propsDefault.path]
           }
         })()
 
-        const component = oMenu.component
+        //特殊处理组件
+        const component = 'views' + oMenu.path
 
         const name = oMenu[propsDefault.label]
 
@@ -113,13 +118,13 @@ RouterPlugin.install = function(router, store) {
           icon: icon,
           meta: meta,
           redirect: (() => {
-            if (!isChild && first) return `${path}/index`
+            if (!isChild && first && !isURL(path)) return `${path}/index`
             else return ''
           })(),
           // 处理是否为一级路由
           children: !isChild ? (() => {
             if (first) {
-              oMenu[propsDefault.path] = `${path}/index`
+              if (!isURL(path)) oMenu[propsDefault.path] = `${path}/index`
               return [{
                 component(resolve) { require([`../${component}.vue`], resolve) },
                 icon: icon,

@@ -1,29 +1,30 @@
 import { getStore, setStore } from '@/util/store'
-import { isURL } from '@/util/validate'
+import { isURL, validatenull } from '@/util/validate'
 import { getUserInfo, loginByMobile, loginBySocial, loginByUsername, logout, refreshToken } from '@/api/login'
 import { deepClone, encryption } from '@/util/util'
 import webiste from '@/const/website'
 import { GetMenu } from '@/api/admin/menu'
 
 function addPath(ele, first) {
-  const propsConfig = webiste.menu.props
+  const menu = webiste.menu
+  const propsConfig = menu.props
   const propsDefault = {
-    label: propsConfig.label || 'label',
+    label: propsConfig.label || 'name',
     path: propsConfig.path || 'path',
     icon: propsConfig.icon || 'icon',
     children: propsConfig.children || 'children'
   }
+  const icon = ele[propsDefault.icon]
+  ele[propsDefault.icon] = validatenull(icon) ? menu.iconDefault : icon
   const isChild = ele[propsDefault.children] && ele[propsDefault.children].length !== 0
-  if (!isChild && first) {
+  if (!isChild) ele[propsDefault.children] = []
+  if (!isChild && first && !isURL(ele[propsDefault.path])) {
     ele[propsDefault.path] = ele[propsDefault.path] + '/index'
-    return
+  } else {
+    ele[propsDefault.children].forEach(child => {
+      addPath(child)
+    })
   }
-  ele[propsDefault.children].forEach(child => {
-    if (!isURL(child[propsDefault.path])) {
-      child[propsDefault.path] = `${ele[propsDefault.path]}/${child[propsDefault.path] ? child[propsDefault.path] : 'index'}`
-    }
-    addPath(child)
-  })
 }
 
 const user = {
