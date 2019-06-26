@@ -22,47 +22,53 @@ export const tableOption = {
   stripe: true,
   menuAlign: 'center',
   align: 'center',
-  viewBtn:true,
+  viewBtn:false,
+  editBtn:false,
+  addBtn: false,
   column: [
-	  /*{
+	  {
       label: '编号',
-      prop: 'id'
-    },*/
+      prop: 'id',
+      hide: true
+    },
+    {
+      label: '空间',
+      prop: 'bucketName',
+      overHidden:true
+    },
 	  {
       label: '文件名',
-      prop: 'name'
+      prop: 'name',
+      overHidden:true,
+      search: true
     },
-	  /*{
-      label: '保存路径',
-      prop: 'path'
-    },
-	  {
-      label: '绝对路径',
-      prop: 'absolutePath'
-    },
-	  {
-      label: '上传服务器前缀地址',
-      prop: 'prefix'
-    },*/
 	  {
       label: '原文件名',
-      prop: 'original'
-    },
-	  {
-      label: '后缀名',
-      prop: 'suffix'
+      prop: 'original',
+      overHidden:true
     },
 	  {
       label: '文件类型',
       prop: 'type'
     },
-	  /*{
+	  {
       label: '文件大小',
       prop: 'fileSize'
-    },*/
-	  {
-      label: '显示大小',
-      prop: 'displaySize'
     },
+    {
+      label: '上传人',
+      prop: 'createUser'
+    },
+    {
+      width: 180,
+      label: '创建时间',
+      prop: 'createTime',
+      type: 'datetime',
+      format: 'yyyy-MM-dd HH:mm',
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
+      editDisabled: true,
+      addDisplay: false,
+      span: 24
+    }
   ]
 }

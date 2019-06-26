@@ -26,18 +26,29 @@
                  @on-load="getList"
                  @search-change="searchChange"
                  @refresh-change="refreshChange"
-                 @row-update="handleUpdate"
-                 @row-save="handleSave"
                  @row-del="rowDel">
+        <template
+          slot="menu"
+          slot-scope="scope">
+          <el-button
+            type="text"
+            size="mini"
+            icon="el-icon-download"
+            @click="download(scope.row,scope.index)">下载
+          </el-button>
+        </template>
+
       </avue-crud>
     </basic-container>
   </div>
 </template>
 
 <script>
-  import { addObj, delObj, fetchList, putObj } from '@/api/admin/sys-file'
-  import { tableOption } from '@/const/crud/admin/sys-file'
-  import { mapGetters } from 'vuex'
+  import {delObj, fetchList} from '@/api/admin/sys-file'
+  import {tableOption} from '@/const/crud/admin/sys-file'
+  import {mapGetters} from 'vuex'
+  import {handleDown} from '@/util/util'
+
 
   export default {
     name: 'sys-file',
@@ -55,14 +66,14 @@
     },
     created() {
     },
-    mounted: function() {
+    mounted: function () {
     },
     computed: {
       ...mapGetters(['permissions']),
       permissionList() {
         return {
           addBtn: this.vaildData(this.permissions.sys_file_add, false),
-          delBtn: this.vaildData(this.permissions.sys_file_del, false),
+          delBtn: this.vaildData(this.permissions.sys_file_del, true),
           editBtn: this.vaildData(this.permissions.sys_file_edit, false)
         }
       }
@@ -71,6 +82,7 @@
       getList(page, params) {
         this.tableLoading = true
         fetchList(Object.assign({
+          descs: 'create_time',
           current: page.currentPage,
           size: page.pageSize
         }, params)).then(response => {
@@ -81,13 +93,13 @@
           this.tableLoading = false
         })
       },
-      rowDel: function(row, index) {
+      rowDel: function (row, index) {
         var _this = this
         this.$confirm('是否确认删除ID为' + row.id, '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
-        }).then(function() {
+        }).then(function () {
           return delObj(row.id)
         }).then(data => {
           _this.tableData.splice(index, 1)
@@ -97,47 +109,6 @@
             type: 'success'
           })
           this.getList(this.page)
-        })
-      },
-      /**
-       * @title 数据更新
-       * @param row 为当前的数据
-       * @param index 为当前更新数据的行数
-       * @param done 为表单关闭函数
-       *
-       **/
-      handleUpdate: function(row, index, done, loading) {
-        putObj(row).then(data => {
-          this.tableData.splice(index, 1, Object.assign({}, row))
-          this.$message({
-            showClose: true,
-            message: '修改成功',
-            type: 'success'
-          })
-          done()
-          this.getList(this.page)
-        }).catch(() => {
-          loading()
-        })
-      },
-      /**
-       * @title 数据添加
-       * @param row 为当前的数据
-       * @param done 为表单关闭函数
-       *
-       **/
-      handleSave: function(row, done, loading) {
-        addObj(row).then(data => {
-          this.tableData.push(Object.assign({}, row))
-          this.$message({
-            showClose: true,
-            message: '添加成功',
-            type: 'success'
-          })
-          done()
-          this.getList(this.page)
-        }).catch(() => {
-          loading()
         })
       },
       /**
@@ -151,6 +122,9 @@
        */
       refreshChange() {
         this.getList(this.page)
+      },
+      download: function (row, index) {
+        handleDown(row.name,row.bucketName)
       }
     }
   }

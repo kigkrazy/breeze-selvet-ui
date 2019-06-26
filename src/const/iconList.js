@@ -36,7 +36,8 @@ export default [
       'icon-dingdan',
       'icon-tuikuan',
       'icon-webicon14',
-      'icon-shouyintai'
+      'icon-shouyintai',
+      'icon-wenjianguanli'
     ]
   }
 ]
