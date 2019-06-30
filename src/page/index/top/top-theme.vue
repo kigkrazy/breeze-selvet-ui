@@ -65,14 +65,14 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapGetters(['themeName'])
+  },
   watch: {
     text: function(val) {
       this.$store.commit('SET_THEME_NAME', val)
       setTheme(val)
     }
-  },
-  computed: {
-    ...mapGetters(['themeName'])
   },
   mounted() {
     this.text = this.themeName

@@ -32,7 +32,6 @@ export default {
   computed: {
     ...mapGetters(['logsFlag', 'logsLen'])
   },
-  props: [],
   methods: {
     handleOpen() {
       this.box = true

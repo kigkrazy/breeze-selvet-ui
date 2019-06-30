@@ -49,7 +49,6 @@ export default {
   computed: {
     ...mapGetters(['lockPasswd'])
   },
-  props: [],
   methods: {
     handleSetLock() {
       this.$refs['form'].validate(valid => {

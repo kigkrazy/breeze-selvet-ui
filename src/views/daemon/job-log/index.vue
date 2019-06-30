@@ -12,7 +12,7 @@
         @search-change="handleFilter"
         @search-reset="handleSearchReset">
         <template slot-scope="scope" slot="jobLogStatus">
-          <div v-if="scope.row.jobLogStatus == 0">
+          <div v-if="scope.row.jobLogStatus === '0'">
             <el-tag type="success">{{ getDicNameJobExecuteStatus(scope.row.jobLogStatus) }}</el-tag>
           </div>
           <div v-else>
@@ -101,7 +101,7 @@ export default {
     getDicNameCache(type) {
       remote(type).then(response => {
         const code = response.data.code
-        if (code == 0) {
+        if (code === 0) {
           const _data = response.data.data
           this.JobExecuteStatusDicCache = _data
         }
@@ -113,7 +113,7 @@ export default {
     getDicNameJobExecuteStatus(value) {
       let re = ''
       this.JobExecuteStatusDicCache.forEach(obj => {
-        if (obj.value == value) {
+        if (obj.value === value) {
           re = obj.label
           return
         }

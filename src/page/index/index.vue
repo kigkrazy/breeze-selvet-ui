@@ -77,7 +77,6 @@ export default {
     this.initWebSocket()
   },
   computed: mapGetters(['userInfo', 'isLock', 'isCollapse', 'website', 'expires_in']),
-  props: [],
   methods: {
     showCollapse() {
       this.$store.commit('SET_COLLAPSE')
@@ -138,7 +137,7 @@ export default {
       this.socket = new SockJS('/act/ws')// 连接服务端提供的通信接口，连接以后才可以订阅广播消息和个人消息
       // 获取STOMP子协议的客户端对象
       this.stompClient = Stomp.over(this.socket)
-      this.stompClient.debug=null
+      this.stompClient.debug = null
       // 向服务器发起websocket连接
       this.stompClient.connect(headers, () => {
         this.stompClient.subscribe('/task/' + this.userInfo.username + '-' + TENANT_ID + '/remind', (msg) => { // 订阅服务端提供的某个topic;

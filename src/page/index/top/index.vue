@@ -71,7 +71,7 @@
         </div>
       </el-tooltip>
       <el-tooltip
-        v-if="this.userInfo.avatar"
+        v-if="userInfo.avatar"
         effect="dark"
         content="用户头像"
         placement="bottom">
@@ -131,12 +131,6 @@ export default {
   data() {
     return {}
   },
-  created() {
-    handleImg(this.userInfo.avatar, 'thumbnail')
-  },
-  mounted() {
-    listenfullscreen(this.setScreen)
-  },
   computed: {
     ...mapState({
       showDebug: state => state.common.showDebug,
@@ -158,6 +152,12 @@ export default {
       'logsLen',
       'logsFlag'
     ])
+  },
+  created() {
+    handleImg(this.userInfo.avatar, 'thumbnail')
+  },
+  mounted() {
+    listenfullscreen(this.setScreen)
   },
   methods: {
     handleScreen() {

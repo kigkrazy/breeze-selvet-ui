@@ -47,7 +47,6 @@ export default {
     }),
     ...mapGetters(['tag', 'lockPasswd'])
   },
-  props: [],
   methods: {
     handleLogout() {
       this.$confirm('是否退出系统, 是否继续?', '提示', {

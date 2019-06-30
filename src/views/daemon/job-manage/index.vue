@@ -15,18 +15,18 @@
         @search-change="handleFilter"
         @search-reset="handleSearchReset">
         <template slot-scope="scope" slot="jobStatus">
-          <div v-if="scope.row.jobStatus == 1">
+          <div v-if="scope.row.jobStatus === '1'">
             <el-tag type="info">{{ getDicNameJobStatus(scope.row.jobStatus) }}</el-tag>
           </div>
-          <div v-else-if="scope.row.jobStatus == 2">
+          <div v-else-if="scope.row.jobStatus === '2'">
             <el-tag type="success">{{ getDicNameJobStatus(scope.row.jobStatus) }}</el-tag>
           </div>
-          <div v-else-if="scope.row.jobStatus == 3">
+          <div v-else-if="scope.row.jobStatus === '3'">
             <el-tag type="danger">{{ getDicNameJobStatus(scope.row.jobStatus) }}</el-tag>
           </div>
         </template>
         <template slot-scope="scope" slot="jobExecuteStatus">
-          <div v-if="scope.row.jobExecuteStatus == 0">
+          <div v-if="scope.row.jobExecuteStatus === '0'">
             <el-tag type="success">{{ getDicNameJobExecuteStatus(scope.row.jobExecuteStatus) }}</el-tag>
           </div>
           <div v-else>
@@ -173,12 +173,12 @@ export default {
       JobStatusDicCache: []
     }
   },
+  computed: {
+    ...mapGetters(['permissions'])
+  },
   mounted: function() {
     this.getDicJobExecuteStatusCache('job_execute_status')// 获取定时任务运行时状态
     this.getDicJobStatusCache('job_status')// 获取定时任务状态
-  },
-  computed: {
-    ...mapGetters(['permissions'])
   },
   methods: {
     changeCron(val) {
@@ -227,7 +227,7 @@ export default {
        */
     handleStartJob(row) {
       const jobStatus = row.jobStatus
-      if (jobStatus == '1' || jobStatus == '3') {
+      if (jobStatus === '1' || jobStatus === '3') {
         this.$confirm(
           '即将发布或启动(任务名称:' + row.jobName + '), 是否继续?',
           '提示',
@@ -239,7 +239,7 @@ export default {
         ).then(() => {
           startJobRa(row.jobId).then(response => {
             const code = response.data.code
-            if (code == '0') {
+            if (code === 0) {
               this.$notify({
                 title: '成功',
                 message: '启动成功',
@@ -272,7 +272,7 @@ export default {
        */
     handleUpdate(row, index) {
       const jobStatus = row.jobStatus
-      if (jobStatus == '1' || jobStatus == '3') {
+      if (jobStatus === '1' || jobStatus === '3') {
         this.$refs.crud.rowEdit(row, index)
       } else {
         this.$notify.error({
@@ -286,7 +286,7 @@ export default {
        */
     handleShutDownJob(row) {
       const jobStatus = row.jobStatus
-      if (jobStatus == '2') {
+      if (jobStatus === '2') {
         this.$confirm(
           '即将暂停(任务名称:' + row.jobName + '), 是否继续?',
           '提示',
@@ -298,7 +298,7 @@ export default {
         ).then(() => {
           shutDownJobRa(row.jobId).then(response => {
             const code = response.data.code
-            if (code == '0') {
+            if (code === 0) {
               this.getList(this.page)
               this.$notify({
                 title: '成功',
@@ -367,7 +367,7 @@ export default {
         shutdownJobsRa().then(response => {
           const code = response.data.code
           const msg = response.data.msg
-          if (code == '0') {
+          if (code === 0) {
             this.getList(this.page)
             this.$notify({
               title: '成功',
@@ -404,7 +404,7 @@ export default {
       ).then(() => {
         startJobsRa().then(response => {
           const code = response.data.code
-          if (code == '0') {
+          if (code === 0) {
             this.getList(this.page)
             this.$notify({
               title: '成功',
@@ -441,7 +441,7 @@ export default {
       ).then(() => {
         refreshJobsRa().then(response => {
           const code = response.data.code
-          if (code == '0') {
+          if (code === 0) {
             this.getList(this.page)
             this.$notify({
               title: '成功',
@@ -473,7 +473,7 @@ export default {
         'jobGroup': row.jobGroup
       }).then(response => {
         const result = response.data.data
-        if (result != 0) {
+        if (result !== 0) {
           this.$notify.error({
             title: '错误',
             message: '任务名称与任务组重复，请确认后重新添加'
@@ -517,7 +517,7 @@ export default {
        */
     handleDelete(row) {
       const jobStatus = row.jobStatus
-      if (jobStatus == '1' || jobStatus == '3') {
+      if (jobStatus === '1' || jobStatus === '3') {
         this.$confirm('是否确认删除(任务名称:' + row.jobName + '), 是否继续?删除后不可恢复', '警告', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -548,7 +548,7 @@ export default {
     getDicJobExecuteStatusCache(type) {
       remote(type).then(response => {
         const code = response.data.code
-        if (code == 0) {
+        if (code === 0) {
           const _data = response.data.data
           this.JobExecuteStatusDicCache = _data
         }
@@ -560,7 +560,7 @@ export default {
     getDicJobStatusCache(type) {
       remote(type).then(response => {
         const code = response.data.code
-        if (code == 0) {
+        if (code === 0) {
           const _data = response.data.data
           this.JobStatusDicCache = _data
         }
@@ -572,7 +572,7 @@ export default {
     getDicNameJobExecuteStatus(value) {
       let re = ''
       this.JobExecuteStatusDicCache.forEach(obj => {
-        if (obj.value == value) {
+        if (obj.value === value) {
           re = obj.label
           return
         }
@@ -585,7 +585,7 @@ export default {
     getDicNameJobStatus(value) {
       let re = ''
       this.JobStatusDicCache.forEach(obj => {
-        if (obj.value == value) {
+        if (obj.value === value) {
           re = obj.label
           return
         }

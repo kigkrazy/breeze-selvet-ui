@@ -113,7 +113,6 @@
     computed: {
       ...mapGetters(['website', 'tagWel'])
     },
-    props: [],
     methods: {
       handleCommand(command) {
         setStore({name: 'tenantId', content: command})

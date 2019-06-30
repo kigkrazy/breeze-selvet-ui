@@ -90,7 +90,6 @@ export default {
   computed: {
     ...mapGetters(['tagWel'])
   },
-  props: [],
   methods: {
     handleSend() {
       if (this.msgKey) return

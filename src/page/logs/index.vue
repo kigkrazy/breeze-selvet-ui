@@ -48,7 +48,6 @@ export default {
   computed: {
     ...mapGetters(['logsList'])
   },
-  props: [],
   methods: {
     send() {
       this.$confirm('确定上传本地日志到服务器?', '提示', {
