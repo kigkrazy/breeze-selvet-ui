@@ -85,10 +85,10 @@
           <i class="el-icon-arrow-down el-icon--right"/>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>
+          <el-dropdown-item divided>
             <router-link to="/">首页</router-link>
           </el-dropdown-item>
-          <el-dropdown-item>
+          <el-dropdown-item divided>
             <router-link to="/info/index">个人信息</router-link>
           </el-dropdown-item>
           <el-dropdown-item
