@@ -67,6 +67,7 @@ export default {
     getList(page, params) {
       this.tableLoading = true
       fetchList(Object.assign({
+        descs: 'create_time',
         current: page.currentPage,
         size: page.pageSize
       }, params)).then(response => {

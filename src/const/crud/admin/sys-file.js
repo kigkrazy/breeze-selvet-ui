@@ -38,7 +38,7 @@ export const tableOption = {
     },
 	  {
       label: '文件名',
-      prop: 'name',
+      prop: 'fileName',
       overHidden:true,
       search: true
     },

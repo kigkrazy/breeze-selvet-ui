@@ -242,7 +242,7 @@ export default {
         url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ-BIND&client_id=' + client_id + '&redirect_uri=' + redirect_uri
       } else if (thirdpart === 'gitee') {
         client_id = '8fc54e0e76e7842cf767c3ae3b9fdc48c03cefed27aa565ff7b2a39d142d9892'
-        url = 'https://gitee.com/oauth/authorize?response_type=code&state=GITEE--BIND&client_id=' + client_id + '&redirect_uri=' + redirect_uri
+        url = 'https://gitee.com/oauth/authorize?response_type=code&state=GITEE-BIND&client_id=' + client_id + '&redirect_uri=' + redirect_uri
       } else if (thirdpart === 'osc') {
         client_id = 'neIIqlwGsjsfsA6uxNqD'
         url = 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=' + client_id + '&state=OSC-BIND&redirect_uri=' + redirect_uri

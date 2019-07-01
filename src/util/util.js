@@ -1,4 +1,4 @@
-import {validatenull} from './validate'
+import { validatenull } from './validate'
 import request from '@/router/axios'
 import * as CryptoJS from 'crypto-js'
 
@@ -150,16 +150,16 @@ export const listenfullscreen = (callback) => {
     callback()
   }
 
-  document.addEventListener('fullscreenchange', function () {
+  document.addEventListener('fullscreenchange', function() {
     listen()
   })
-  document.addEventListener('mozfullscreenchange', function () {
+  document.addEventListener('mozfullscreenchange', function() {
     listen()
   })
-  document.addEventListener('webkitfullscreenchange', function () {
+  document.addEventListener('webkitfullscreenchange', function() {
     listen()
   })
-  document.addEventListener('msfullscreenchange', function () {
+  document.addEventListener('msfullscreenchange', function() {
     listen()
   })
 }
@@ -321,7 +321,7 @@ export function handleImg(fileName, id) {
     const blob = response.data
     const img = document.getElementById(id)
     img.src = URL.createObjectURL(blob)
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       window.URL.revokeObjectURL(blob)
     }, 0)
   })
@@ -339,9 +339,27 @@ export function handleDown(filename, bucket) {
     link.download = filename
     document.body.appendChild(link)
     link.click()
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       URL.revokeObjectURL(blob)
       document.body.removeChild(link)
     }, 0)
   })
+}
+
+export function getQueryString(url, paraName) {
+  const arrObj = url.split('?')
+  if (arrObj.length > 1) {
+    const arrPara = arrObj[1].split('&')
+    let arr
+    for (let i = 0; i < arrPara.length; i++) {
+      arr = arrPara[i].split('=')
+      // eslint-disable-next-line eqeqeq
+      if (arr != null && arr[0] == paraName) {
+        return arr[1]
+      }
+    }
+    return ''
+  } else {
+    return ''
+  }
 }
