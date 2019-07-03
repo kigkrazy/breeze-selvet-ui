@@ -164,7 +164,6 @@ export default {
        **/
     handleUpdate: function(row, index, done) {
       putObj(row).then(() => {
-        this.tableData.splice(index, 1, Object.assign({}, row))
         this.$message({
           showClose: true,
           message: '修改成功',
@@ -182,7 +181,6 @@ export default {
        **/
     handleSave: function(row, done) {
       addObj(row).then(() => {
-        this.tableData.push(Object.assign({}, row))
         this.$message({
           showClose: true,
           message: '添加成功',
@@ -194,19 +192,17 @@ export default {
     },
     handleItemSave: function(row, done) {
       addItemObj(row).then(() => {
-        this.tableDictItemData.push(Object.assign({}, row))
         this.$message({
           showClose: true,
           message: '添加成功',
           type: 'success'
         })
-        this.getList(this.page)
+        this.getDictItemList(row.dictId, row.type)
         done()
       })
     },
     handleItemUpdate: function(row, index, done) {
       putItemObj(row).then(() => {
-        this.tableData.splice(index, 1, Object.assign({}, row))
         this.$message({
           showClose: true,
           message: '修改成功',

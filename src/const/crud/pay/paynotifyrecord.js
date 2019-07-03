@@ -22,46 +22,45 @@ export const tableOption = {
   stripe: true,
   menuAlign: 'center',
   align: 'center',
+  viewBtn: true,
   column: [
     {
       label: 'ID',
-      prop: 'id'
+      prop: 'id',
+      hide: true,
+      editDisabled: true,
+      addDisplay: false
     },
     {
       label: '响应ID',
       prop: 'notifyId'
     },
     {
-      label: '请求报文',
-      prop: 'request'
+      label: '订单号',
+      prop: 'orderNo',
+      search: true
+    },
+    {
+      label: '回调报文',
+      prop: 'request',
+      overHidden: true,
+      type: 'textarea',
+      span: 24,
+      minRows: 5
     },
     {
       label: '响应报文',
       prop: 'response'
     },
     {
-      label: '系统订单号',
-      prop: 'orderNo'
-    },
-    {
-      label: 'http状态',
-      prop: 'httpStatus'
-    },
-    {
-      label: '删除标记',
-      prop: 'delFlag'
-    },
-    {
       label: '创建时间',
-      prop: 'createTime'
-    },
-    {
-      label: '更新时间',
-      prop: 'updateTime'
-    },
-    {
-      label: '租户ID',
-      prop: 'tenantId'
+      prop: 'createTime',
+      type: 'datetime',
+      format: 'yyyy-MM-dd HH:mm:ss',
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
+      editDisplay: false,
+      overHidden: true,
+      addDisplay: false
     }
   ]
 }

@@ -21,11 +21,15 @@ export const tableOption = {
   indexLabel: '序号',
   stripe: true,
   menuAlign: 'center',
+  viewBtn: true,
   align: 'center',
   column: [
     {
-      label: '商品订单ID',
-      prop: 'goodsOrderId'
+      label: 'ID',
+      prop: 'goodsOrderId',
+      hide: true,
+      editDisabled: true,
+      addDisplay: false
     },
     {
       label: '商品ID',
@@ -36,36 +40,38 @@ export const tableOption = {
       prop: 'goodsName'
     },
     {
-      label: '金额,单位元',
+      label: '金额/元',
       prop: 'amount'
     },
     {
       label: '用户ID',
-      prop: 'userId'
+      prop: 'userId',
+      hide: true,
+      editDisabled: true,
+      addDisplay: false
     },
     {
-      label: '订单状态,订单生成(0),支付成功(1),处理完成(2),处理失败(-1)',
-      prop: 'status'
+      label: '订单状态',
+      prop: 'status',
+      type: 'select',
+      search: true,
+      dicUrl: '/admin/dict/type/order_status'
     },
     {
       label: '支付订单号',
-      prop: 'payOrderId'
-    },
-    {
-      label: '0-正常,1-删除',
-      prop: 'delFlag'
+      prop: 'payOrderId',
+      overHidden: true,
+      search: true
     },
     {
       label: '创建时间',
-      prop: 'createTime'
-    },
-    {
-      label: '更新时间',
-      prop: 'updateTime'
-    },
-    {
-      label: '租户ID',
-      prop: 'tenantId'
+      prop: 'createTime',
+      type: 'datetime',
+      format: 'yyyy-MM-dd HH:mm:ss',
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
+      editDisplay: false,
+      overHidden: true,
+      addDisplay: false
     }
   ]
 }

@@ -24,104 +24,82 @@ export const tableOption = {
   align: 'center',
   column: [
     {
-      label: '支付订单号',
-      prop: 'orderId'
+      label: '订单号',
+      prop: 'orderId',
+      overHidden: true,
+      width: 150
     },
     {
       label: '渠道ID',
-      prop: 'channelId'
+      prop: 'channelId',
+      width: 120
     },
     {
-      label: '支付金额,单位分',
+      label: '渠道商户',
+      prop: 'channelMchId',
+      width: 120
+    },
+    {
+      label: '渠道订单号',
+      prop: 'channelOrderNo',
+      width: 150,
+    },
+    {
+      label: '商品描述',
+      prop: 'body',
+      overHidden:true
+    },
+    {
+      label: '金额',
       prop: 'amount'
     },
     {
-      label: '三位货币代码,人民币:cny',
+      label: '币种',
       prop: 'currency'
     },
     {
-      label: '支付状态,0-订单生成,1-支付中(目前未使用),2-支付成功,3-业务处理完成',
-      prop: 'status'
+      label: '支付状态',
+      prop: 'status',
+      type: 'select',
+      search: true,
+      dicUrl: '/admin/dict/type/order_status'
     },
     {
       label: '客户端IP',
-      prop: 'clientIp'
-    },
-    {
-      label: '设备',
-      prop: 'device'
+      prop: 'clientIp',
+      width: 120,
     },
     {
       label: '商品标题',
       prop: 'subject'
     },
     {
-      label: '商品描述信息',
-      prop: 'body'
-    },
-    {
-      label: '特定渠道发起时额外参数',
-      prop: 'extra'
-    },
-    {
-      label: '渠道商户ID',
-      prop: 'channelMchId'
-    },
-    {
-      label: '渠道订单号',
-      prop: 'channelOrderNo'
-    },
-    {
-      label: '渠道支付错误码',
+      label: '错误码',
       prop: 'errCode'
     },
     {
-      label: '渠道支付错误描述',
+      label: '错误描述',
       prop: 'errMsg'
     },
     {
-      label: '扩展参数1',
-      prop: 'param1'
-    },
-    {
-      label: '扩展参数2',
-      prop: 'param2'
-    },
-    {
-      label: '通知地址',
-      prop: 'notifyUrl'
-    },
-    {
-      label: '通知次数',
-      prop: 'notifyCount'
-    },
-    {
-      label: '最后一次通知时间',
-      prop: 'lastNotifyTime'
-    },
-    {
-      label: '订单失效时间',
+      label: '失效时间',
       prop: 'expireTime'
     },
     {
-      label: '订单支付成功时间',
-      prop: 'paySuccTime'
+      label: '成功时间',
+      prop: 'paySuccTime',
+      width: 150
     },
     {
       label: '创建时间',
-      prop: 'createTime'
-    },
-    {
-      label: '更新时间',
-      prop: 'updateTime'
-    },
-    {
-      label: '删除标记',
-      prop: 'delFlaag'
-    },
-    {
-      label: '租户ID',
-      prop: 'tenantId'
+      width: 150,
+      prop: 'createTime',
+      type: 'datetime',
+      format: 'yyyy-MM-dd HH:mm:ss',
+      valueFormat: 'yyyy-MM-dd HH:mm:ss',
+      editDisplay: false,
+      overHidden: true,
+      addDisplay: false
     }
   ]
 }
