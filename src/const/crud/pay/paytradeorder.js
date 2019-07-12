@@ -40,14 +40,14 @@ export const tableOption = {
       width: 120
     },
     {
-      label: '渠道订单号',
+      label: '渠道订单',
       prop: 'channelOrderNo',
       width: 150,
     },
     {
       label: '商品描述',
       prop: 'body',
-      overHidden:true
+      overHidden: true
     },
     {
       label: '金额',
@@ -68,22 +68,6 @@ export const tableOption = {
       label: '客户端IP',
       prop: 'clientIp',
       width: 120,
-    },
-    {
-      label: '商品标题',
-      prop: 'subject'
-    },
-    {
-      label: '错误码',
-      prop: 'errCode'
-    },
-    {
-      label: '错误描述',
-      prop: 'errMsg'
-    },
-    {
-      label: '失效时间',
-      prop: 'expireTime'
     },
     {
       label: '成功时间',

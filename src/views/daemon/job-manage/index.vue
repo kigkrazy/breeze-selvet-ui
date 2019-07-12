@@ -150,7 +150,7 @@ export default {
     return {
       form: {},
       cronPopover: false,
-      queryParams: [], // 全局检索条件
+      queryParams: {}, // 全局检索条件
       tableData: [],
       tableLogData: [],
       dialogFormVisible: false,
@@ -213,7 +213,7 @@ export default {
        * 清除全局检索条件
        */
     handleSearchReset() {
-      this.queryParams = []
+      this.queryParams = {}
     },
     /**
        * 定时任务检索查询分页查询

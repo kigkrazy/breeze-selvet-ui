@@ -42,7 +42,7 @@ export default {
   name: 'JobLog',
   data() {
     return {
-      queryParams: [], // 全局检索条件
+      queryParams: {}, // 全局检索条件
       tableData: [],
       page: {
         total: 0, // 总页数
@@ -80,7 +80,7 @@ export default {
        * 清除全局检索条件
        */
     handleSearchReset() {
-      this.queryParams = []
+      this.queryParams = {}
     },
     /**
        * 检索查询

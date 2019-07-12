@@ -43,6 +43,7 @@ export default {
   name: 'Tenant',
   data() {
     return {
+      searchForm: {},
       tableData: [],
       page: {
         total: 0, // 总页数
@@ -69,7 +70,7 @@ export default {
       fetchList(Object.assign({
         current: page.currentPage,
         size: page.pageSize
-      }, params)).then(response => {
+      }, params, this.searchForm)).then(response => {
         this.tableData = response.data.data.records
         this.page.total = response.data.data.total
         this.tableLoading = false
@@ -140,6 +141,7 @@ export default {
        * 搜索回调
        */
     searchChange(form) {
+      this.searchForm = form
       this.getList(this.page, form)
     },
     /**

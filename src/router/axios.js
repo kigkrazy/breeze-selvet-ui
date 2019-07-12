@@ -30,7 +30,7 @@ axios.interceptors.request.use(config => {
   if (TENANT_ID) {
     config.headers['TENANT-ID'] = TENANT_ID // 租户ID
   }
-  config.headers['VERSION'] = 'V1.2' // 租户ID
+
   // headers中配置serialize为true开启序列化
   if (config.method === 'post' && config.headers.serialize) {
     config.data = serialize(config.data)

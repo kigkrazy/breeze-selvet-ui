@@ -121,6 +121,7 @@ export default {
   name: 'TableRole',
   data() {
     return {
+      searchForm: {},
       tableOption: tableOption,
       dsScopeData: [],
       treeData: [],
@@ -164,7 +165,7 @@ export default {
       fetchList(Object.assign({
         current: page.currentPage,
         size: page.pageSize
-      }, params)).then(response => {
+      }, params, this.searchForm)).then(response => {
         this.list = response.data.data.records
         this.page.total = response.data.data.total
         this.listLoading = false
@@ -175,9 +176,9 @@ export default {
     handleRefreshChange() {
       this.getList(this.page)
     },
-    handleFilter(param) {
-      this.page.page = 1
-      this.getList(this.page, param)
+    handleFilter(form) {
+      this.searchForm = form
+      this.getList(this.page, form)
     },
     handleCreate() {
       this.$refs.crud.rowAdd()

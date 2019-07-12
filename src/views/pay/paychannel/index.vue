@@ -53,6 +53,7 @@ export default {
   name: 'Paychannel',
   data() {
     return {
+      searchForm: {},
       tableData: [],
       page: {
         total: 0, // 总页数
@@ -79,7 +80,7 @@ export default {
       fetchList(Object.assign({
         current: page.currentPage,
         size: page.pageSize
-      }, params)).then(response => {
+      }, params, this.searchForm)).then(response => {
         this.tableData = response.data.data.records
         this.page.total = response.data.data.total
         this.tableLoading = false
@@ -105,13 +106,6 @@ export default {
         this.getList(this.page)
       })
     },
-    /**
-             * @title 数据更新
-             * @param row 为当前的数据
-             * @param index 为当前更新数据的行数
-             * @param done 为表单关闭函数
-             *
-             **/
     handleUpdate: function(row, index, done, loading) {
       putObj(row).then(data => {
         this.tableData.splice(index, 1, Object.assign({}, row))
@@ -126,12 +120,6 @@ export default {
         loading()
       })
     },
-    /**
-             * @title 数据添加
-             * @param row 为当前的数据
-             * @param done 为表单关闭函数
-             *
-             **/
     handleSave: function(row, done, loading) {
       addObj(row).then(data => {
         this.tableData.push(Object.assign({}, row))
@@ -146,15 +134,10 @@ export default {
         loading()
       })
     },
-    /**
-             * 搜索回调
-             */
     searchChange(form) {
+      this.searchForm = form
       this.getList(this.page, form)
     },
-    /**
-             * 刷新回调
-             */
     refreshChange() {
       this.getList(this.page)
     }

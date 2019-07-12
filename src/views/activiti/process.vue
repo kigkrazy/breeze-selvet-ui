@@ -74,6 +74,7 @@ export default {
   name: 'Process',
   data() {
     return {
+      searchForm: {},
       showPicDialog: false,
       actPicUrl: '',
       tableData: [],
@@ -103,7 +104,8 @@ export default {
             current: page.currentPage,
             size: page.pageSize
           },
-          params
+          params,
+          this.searchForm
         )
       ).then(response => {
         this.tableData = response.data.data.records
@@ -172,6 +174,7 @@ export default {
        * 搜索回调
        */
     searchChange(form) {
+      this.searchForm = form
       this.getList(this.page, form)
     },
     /**

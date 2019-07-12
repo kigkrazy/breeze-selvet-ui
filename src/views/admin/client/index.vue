@@ -103,13 +103,6 @@ export default {
       }).catch(function() {
       })
     },
-    /**
-       * @title 数据更新
-       * @param row 为当前的数据
-       * @param index 为当前更新数据的行数
-       * @param done 为表单关闭函数
-       *
-       **/
     handleUpdate: function(row, index, done) {
       putObj(row).then(() => {
         this.tableData.splice(index, 1, Object.assign({}, row))
@@ -122,12 +115,6 @@ export default {
         done()
       })
     },
-    /**
-       * @title 数据添加
-       * @param row 为当前的数据
-       * @param done 为表单关闭函数
-       *
-       **/
     handleSave: function(row, done) {
       addObj(row).then(() => {
         this.tableData.push(Object.assign({}, row))
@@ -140,9 +127,6 @@ export default {
         done()
       })
     },
-    /**
-       * 刷新回调
-       */
     refreshChange() {
       this.getList(this.page)
     }

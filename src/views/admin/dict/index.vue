@@ -73,6 +73,7 @@ export default {
   name: 'Dict',
   data() {
     return {
+      searchForm: {},
       form: {
         type: undefined,
         dictId: undefined
@@ -112,7 +113,7 @@ export default {
       fetchList(Object.assign({
         current: page.currentPage,
         size: page.pageSize
-      }, params)).then(response => {
+      }, params, this.searchForm)).then(response => {
         this.tableData = response.data.data.records
         this.page.total = response.data.data.total
         this.tableLoading = false
@@ -155,13 +156,6 @@ export default {
       }).catch(function() {
       })
     },
-    /**
-       * @title 数据更新
-       * @param row 为当前的数据
-       * @param index 为当前更新数据的行数
-       * @param done 为表单关闭函数
-       *
-       **/
     handleUpdate: function(row, index, done) {
       putObj(row).then(() => {
         this.$message({
@@ -173,12 +167,6 @@ export default {
         done()
       })
     },
-    /**
-       * @title 数据添加
-       * @param row 为当前的数据
-       * @param done 为表单关闭函数
-       *
-       **/
     handleSave: function(row, done) {
       addObj(row).then(() => {
         this.$message({
@@ -213,12 +201,9 @@ export default {
       })
     },
     searchChange(form) {
+      this.searchForm = form
       this.getList(this.page, form)
     },
-    /**
-       * 加载 字典项
-       * @param row
-       */
     handleItem: function(row) {
       this.getDictItemList(row.id, row.type)
     },
