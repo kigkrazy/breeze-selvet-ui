@@ -32,25 +32,31 @@
 </style>
 
 <script>
-  import VueQrcode from '@xkeshi/vue-qrcode'
+import VueQrcode from '@xkeshi/vue-qrcode'
 
-  export default {
-    components: {
-      'qrcode': VueQrcode
-    },
-    data() {
-      return {
-        amount: '1',
-        msg: 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=1',
-        options: {
-          size: 300
-        }
-      }
-    },
-    watch: {
-      amount: function(amount) {
-        this.msg = 'http://pigx.huaxiadaowei.com/pay/goods/buy?amount=' + amount
+const protocol = window.location.protocol
+const host = window.location.host
+
+export default {
+  components: {
+    'qrcode': VueQrcode
+  },
+  data() {
+    return {
+      amount: '1',
+      msg: '',
+      options: {
+        size: 300
       }
     }
+  },
+  watch: {
+    amount: function(amount) {
+      this.msg = `${protocol}//${host}/pay/goods/buy?amount=${amount}`
+    }
+  },
+  created() {
+    this.msg = `${protocol}//${host}/pay/goods/buy?amount=1`
   }
+}
 </script>

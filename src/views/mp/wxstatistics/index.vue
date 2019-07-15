@@ -4,13 +4,17 @@
       <el-col :md="4">
         <el-row>
           <el-date-picker
-            v-model="interval"
-            :picker-options="datePickerOptions"
-            type="daterange"
-            range-separator="至"
-            start-placeholder="开始日期"
-            end-placeholder="结束日期"
-            @change="check"/>
+            v-model="beginTime"
+            placeholder="选择开始时间"
+            @change="check">
+          </el-date-picker>
+        </el-row>
+        <el-row>
+          <el-date-picker
+            v-model="endTime"
+            placeholder="选择结束时间"
+            @change="check">
+          </el-date-picker>
         </el-row>
         <el-row>
           <avue-tree
@@ -59,12 +63,8 @@ export default {
   },
   data() {
     return {
-      datePickerOptions: {
-        disabledDate(date) {
-          return date >= new Date(new Date() - 3600 * 1000 * 24)
-        }
-      },
-      interval: [new Date() - 3600 * 1000 * 24 * 7, new Date() - 3600 * 1000 * 24],
+      beginTime: new Date() - 3600 * 1000 * 24 * 7,
+      endTime: new Date() - 3600 * 1000 * 24,
       q: {
         interval: undefined,
         appId: undefined
@@ -184,7 +184,7 @@ export default {
     nodeClick(data) {
       this.check()
       this.q.appId = data.appid
-      this.q.interval = new Date(this.interval[0]).getTime() + '-' + new Date(this.interval[1]).getTime()
+      this.q.interval = new Date(this.beginTime).getTime() + '-' + new Date(this.endTime).getTime()
       fetchStatistics(this.q).then(response => {
         this.userCumulate.series[0].data = response.data.data[0]
         this.userCumulate.xAxis.data = response.data.data[4]
@@ -202,8 +202,8 @@ export default {
       })
     },
     check() {
-      const start = new Date(this.interval[0])
-      const end = new Date(this.interval[1])
+      const start = new Date(this.beginTime)
+      const end = new Date(this.endTime)
 
       if (end.getDate() >= new Date()) {
         this.$message.error('统计结束日小于，请重新选择')

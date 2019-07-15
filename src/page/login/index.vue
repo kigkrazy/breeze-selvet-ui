@@ -13,7 +13,7 @@
           src="/img/logo.png"
           alt="">
         <p class="title">{{ website.infoTitle }}</p>
-        <p>v 3.1.0</p>
+        <p>v 3.2.0</p>
       </div>
       <div class="login-border">
         <div class="login-main">

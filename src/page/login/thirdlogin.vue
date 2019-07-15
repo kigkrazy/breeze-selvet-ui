@@ -58,20 +58,20 @@ export default {
   name: 'SocialSignin',
   methods: {
     handleClick(thirdpart) {
-      let appid, client_id, redirect_uri, url
-      redirect_uri = encodeURIComponent(window.location.origin + '/#/authredirect')
+      let url
+      const redirect_uri = encodeURIComponent(window.location.origin + '/#/authredirect')
       if (thirdpart === 'wechat') {
-        appid = 'wxd1678d3f83b1d83a'
-        url = 'https://open.weixin.qq.com/connect/qrconnect?appid=' + appid + '&redirect_uri=' + redirect_uri + '&state=WX-LOGIN&response_type=code&scope=snsapi_login#wechat_redirect'
+        const appid = 'wxd1678d3f83b1d83a'
+        url = `https://open.weixin.qq.com/connect/qrconnect?appid=${appid}&redirect_uri=${redirect_uri}&state=WX-LOGIN&response_type=code&scope=snsapi_login#wechat_redirect`
       } else if (thirdpart === 'tencent') {
-        client_id = '101322838'
-        url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ-LOGIN&client_id=' + client_id + '&redirect_uri=' + redirect_uri
+        const client_id = '101322838'
+        url = `https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ-LOGIN&client_id=${client_id}&redirect_uri=${redirect_uri}`
       } else if (thirdpart === 'gitee') {
-        client_id = '8fc54e0e76e7842cf767c3ae3b9fdc48c03cefed27aa565ff7b2a39d142d9892'
-        url = 'https://gitee.com/oauth/authorize?response_type=code&client_id=' + client_id + '&state=GITEE-LOGIN&redirect_uri=' + redirect_uri
+        const client_id = 'c771eff6cf10c5353bc60eaf0c4a265ebdb91750e2fc844b61dbf75ace702723'
+        url = `https://gitee.com/oauth/authorize?response_type=code&client_id=${client_id}&state=GITEE-LOGIN&redirect_uri=${redirect_uri}`
       } else if (thirdpart === 'osc') {
-        client_id = 'neIIqlwGsjsfsA6uxNqD'
-        url = 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=' + client_id + '&state=OSC-LOGIN&redirect_uri=' + redirect_uri
+        const client_id = 'uLJ41IGu7qAGmzSVHwF4'
+        url = `https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=${client_id}'&state=OSC-LOGIN&redirect_uri=${redirect_uri}`
       }
       openWindow(url, thirdpart, 540, 540)
     }
