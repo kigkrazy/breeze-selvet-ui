@@ -127,7 +127,7 @@ export default {
       this.getList(this.page)
     },
     download: function(row, index) {
-      handleDown(row.name, row.bucketName)
+      handleDown(row.fileName, row.bucketName)
     }
   }
 }

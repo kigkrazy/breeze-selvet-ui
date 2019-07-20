@@ -19,7 +19,7 @@
   <div class="execution">
     <basic-container>
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="grid-content bg-purple">
             <el-select v-model="q.id" placeholder="请选择数据源">
               <el-option
@@ -30,7 +30,7 @@
             </el-select>
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="grid-content bg-purple">
             <el-input v-model="q.tableName" placeholder="表名称"/>
           </div>
