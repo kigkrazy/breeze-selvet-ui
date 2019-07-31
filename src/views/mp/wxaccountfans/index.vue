@@ -63,9 +63,6 @@ export default {
       tableOption: tableOption
     }
   },
-  created() {
-    this.getAccountList()
-  },
   computed: {
     ...mapGetters(['permissions']),
     permissionList() {
@@ -75,6 +72,9 @@ export default {
         editBtn: this.vaildData(this.permissions.mp_wxaccountfans_edit, false)
       }
     }
+  },
+  created() {
+    this.getAccountList()
   },
   methods: {
     getAccountList() {

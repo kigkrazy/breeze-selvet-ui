@@ -38,10 +38,6 @@ export default {
       tableOption: tableOption
     }
   },
-  created() {
-  },
-  mounted: function() {
-  },
   computed: {
     ...mapGetters(['permissions']),
     permissionList() {
@@ -51,6 +47,10 @@ export default {
         editBtn: this.vaildData(this.permissions.admin_syspublicparam_edit, false)
       }
     }
+  },
+  created() {
+  },
+  mounted: function() {
   },
   methods: {
     getList(page, params) {
