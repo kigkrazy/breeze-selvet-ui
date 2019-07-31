@@ -21,7 +21,6 @@
 <script>
 import {
   fetchList,
-  getObj,
   addObj,
   putObj,
   delObj
