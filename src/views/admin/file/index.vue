@@ -107,7 +107,6 @@ export default {
        * 刷新回调
        */
     refreshChange() {
-      this.searchForm = form
       this.getList(this.page)
     },
     download: function(row, index) {
