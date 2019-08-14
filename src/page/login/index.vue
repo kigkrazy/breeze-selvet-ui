@@ -8,10 +8,6 @@
         <div class="login-time">
           {{ time }}
         </div>
-        <img
-          class="img"
-          src="/img/logo.png"
-          alt="">
         <p class="title">{{ website.infoTitle }}</p>
         <p>v 3.2.0</p>
       </div>
