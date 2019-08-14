@@ -2,7 +2,7 @@
  * 配置参考:
  * https://cli.vuejs.org/zh/config/
  */
-const url = 'http://pigx-gateway:9999'
+const url = 'http://brz-gateway:9999'
 module.exports = {
   lintOnSave: true,
   productionSourceMap: false,
