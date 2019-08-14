@@ -74,6 +74,9 @@ export default {
       socialForm: {}
     }
   },
+  computed: {
+    ...mapGetters(['website', 'tagWel'])
+  },
   watch: {
     $route: {
       handler() {
@@ -110,9 +113,7 @@ export default {
   },
   mounted() {
   },
-  computed: {
-    ...mapGetters(['website', 'tagWel'])
-  },
+
   methods: {
     handleCommand(command) {
       setStore({ name: 'tenantId', content: command })

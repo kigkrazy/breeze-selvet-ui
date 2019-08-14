@@ -42,7 +42,7 @@ export default {
       const timespeed = 10
       setInterval(() => {
         if (this.isText) {
-          if (count == this.actor.length) {
+          if (count === this.actor.length) {
             active = true
           } else {
             active = false
@@ -50,7 +50,7 @@ export default {
           if (active) {
             num--
             this.text = this.actor.substr(0, num)
-            if (num == 0) {
+            if (num === 0) {
               this.isText = false
               setTimeout(() => {
                 count = 0
@@ -60,7 +60,7 @@ export default {
           } else {
             num++
             this.text = this.actor.substr(0, num)
-            if (num == this.actor.length) {
+            if (num === this.actor.length) {
               this.isText = false
               setTimeout(() => {
                 this.isText = true
